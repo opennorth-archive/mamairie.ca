@@ -1,0 +1,9 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @party.name
+
+= link_to 'Edit', edit_party_path(@party)
+\|
+= link_to 'Back', parties_path

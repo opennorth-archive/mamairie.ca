@@ -16,6 +16,7 @@ group :assets do
   gem 'uglifier'
 end
 
+gem 'haml-rails'
 gem 'jquery-rails'
 
 # Use unicorn as the web server

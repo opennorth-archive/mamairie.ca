@@ -1,0 +1,16 @@
+= form_for @borough do |f|
+  -if @borough.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@borough.errors.count, "error")} prohibited this borough from being saved:"
+      %ul
+        - @borough.errors.full_messages.each do |msg|
+          %li= msg
+
+  .field
+    = f.label :name
+    = f.text_field :name
+  .field
+    = f.label :services_id
+    = f.text_field :services_id
+  .actions
+    = f.submit 'Save'

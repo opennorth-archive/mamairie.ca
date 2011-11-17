@@ -1,0 +1,21 @@
+%h1 Listing boroughs
+
+%table
+  %tr
+    %th Name
+    %th Services
+    %th
+    %th
+    %th
+
+  - @boroughs.each do |borough|
+    %tr
+      %td= borough.name
+      %td= borough.services_id
+      %td= link_to 'Show', borough
+      %td= link_to 'Edit', edit_borough_path(borough)
+      %td= link_to 'Destroy', borough, :confirm => 'Are you sure?', :method => :delete
+
+%br
+
+= link_to 'New Borough', new_borough_path

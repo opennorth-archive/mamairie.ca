@@ -1,4 +1,10 @@
 MaMairie::Application.routes.draw do
+  resources :boroughs
+
+  resources :parties
+
+  resources :people
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

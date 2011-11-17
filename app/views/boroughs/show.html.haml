@@ -1,0 +1,12 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @borough.name
+%p
+  %b Services:
+  = @borough.services_id
+
+= link_to 'Edit', edit_borough_path(@borough)
+\|
+= link_to 'Back', boroughs_path
