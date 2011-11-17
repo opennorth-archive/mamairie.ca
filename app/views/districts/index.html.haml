@@ -1,0 +1,21 @@
+%h1 Listing districts
+
+%table
+  %tr
+    %th Name
+    %th Borough
+    %th
+    %th
+    %th
+
+  - @districts.each do |district|
+    %tr
+      %td= district.name
+      %td= district.borough
+      %td= link_to 'Show', district
+      %td= link_to 'Edit', edit_district_path(district)
+      %td= link_to 'Destroy', district, :confirm => 'Are you sure?', :method => :delete
+
+%br
+
+= link_to 'New District', new_district_path

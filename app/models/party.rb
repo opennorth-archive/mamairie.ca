@@ -3,5 +3,6 @@ class Party
   many :people
 
   key :name, String
+  key :slug, String
 
 end

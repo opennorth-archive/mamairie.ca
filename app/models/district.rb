@@ -1,10 +1,8 @@
-class Borough
+class District
   include MongoMapper::Document
-  many :people
-  many :districts
+  belongs_to :borough
 
   key :name, String
   key :slug, String
-  key :services_id, String
 
 end
