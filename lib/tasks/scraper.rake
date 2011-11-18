@@ -6,14 +6,9 @@ namespace :scraper do
     ]
   end
 
-  task :process => :environment do
-    require 'runner'
-    Runner.new.run [
-      'process',
-    ]
-  end
-
+  # Run when photo_url changes
   task :images => :environment do
+    require 'open-uri'
     Person.all.each do |person|
       filename = File.join Rails.root, 'app', 'assets', 'images', 'photos', "#{person.slug}.jpg"
       unless person.photo_url.nil? or File.exist?(filename)
@@ -22,5 +17,18 @@ namespace :scraper do
         end
       end
     end
+  end
+
+  # Run when Wikipedia changes
+  task :wikipedia => :environment do
+    
+  end
+
+  task :twitter => :environment do
+
+  end
+
+  task :google_news => :environment do
+
   end
 end

@@ -11,8 +11,9 @@ gem 'bson_ext'
 gem 'twitter'
 gem 'twitter-text'
 
-# Scraper
+# Rake
 gem 'andand'
+gem 'faraday'
 gem 'nokogiri'
 gem 'rest-client'
 gem 'dragonfly', :git => 'git://github.com/jpmckinney/dragonfly.git'

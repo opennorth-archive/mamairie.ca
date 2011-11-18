@@ -20,6 +20,9 @@ class Person
   key :source_url, String
   timestamps!
 
+  ensure_index :name
+  ensure_index :slug
+
   validates_presence_of :name, :slug, :gender, :positions, :source_url
 
   def find_address_by_name(name)

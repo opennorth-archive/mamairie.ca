@@ -184,6 +184,7 @@ DEPENDENCIES
   coffee-rails (~> 3.1.0)
   dalli
   dragonfly!
+  faraday
   haml-rails
   jquery-rails
   mongo_mapper

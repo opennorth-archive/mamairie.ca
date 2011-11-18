@@ -11,7 +11,6 @@ require 'unbreakable'
 module VilleMontrealQcCa
   class Scraper < Unbreakable::Scraper
     SPREADSHEET_URL = 'https://spreadsheets.google.com/pub?hl=en&hl=en&key=0AgjCpacWYedndEtSSGVtakd1NVp1bEFjWERSN291eGc&single=true&gid=0&output=csv'
-    # @note URLs may change over time
     PEOPLE_URL = 'http://ville.montreal.qc.ca/portal/page?_pageid=5798,85809573&_dad=portal&_schema=PORTAL'
     GENDER_MAP = {'Monsieur' => 'm', 'Madame' => 'f'}
     DISTRICT_MAP = {
@@ -161,10 +160,6 @@ module VilleMontrealQcCa
           address.save!
         end
       end
-    end
-
-    def process(args)
-
     end
   end
 end
