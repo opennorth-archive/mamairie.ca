@@ -2,7 +2,7 @@ class BoroughsController < ApplicationController
   # GET /boroughs
   # GET /boroughs.json
   def index
-    @boroughs = Borough.all
+    @boroughs = Borough.fields(:name, :slug).all
 
     respond_to do |format|
       format.html # index.html.erb

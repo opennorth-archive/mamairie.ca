@@ -21,7 +21,7 @@ describe MaMairie do
   end
 
   it 'should get 302 response code' do
-    uris = Borough.all.map(&:url)
+    uris = Borough.fields(:slug).all.map(&:url)
     uris.each do |uri|
       # http://ville.montreal.qc.ca/portal/page?_pageid=67,297449&_dad=portal&_schema=PORTAL
       Faraday.head(uri).env[:response_headers][:location].should_not match /404|67,297449/

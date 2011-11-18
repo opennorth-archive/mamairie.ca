@@ -4,12 +4,13 @@ class Person
   belongs_to :district
   belongs_to :party
   many :addresses
+  many :activities
 
-  key :name, String
-  key :slug, String
+  key :name, String, required: true
+  key :slug, String, required: true
   key :email, String
-  key :gender, String
-  key :positions, Array
+  key :gender, String, required: true
+  key :positions, Array, required: true
   key :responsibilities, Hash
   key :functions, Array
   key :twitter, String
@@ -17,13 +18,11 @@ class Person
   key :wikipedia, Hash
   key :web, Hash
   key :photo_url, String
-  key :source_url, String
+  key :source_url, String, required: true
   timestamps!
 
   ensure_index :name
   ensure_index :slug
-
-  validates_presence_of :name, :slug, :gender, :positions, :source_url
 
   def find_address_by_name(name)
     addresses.detect{|address| address.name == name}
