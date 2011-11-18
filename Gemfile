@@ -8,6 +8,17 @@ gem 'rails', '3.1.0'
 gem 'mongo_mapper'
 gem 'bson_ext'
 
+gem 'twitter'
+gem 'twitter-text'
+
+# Scraper
+gem 'andand'
+gem 'nokogiri'
+gem 'rest-client'
+gem 'dragonfly', :git => 'git://github.com/jpmckinney/dragonfly.git'
+gem 'unbreakable', '~> 0.0.4'
+gem 'unicode_utils'
+
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do

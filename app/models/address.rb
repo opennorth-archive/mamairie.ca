@@ -3,7 +3,8 @@ class Address
 
   key :name, String
   key :address, Array
-  key :tel, String
-  key :fax, String
+  key :tel, Integer
+  key :fax, Integer
 
+  validates_presence_of :name, :address, :tel, :fax
 end

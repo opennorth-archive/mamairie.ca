@@ -56,3 +56,5 @@ module MaMairie
     end
   end
 end
+
+require 'string_extensions'
