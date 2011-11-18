@@ -14,6 +14,14 @@ module VilleMontrealQcCa
     # @note URLs may change over time
     PEOPLE_URL = 'http://ville.montreal.qc.ca/portal/page?_pageid=5798,85809573&_dad=portal&_schema=PORTAL'
     GENDER_MAP = {'Monsieur' => 'm', 'Madame' => 'f'}
+    DISTRICT_MAP = {
+      "Champlain-L'Île-des-Sœurs"   => "Champlain—L'Île-des-Sœurs",
+      'Maisonneuve-Longue-Pointe'   => 'Maisonneuve—Longue-Pointe',
+      'Saint-Henri-Petite-Bourgogne-Pointe-Saint-Charles' => 'Saint-Henri—Petite-Bourgogne—Pointe-Saint-Charles',
+      'Saint-Paul - Émard'          => 'Saint-Paul—Émard',
+      'Sault-Saint-Louis (poste 1)' => 'Sault-Saint-Louis',
+      'Sault-Saint-Louis (poste 2)' => 'Sault-Saint-Louis',
+    }
 
     def retrieve(args)
       csv = {}
@@ -33,9 +41,9 @@ module VilleMontrealQcCa
       end
 
       # @todo mark people for hiding
-      Nokogiri::HTML(Iconv.conv('UTF-8', 'Windows-1252', RestClient.post(PEOPLE_URL, :action_affiche => 'affiche')).unescape).css('.donn_listeVue1 a').each do |a|
+      Nokogiri::HTML(Iconv.conv('UTF-8', 'ISO-8859-1', RestClient.post(PEOPLE_URL, :action_affiche => 'affiche'))).css('.donn_listeVue1 a').each do |a|
         # @note city mayor has two entries
-        borough_name = a.css('span.titre').text.split(',').last.strip
+        borough_name = a.css('span.titre').text.split(',').last.strip.tr("\u0096\u0097", "–—")
         next if borough_name == 'Ville de Montréal'
 
         gender, *name = a[:title].split
@@ -46,7 +54,7 @@ module VilleMontrealQcCa
           log.info "Adding new person #{person.name}"
         end
 
-        doc = Nokogiri::HTML(Iconv.conv('UTF-8', 'Windows-1252', open("http://ville.montreal.qc.ca#{a[:href]}").read).unescape)
+        doc = Nokogiri::HTML(open("http://ville.montreal.qc.ca#{a[:href]}").read, nil, 'UTF-8')
         src = doc.at_css('.imageDroite').andand[:src]
         pieces = name.slug.split('-')
 
@@ -70,8 +78,6 @@ module VilleMontrealQcCa
         }
 
         suffix = "for #{person.name} (#{person.source_id})"
-        log.info "Missing email #{suffix}" if person.email.nil?
-        log.info "Missing photo #{suffix}" if person.photo_url.nil?
 
         borough = Borough.find_by_name(borough_name)
         if borough.nil?
@@ -97,7 +103,10 @@ module VilleMontrealQcCa
             parts = tr.text.split("\n").map(&:strip).reject(&:empty?)
 
             if parts.size == person.positions.size + 3 # borough, district, party
-              district_name = parts[1]
+              district_name = DISTRICT_MAP[parts[1]] || parts[1]
+              if %w(Ouest Est Centre).include? district_name
+                district_name = "#{borough_name}-#{district_name}"
+              end
               district = District.find_by_name(district_name)
               if district.nil?
                 log.error "Unknown district '#{district_name}' #{suffix}"
@@ -137,6 +146,10 @@ module VilleMontrealQcCa
               log.warn "Unknown section '#{section}' #{suffix}"
             end
           end
+        end
+
+        %w(email responsibilities functions photo_url).each do |attribute|
+          log.info "Missing #{attribute} #{suffix}" if person[attribute].nil?
         end
 
         person.save!

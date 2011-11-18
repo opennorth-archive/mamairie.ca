@@ -61,7 +61,7 @@ end
     'Snowdon',
   ],
   'lachine' => [
-    'du Canal',
+    'Canal',
     'Fort-Rolland',
     'J.-Émery-Provost',
   ],
@@ -92,13 +92,13 @@ end
     'Robert-Bourassa',
   ],
   'pierrefonds-roxboro' => [
-    'Pierrefonds-Est',
-    'Pierrefonds-Ouest',
+    'Bois-de-Liesse',
+    'Cap-Saint-Jacques',
   ],
   'plateau' => [
-    'DeLorimier',
+    'De Lorimier',
     'Jeanne-Mance',
-    'Mile-End',
+    'Mile End',
   ],
   'rdp-pat' => [
     'La Pointe-aux-Prairies',
@@ -129,7 +129,8 @@ end
   ],
   'villemarie' => [
     'Peter-McGill',
-    'Sainte-Marie—Saint-Jacques',
+    'Saint-Jacques',
+    'Sainte-Marie',
   ],
   'vsp' => [
     'François-Perrault',
