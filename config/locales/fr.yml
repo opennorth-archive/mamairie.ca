@@ -231,3 +231,8 @@ fr-CA:
         <<: *errors_template
       full_messages:
         format: "%{attribute} %{message}"
+
+  mongo_mapper:
+    errors:
+      messages:
+        <<: *errors_messages
