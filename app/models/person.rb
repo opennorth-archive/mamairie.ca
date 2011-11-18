@@ -18,10 +18,9 @@ class Person
   key :web, Hash
   key :photo_url, String
   key :source_url, String
-  key :source_id, Integer
   timestamps!
 
-  validates_presence_of :name, :slug, :gender, :positions, :source_url, :source_id
+  validates_presence_of :name, :slug, :gender, :positions, :source_url
 
   def find_address_by_name(name)
     addresses.detect{|address| address.name == name}

@@ -6,5 +6,5 @@ class Address
   key :tel, Integer
   key :fax, Integer
 
-  validates_presence_of :name, :address, :tel, :fax
+  validates_presence_of :name, :address
 end

@@ -71,13 +71,12 @@ module VilleMontrealQcCa
           web:              nil,
           photo_url:        src && "http://ville.montreal.qc.ca#{src}",
           source_url:       a[:href],
-          source_id:        a[:href].split('=').last.to_i,
           borough_id:       nil,
           district_id:      nil,
           party_id:         nil,
         }
 
-        suffix = "for #{person.name} (#{person.source_id})"
+        suffix = "for #{person.name} (#{a[:href].split('=').last.to_i})"
 
         borough = Borough.find_by_name(borough_name)
         if borough.nil?
@@ -98,6 +97,7 @@ module VilleMontrealQcCa
           log.warn "Missing spreadsheet row #{suffix}"
         end
 
+        addresses = []
         doc.css('#print tr').each_with_index do |tr,index|
           if index.zero?
             parts = tr.text.split("\n").map(&:strip).reject(&:empty?)
@@ -142,17 +142,24 @@ module VilleMontrealQcCa
                 tel: numbers.first,
                 fax: numbers.last,
               }
+              addresses << address
             else
               log.warn "Unknown section '#{section}' #{suffix}"
             end
           end
         end
 
-        %w(email responsibilities functions photo_url).each do |attribute|
-          log.info "Missing #{attribute} #{suffix}" if person[attribute].nil?
+        %w(email photo_url).each do |attribute|
+          log.info "Missing #{attribute} #{suffix}" if person[attribute].blank?
         end
-
         person.save!
+
+        addresses.each do |address|
+          %w(tel fax).each do |attribute|
+            log.info "Missing #{attribute} #{suffix}" if address[attribute].blank?
+          end
+          address.save!
+        end
       end
     end
 
