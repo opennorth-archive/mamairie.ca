@@ -5,3 +5,4 @@ tmp/
 .sass-cache/
 .DS_Store
 config/initializers/heroku.rb
+config/mongo.yml

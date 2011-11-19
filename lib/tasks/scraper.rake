@@ -68,9 +68,9 @@ namespace :scraper do
         tweets.each do |tweet|
           person.activities.create!({
             source:       TWITTER_KEY,
-            party_id:     person.party.id,
-            borough_id:   person.borough.id,
-            district_id:  person.district.id,
+            party_id:     person.party_id,
+            borough_id:   person.borough_id,
+            district_id:  person.district_id,
             url:          "http://twitter.com/#{tweet.user.screen_name}/status/#{tweet.id_str}",
             body:         tweet.text,
             published_at: Time.parse(tweet.created_at),
@@ -140,9 +140,9 @@ namespace :scraper do
 
           person.activities.create!({
             source:       GOOGLE_NEWS_KEY,
-            party_id:     person.party.id,
-            borough_id:   person.borough.id,
-            district_id:  person.district.id,
+            party_id:     person.party_id,
+            borough_id:   person.borough_id,
+            district_id:  person.district_id,
             url:          entry.url,
             body:         body,
             published_at: entry.published,

@@ -7,7 +7,7 @@
         - @borough.people.sort(:name.asc).each do |person|
           %li
             = render 'shared/mini_person', person: person
-      = render 'shared/budget', borough: borough
+      = render 'shared/budget', borough: @borough
     .span6
       %aside
         %ul
@@ -24,4 +24,4 @@
             %li
               = link_to 'Twitter', @borough.flickr
         %p
-          = link_to "#{@borough.name} sur ville.montreal.qc.ca", borough.url
+          = link_to "#{@borough.name} sur ville.montreal.qc.ca", @borough.url

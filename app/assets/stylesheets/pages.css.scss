@@ -1,3 +1,19 @@
 // Place all the styles related to the pages controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+body {padding-top: 40px;}
+.hero-unit {
+  padding:10px;
+  padding-left:130px;
+  label {font-size:1.4em;margin-bottom:5px;}
+  input[type="text"] {font-size:1.3em;width:500px;padding:10px;margin-bottom:3px;}
+  input[type="submit"] {font-size:1.2em;padding:10px;}
+}
+
+header {
+  padding:40px 0 20px 0;
+  text-align:center;
+  h1 {color:#000;font-size:3.2em;text-shadow:2px 2px 0px #ccc;}
+  h2 {color:#7d7d7d;}
+}

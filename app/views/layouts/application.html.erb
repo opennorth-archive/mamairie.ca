@@ -11,27 +11,42 @@
   <meta name="description" content="<%=t '.description' %>">
   <meta name="author" content="<%=t '.author' %>">
   <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link href='http://fonts.googleapis.com/css?family=Cabin:700' rel='stylesheet' type='text/css'>
   <%= stylesheet_link_tag 'application' %>
   <%= javascript_include_tag 'application' %>
   <%= csrf_meta_tags %>
 </head>
 <body id="<%= I18n.locale %>">
-
-<div class="container">
-  <div class="row">
-    <div class="span16">
-      <header>
-        <h1>Ma Mairie</h1>
-        <p>Suivez l'activité de vos élus à la Ville de Montréal</p>
-      </header>
-      <div class="hero-unit">
-        <%= render 'shared/search_form' %>
+  <div class="topbar">
+    <div class="topbar-inner">
+      <div class="container">
+        <a class="brand" href="#">Ma Mairie</a>
+        <ul class="nav">
+          <li class=""><a href="#overview">Overview</a></li>
+          <li class=""><a href="#about">Boroughs</a></li>
+          <li class=""><a href="#grid-system">Districs</a></li>
+          <li class=""><a href="#layouts">Parties</a></li>
+          <li class=""><a href="#typography">About</a></li>
+        </ul>
       </div>
     </div>
   </div>
-</div>
 
-<%= yield %>
+  <div class="container">
+    <div class="row">
+      <div class="span16">
+        <header>
+          <h1>Ma Mairie</h1>
+          <h2>Suivez l'activité de vos élus à la Ville de Montréal</h1>
+        </header>
+        <div class="hero-unit">
+          <%= render 'shared/search_form' %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <%= yield %>
 
 <script>
   var _gaq=[['_setAccount','<%=t '.google_analytics' %>'],['_trackPageview'],['_trackPageLoadTime']];
