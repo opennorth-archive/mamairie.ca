@@ -56,7 +56,7 @@ namespace :scraper do
       # * location:Montréal
     }
 
-    Person.all.each do |person|
+    Person.sort(:name.asc).all.each do |person|
       source = person.sources[GOOGLE_NEWS_KEY] || person.sources.build(name: GOOGLE_NEWS_KEY)
       activity = person.activities.where(source: GOOGLE_NEWS_KEY).sort(:published_at.desc).first
       q = source.extra.has_key?(:q) ? source.extra[:q] : person.name
