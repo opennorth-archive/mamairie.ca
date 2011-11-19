@@ -3,7 +3,7 @@
     .span5
       %h3
         = image_tag "/images/icon/news.png"
-        News, Tweets & Blogs
+        Nouvelles
       .activities
         - @activities.each do |activity|
           .activity
@@ -15,7 +15,7 @@
     .span11
       %h3 
         = image_tag "/images/icon/map.png"
-        Select a Borough:
+        Choisissez un arrondissement :
       %ul.two_column
         - @boroughs.each do |borough|
           %li
@@ -23,7 +23,7 @@
       .spacer
       %h3 
         = image_tag "/images/icon/user.png"
-        People
+        Maires et conseillers
       .people
         - @people.each do |person|
           .person
