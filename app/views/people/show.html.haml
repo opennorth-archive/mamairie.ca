@@ -17,28 +17,44 @@
               = link_to 'Twitter', @person.facebook
         %section#coordinates
           %h3 Coordonnées
-            - if @person.email
+          - if @person.email
+            %p
+              = mail_to @person.email
+          - @person.addresses.each do |address|
+            %h4
+              = address.name
+            %p
+              - address.address.each do |line|
+                = line
+                %br
+            - if address.tel
               %p
-                = mail_to @person.email
-            - @person.addresses.each do |address|
-              %h4
-                = address.name
+                %b Tél
+                = number_to_phone address.tel, area_code: true
+            - if address.fax
               %p
-                - address.address.each do |line|
-                  = line
-                  %br
-              - if address.tel
-                %p
-                  %b Tél
-                  = number_to_phone address.tel, area_code: true
-              - if address.fax
-                %p
-                  %b Fax
-                  = number_to_phone address.fax, area_code: true
+                %b Fax
+                = number_to_phone address.fax, area_code: true
         %section#positions
           %h3 Positions
+          %ul
+            - @person.positions.each do |position|
+              %li
+                = position
+        - if @person.responsibilities
+          %section#responsibilities
+            %h3 Responsabilités
+            - @person.responsibilities.each do |section,responsibilities|
+              %h4
+                = section
+              %ul
+                - responsibilities.each do |responsibility|
+                  %li
+                    = responsibility
+        - if @person.functions
+          %section#functions
+            %h3 Fonctions et comités stratégiques
             %ul
-              - @person.positions.each do |position|
+              - @person.functions.each do |function|
                 %li
-                  = position
-        %section
+                  = function
