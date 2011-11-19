@@ -56,7 +56,7 @@ namespace :scraper do
 
         begin
           tweets = Twitter.user_timeline(person.twitter, count: 200, since_id: since_id, page: page)
-        rescue Twitter::BadGateway => e
+        rescue StandardError => e #@todo Twitter::BadGateway => e
           puts "Retrying in 2... #{e}"
           sleep 2
           retry
