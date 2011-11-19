@@ -7,8 +7,8 @@ gem 'rails', '3.1.0'
 
 gem 'mongo', '= 1.4.0'
 gem 'bson', '= 1.4.0'
+gem 'bson_ext', '= 1.4.0'
 gem 'mongo_mapper'
-gem 'bson_ext'
 
 gem 'twitter'
 gem 'twitter-text'
