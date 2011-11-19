@@ -42,7 +42,7 @@ header {
     margin-right:2px;
     list-style:none;
     margin-bottom:2px;
-    a {font-size:1.1em;padding:10px;background:#e7eff2;display:block;border-radius:3px;}
+    a {font-size:1.1em;padding:10px;background:#e7eff2 url(http://i.imgur.com/Fr8bX.png) no-repeat 95% 10px;display:block;border-radius:3px;}
     a:hover {color:#000;background:#bedfec;text-decoration:none;}
   }
 }
@@ -91,8 +91,9 @@ aside {padding-left:20px;margin-left:20px;border-left:1px solid #eee;}
 .span5 {
   .activity {
     img {
-      margin-bottom:20px;position:relative;top:3px;
+      margin-bottom:30px;position:relative;top:3px;
     }
+    .snippet {font-size:0.9em;}
   }
 }
 .social {img {position:relative;top:2px;}font-size:1.1em;margin-bottom:10px;margin-top:5px}
