@@ -5,49 +5,56 @@
         = @person.name
         %span
           = @person.positions.first
-      /@todo add aerial photo of borough
       = render 'shared/mini_council', people: @person.others_in_borough
     .span6
       %aside
-        
-  = @person.name
-%p
-  %b Email:
-  = @person.email
-%p
-  %b Borough:
-  = @person.borough
-%p
-  %b Party:
-  = @person.party
-%p
-  %b Positions:
-  = @person.positions
-%p
-  %b Responsibilities:
-  = @person.responsibilities
-%p
-  %b Wikipedia:
-  = @person.wikipedia
-%p
-  %b Facebook:
-  = @person.facebook
-%p
-  %b Twitter:
-  = @person.twitter
-%p
-  %b Web:
-  = @person.web
-%p
-  %b Photo url:
-  = @person.photo_url
-%p
-  %b Source:
-  = @person.source_id
-%p
-  %b Source url:
-  = @person.source_url
-
-= link_to 'Edit', edit_person_path(@person)
-\|
-= link_to 'Back', people_path
+        %ul
+          - if @person.twitter
+            %li
+              = link_to 'Twitter', @person.twitter_url
+          - if @person.facebook
+            %li
+              = link_to 'Twitter', @person.facebook
+        %section#coordinates
+          %h3 Coordonnées
+          - if @person.email
+            %p
+              = mail_to @person.email
+          - @person.addresses.each do |address|
+            %h4
+              = address.name
+            %p
+              - address.address.each do |line|
+                = line
+                %br
+            - if address.tel
+              %p
+                %b Tél
+                = number_to_phone address.tel, area_code: true
+            - if address.fax
+              %p
+                %b Fax
+                = number_to_phone address.fax, area_code: true
+        %section#positions
+          %h3 Positions
+          %ul
+            - @person.positions.each do |position|
+              %li
+                = position
+        - if @person.responsibilities
+          %section#responsibilities
+            %h3 Responsabilités
+            - @person.responsibilities.each do |section,responsibilities|
+              %h4
+                = section
+              %ul
+                - responsibilities.each do |responsibility|
+                  %li
+                    = responsibility
+        - if @person.functions
+          %section#functions
+            %h3 Fonctions et comités stratégiques
+            %ul
+              - @person.functions.each do |function|
+                %li
+                  = function
