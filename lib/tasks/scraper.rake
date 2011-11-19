@@ -13,9 +13,8 @@ namespace :scraper do
   task :photos => :environment do
     require 'open-uri'
     Person.all.each do |person|
-      filename = File.join Rails.root, 'app', 'assets', 'images', 'photos', "#{person.slug}.jpg"
-      unless person.photo_url.nil? or File.exist? filename
-        File.open(filename, 'wb') do |f|
+      unless person.photo_url.nil? or person.photo_retrieved?
+        File.open(person.photo_filename, 'wb') do |f|
           f.write open(person.photo_url).read
         end
       end
@@ -57,7 +56,7 @@ namespace :scraper do
 
         begin
           tweets = Twitter.user_timeline(person.twitter, count: 200, since_id: since_id, page: page)
-        rescue Twitter::BadGateway => e
+        rescue StandardError => e #@todo Twitter::BadGateway => e
           puts "Retrying in 2... #{e}"
           sleep 2
           retry
@@ -71,14 +70,14 @@ namespace :scraper do
             party_id:     person.party_id,
             borough_id:   person.borough_id,
             district_id:  person.district_id,
-            url:          "http://twitter.com/#{tweet.user.screen_name}/status/#{tweet.id_str}",
-            body:         tweet.text,
-            published_at: Time.parse(tweet.created_at),
+            url:          "http://twitter.com/#{tweet.attrs['user']['screen_name']}/status/#{tweet.attrs['id_str']}",
+            body:         tweet.attrs['text'],
+            published_at: Time.parse(tweet.attrs['created_at']),
             extra: {
-              name:              tweet.user.name,
-              screen_name:       tweet.user.screen_name,
-              profile_image_url: tweet.user.profile_image_url,
-              id_str:            tweet.id_str,
+              name:              tweet.attrs['user']['name'],
+              screen_name:       tweet.attrs['user']['screen_name'],
+              profile_image_url: tweet.attrs['user']['profile_image_url'],
+              id_str:            tweet.attrs['id_str'],
             },
           })
         end

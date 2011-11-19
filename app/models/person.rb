@@ -39,6 +39,22 @@ class Person
     "http://twitter.com/#{twitter}" if twitter
   end
 
+  def photo_filename
+    File.join Rails.root, 'app', 'assets', 'images', 'photos', "#{slug}.jpg"
+  end
+
+  def photo_retrieved?
+    File.exist? photo_filename
+  end
+
+  def photo_path
+    if photo_retrieved?
+      "photos/#{person.slug}.jpg"
+    else
+      photo_url
+    end
+  end
+
   def others_in_borough
     Person.where(:borough_id => borough_id).order(:name)
   end

@@ -26,6 +26,8 @@
           .spacer
           
       = render 'shared/mini_council', people: @person.others_in_borough
+      - @person.activities.each do |activity|
+        
     .span6
       %aside
         %ul
