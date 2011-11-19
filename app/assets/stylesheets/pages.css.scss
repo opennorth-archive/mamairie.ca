@@ -47,3 +47,14 @@ header {
 }
 
 .spacer {height:1px;clear:both;}
+
+.people {
+  .person {
+    float:left;
+    width:49%;
+    height:130px;
+    margin-right:1%;
+    margin-bottom:2px;
+    .name {font-weight:bold;font-size:1.2em;}
+  }
+}
