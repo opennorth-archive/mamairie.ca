@@ -39,6 +39,12 @@
           <h1>Ma Mairie</h1>
           <h2>Suivez l'activité de vos élus à la Ville de Montréal</h1>
         </header>
+        <% if flash.alert %>
+          <div class="alert-message error">
+            <a class="close" href="#">×</a>
+            <p><%= flash.alert %></p>
+          </div>
+        <% end %>
         <div class="hero-unit">
           <%= render 'shared/search_form' %>
         </div>
