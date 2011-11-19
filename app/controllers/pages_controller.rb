@@ -1,3 +1,4 @@
+# coding: utf-8
 class PagesController < ApplicationController
   def index
     @boroughs = Borough.fields(:name, :slug).all

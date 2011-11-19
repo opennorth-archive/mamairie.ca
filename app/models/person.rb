@@ -38,9 +38,6 @@ class Person
 private
 
   def set_slug
-    if name
-      parts = name.slug.split('-')
-      self.slug = "#{parts.first}-#{parts.last}"
-    end
+    self.slug = name.slug.sub(/-.+-/, '-') if name
   end
 end

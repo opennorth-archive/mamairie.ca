@@ -13,8 +13,6 @@ class District
 private
 
   def set_slug
-    if name
-      self.slug = name.slug
-    end
+    self.slug = name.slug if name
   end
 end

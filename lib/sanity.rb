@@ -1,3 +1,4 @@
+# coding: utf-8
 # Run with rspec
 require File.expand_path('../../spec/spec_helper', __FILE__)
 require 'rspec/rails'
@@ -25,6 +26,31 @@ describe MaMairie do
     uris.each do |uri|
       # http://ville.montreal.qc.ca/portal/page?_pageid=67,297449&_dad=portal&_schema=PORTAL
       Faraday.head(uri).env[:response_headers][:location].should_not match /404|67,297449/
+    end
+  end
+
+  it 'should get empty feed' do
+    [
+      'Andrée Champoux',
+      'Anna Nunes',
+      'Aref Salem',
+      'Clementina Teti-Tomassi',
+      'Diane Gibb',
+      'Émilie Thuillier',
+      'Frank Venneri',
+      'Frantz Benjamin',
+      'Jean-Marc Gibeau',
+      'Laura-Ann Palestini',
+      'Michèle D. Biron',
+      'Michèle Biron',
+      'Michèle Di Genova Zammit',
+      'Michèle Di Genova',
+      'Michèle Zammit',
+      'Ross Blackhurst',
+    ].each do |name|
+      url = 'http://news.google.ca/news?' + {output: 'rss', q: %("#{name}")}.to_param
+      entries = Feedzirra::Feed.fetch_and_parse(url).entries
+      entries.should be_empty, "expected #{url} to be empty, got #{entries.inspect}"
     end
   end
 end
