@@ -1,0 +1,30 @@
+# Process
+
+rake db:seed
+rake scraper:retrieve
+rake scraper:photos
+rake scraper:wikipedia
+rake fixes:google_news
+rake scraper:google_news
+rake scraper:twitter
+rspec lib/sanity.rb
+
+# Google News
+
+English results (blocked by hl, ned)
+Marvin Rotrand
+Monica Ricourt
+
+Italian results (blocked by hl, ned)
+Lili-Anne Tremblay
+Mario Battista
+Robert L. Zambito
+
+Irrelevant results (blocked by hl, ned, and location)
+Christopher Little
+Francesco Miele
+Lionel Perez
+Maurice Cohen
+
+One result if scoring=r
+Catherine Clément-Talbot
