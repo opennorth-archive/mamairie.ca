@@ -148,7 +148,7 @@ module VilleMontrealQcCa
         %w(email photo_url).each do |attribute|
           log.info "Missing #{attribute} #{suffix}" if person[attribute].blank?
         end
-        addresses.each do |address|
+        person.addresses.each do |address|
           %w(tel fax).each do |attribute|
             log.info "Missing #{attribute} #{suffix}" if address[attribute].blank?
           end

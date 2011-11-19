@@ -1,12 +1,27 @@
-%p#notice= notice
-
-%p
-  %b Name:
-  = @borough.name
-%p
-  %b Services:
-  = @borough.services_id
-
-= link_to 'Edit', edit_borough_path(@borough)
-\|
-= link_to 'Back', boroughs_path
+.container
+  .row
+    .span10
+      %h2
+        = @borough.name
+      %ul
+        - @borough.people.sort(:name.asc).each do |person|
+          %li
+            = render 'shared/mini_person', person: person
+      = render 'shared/budget', borough: borough
+    .span6
+      %aside
+        %ul
+          - if @borough.twitter
+            %li
+              = link_to 'Twitter', @borough.twitter_url
+          - if @borough.facebook
+            %li
+              = link_to 'Twitter', @borough.facebook
+          - if @borough.youtube
+            %li
+              = link_to 'Twitter', @borough.youtube
+          - if @borough.flickr
+            %li
+              = link_to 'Twitter', @borough.flickr
+        %p
+          = link_to "#{@borough.name} sur ville.montreal.qc.ca", borough.url

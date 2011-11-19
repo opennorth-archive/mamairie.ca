@@ -1,7 +1,11 @@
-%p#notice= notice
-
-%p
-  %b Name:
+.container
+  .row
+    .span10
+      %h2
+        = @person.name
+    .span6
+      %aside
+        
   = @person.name
 %p
   %b Email:
