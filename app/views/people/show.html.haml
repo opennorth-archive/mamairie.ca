@@ -1,11 +1,15 @@
 .container
   .row
-    .span10
+    .span2
+      = image_tag @person.photo_path, size: '90x120', alt: ''
+    .span8
       %h2
         = @person.name
         %span
           = @person.positions.first
       = render 'shared/mini_council', people: @person.others_in_borough
+      - @person.activities.each do |activity|
+        
     .span6
       %aside
         %ul

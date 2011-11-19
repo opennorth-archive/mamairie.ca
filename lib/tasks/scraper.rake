@@ -13,9 +13,8 @@ namespace :scraper do
   task :photos => :environment do
     require 'open-uri'
     Person.all.each do |person|
-      filename = File.join Rails.root, 'app', 'assets', 'images', 'photos', "#{person.slug}.jpg"
-      unless person.photo_url.nil? or File.exist? filename
-        File.open(filename, 'wb') do |f|
+      unless person.photo_url.nil? or person.photo_retrieved?
+        File.open(person.photo_filename, 'wb') do |f|
           f.write open(person.photo_url).read
         end
       end
