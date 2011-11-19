@@ -1,17 +1,27 @@
 .container
   .row
-    .span10
-      %h3 Boroughs
-      %ul
+    .span5
+      %h3 News, Tweets & Blogs
+      .activities
+        - @activities.each do |activity|
+          .activity
+            .photo= image_tag "http://placehold.it/60x60", class: "thumbnail"
+            .title= link_to "Example News Item"
+            .snippet.dim This is body text from news item or blog.
+          .spacer
+            / = render "shared/#{activity.source}", activity: activity
+    .span11
+      %h3 Select a Borough:
+      %ul.two_column
         - @boroughs.each do |borough|
           %li
-            = link_to borough.name, borough
-      / %ul
-      /   - @people.each do |person|
-      /     %li
-      /       = link_to person.name, person
-    / .span6
-    /   %ul
-    /     - @activities.each do |activity|
-    /       %li
-    /         = render "shared/#{activity.source}", activity: activity
+            = link_to truncate(borough.name, length: 30), borough
+      .spacer
+      %h3 People
+      .people
+        - @people.each do |person|
+          .person
+            .photo= image_tag "http://placehold.it/60x60", class: "thumbnail"
+            .name= link_to person.name, person
+            .position VP of Sales
+          .spacer
