@@ -1,7 +1,9 @@
 .container
   .row
     .span5
-      %h3 News, Tweets & Blogs
+      %h3
+        = image_tag "/images/icon/news.png"
+        News, Tweets & Blogs
       .activities
         - @activities.each do |activity|
           .activity
@@ -11,13 +13,17 @@
           .spacer
             / = render "shared/#{activity.source}", activity: activity
     .span11
-      %h3 Select a Borough:
+      %h3 
+        = image_tag "/images/icon/map.png"
+        Select a Borough:
       %ul.two_column
         - @boroughs.each do |borough|
           %li
             = link_to truncate(borough.name, length: 30), borough
       .spacer
-      %h3 People
+      %h3 
+        = image_tag "/images/icon/user.png"
+        People
       .people
         - @people.each do |person|
           .person
