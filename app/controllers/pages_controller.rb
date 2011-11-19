@@ -2,8 +2,8 @@
 class PagesController < ApplicationController
   def index
     @boroughs = Borough.fields(:name, :slug).all
-    # @people = Person.all
-    # @activities = Activity.sort(:published_at.desc).limit(10)
+    @people = Person.all
+    @activities = Activity.sort(:published_at.desc).limit(10)
   end
 
   def search
@@ -18,8 +18,5 @@ class PagesController < ApplicationController
         flash.alert = "Le site de la Ville de Montréal ne répond pas. S'il vous plaît réessayer."
       end
     end
-  end
-
-  def about
   end
 end

@@ -2,7 +2,9 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-body {padding-top: 40px;}
+body {padding-top: 40px;padding-bottom: 100px;}
+a {color:#1F75CC;}
+.dim {color:#7d7d7d;}
 .hero-unit {
   padding:10px;
   padding-left:130px;
@@ -17,3 +19,31 @@ header {
   h1 {color:#000;font-size:3.2em;text-shadow:2px 2px 0px #ccc;}
   h2 {color:#7d7d7d;}
 }
+
+.two_column {
+  margin-left:0;
+  padding-left:0;
+  margin-right:-2px;
+  li {
+    width:49%;
+    float:left;
+    margin-right:2px;
+    list-style:none;
+    margin-bottom:2px;
+    a {font-size:1.1em;padding:10px;background:#e7eff2;display:block;border-radius:3px;}
+    a:hover {color:#000;background:#bedfec;text-decoration:none;}
+  }
+}
+
+.photo {float:left;margin-right:5px;}
+
+.activities {
+  .activity {
+    list-style:none;
+    padding:10px 0;
+    border-top:1px solid #eee;
+    a {color:#1F75CC;}
+  }
+}
+
+.spacer {height:1px;clear:both;}
