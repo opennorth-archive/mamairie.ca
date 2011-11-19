@@ -23,5 +23,5 @@
           .person
             .photo= image_tag "http://placehold.it/60x60", class: "thumbnail"
             .name= link_to person.name, person
-            .position VP of Sales
+            .position.dim= person.positions.first
           .spacer
