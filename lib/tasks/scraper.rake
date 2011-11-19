@@ -25,7 +25,7 @@ namespace :scraper do
   # Run on occasion
   desc 'Import Wikipedia content'
   task :wikipedia => :environment do
-
+    # @todo Skip for hackathon.
   end
 
   desc 'Import Twitter tweets'
@@ -68,6 +68,9 @@ namespace :scraper do
         tweets.each do |tweet|
           person.activities.create!({
             source:       TWITTER_KEY,
+            party_id:     person.party.id,
+            borough_id:   person.borough.id,
+            district_id:  person.district.id,
             url:          "http://twitter.com/#{tweet.user.screen_name}/status/#{tweet.id_str}",
             body:         tweet.text,
             published_at: Time.parse(tweet.created_at),
@@ -137,6 +140,9 @@ namespace :scraper do
 
           person.activities.create!({
             source:       GOOGLE_NEWS_KEY,
+            party_id:     person.party.id,
+            borough_id:   person.borough.id,
+            district_id:  person.district.id,
             url:          entry.url,
             body:         body,
             published_at: entry.published,

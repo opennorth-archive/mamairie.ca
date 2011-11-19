@@ -1,6 +1,9 @@
 class Activity
   include MongoMapper::Document
   belongs_to :person
+  belongs_to :party
+  belongs_to :borough
+  belongs_to :district
 
   key :body, String, required: true
   key :url, String, required: true
