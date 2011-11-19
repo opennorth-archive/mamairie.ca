@@ -4,7 +4,7 @@
       %h2
         = @borough.name
       = render 'shared/mini_council', people: @borough.people.sort(:name.asc)
-      = render 'shared/budget', borough: borough
+      = render 'shared/budget', borough: @borough
     .span6
       %aside
         %ul
@@ -21,4 +21,4 @@
             %li
               = link_to 'Twitter', @borough.flickr
         %p
-          = link_to "#{@borough.name} sur ville.montreal.qc.ca", borough.url
+          = link_to "#{@borough.name} sur ville.montreal.qc.ca", @borough.url
