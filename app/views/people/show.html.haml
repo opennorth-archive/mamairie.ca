@@ -3,6 +3,10 @@
     .span10
       %h2
         = @person.name
+        %span
+          = @person.positions.first
+      /@todo add aerial photo of borough
+      = render 'shared/mini_council', people: @person.others_in_borough
     .span6
       %aside
         

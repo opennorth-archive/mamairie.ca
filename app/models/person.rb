@@ -35,6 +35,10 @@ class Person
 
   before_validation :set_slug
 
+  def others_in_borough
+    borough.people.sort(:name.asc).all - [self]
+  end
+
 private
 
   def set_slug
