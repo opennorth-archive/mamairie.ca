@@ -7,11 +7,13 @@ a {color:#1F75CC;}
 a:hover {background-color:#f1f1f1;}
 
 h3 {
-  img {float:left;margin-right:5px;}
+  img {float:left;margin-right:5px;position:relative;top:10px;display:none;}
 }
+
 .dim {color:#7d7d7d;}
+
 .hero-unit {
-  padding:10px;
+  padding:5px;
   padding-left:130px;
   label {font-size:1.4em;margin-bottom:5px;}
   input[type="text"] {font-size:1.3em;width:500px;padding:10px;margin-bottom:3px;}
@@ -19,9 +21,14 @@ h3 {
 }
 
 header {
-  padding:40px 0 20px 0;
+  padding:50px 0 30px 0;
   text-align:center;
-  h1 {color:#000;font-size:3.2em;text-shadow:2px 2px 0px #ccc;}
+  img {margin-bottom:10px;}
+  h1 {
+    color:#000;font-size:3.2em;text-shadow:2px 2px 0px #ccc;
+    a:visited {color:#000;}
+    a:hover {background:#FFF;}
+  }
   h2 {color:#7d7d7d;}
 }
 
@@ -63,3 +70,18 @@ header {
     .name {font-weight:bold;font-size:1.2em;}
   }
 }
+
+#person {
+  h1 {margin-bottom:0px;}
+}
+
+.sidebar {
+  border-right:1px solid #eee;margin-right:-1px;min-height:700px;
+  .photo {float:right;}}
+
+.sidenav {
+  a {display:block;padding:10px;color:#4d6168 !important;font-weight:bold;background:#e7eff2;margin-bottom:2px;border-top-left-radius:3px;border-bottom-left-radius:3px;}
+  a:hover {background:#bedfec;color:#333;text-decoration:none;}
+}
+
+aside {padding-left:30px;}

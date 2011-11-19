@@ -1,10 +1,29 @@
-.container
+#person.container
   .row
-    .span10
-      %h2
-        = @person.name
-        %span
+    .span3.sidebar
+      .photo= image_tag @person.photo_url, class: "thumbnail"
+      .spacer
+      .sidenav
+        = link_to "Biography"
+        = link_to "Contact"
+        = link_to "Budget"
+        = link_to "Share"
+        
+    .span7
+      %h1
+        == #{@person.name}
+      %h3
+        %span.dim
           = @person.positions.first
+      .activities
+        - @activities.each do |activity|
+          / .activity
+          /   .photo= image_tag "http://placehold.it/60x60", class: "thumbnail"
+          /   .title= link_to "Example News Item"
+          /   .snippet.dim This is body text from news item or blog.
+          = render "shared/#{activity.source}", activity: activity
+          .spacer
+          
       = render 'shared/mini_council', people: @person.others_in_borough
     .span6
       %aside

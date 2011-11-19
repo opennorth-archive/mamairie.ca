@@ -14,6 +14,7 @@ class PeopleController < ApplicationController
   # GET /people/1.json
   def show
     @person = Person.find(params[:id])
+    @activities = Activity.sort(:published_at.desc).limit(10)
 
     respond_to do |format|
       format.html # show.html.erb

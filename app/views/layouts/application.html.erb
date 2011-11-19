@@ -20,9 +20,9 @@
   <div class="topbar">
     <div class="topbar-inner">
       <div class="container">
-        <a class="brand" href="#">Ma Mairie</a>
+        <a class="brand" href="<%= root_url %>">Ma Mairie</a>
         <ul class="nav">
-          <li class=""><a href="#overview">Overview</a></li>
+          <li class=""><a href="/">Overview</a></li>
           <li class=""><a href="#about">Boroughs</a></li>
           <li class=""><a href="#grid-system">Districs</a></li>
           <li class=""><a href="#layouts">Parties</a></li>
@@ -35,10 +35,15 @@
   <div class="container">
     <div class="row">
       <div class="span16">
+        <% if controller_name == "pages" %>
         <header>
-          <h1>Ma Mairie</h1>
+          <h1>
+            <!-- <%= image_tag "logo_small.png" %><br> -->
+            <%= link_to "Ma Mairie", root_url %>
+          </h1>
           <h2>Suivez l'activité de vos élus à la Ville de Montréal</h1>
         </header>
+        <% end %>
         <div class="hero-unit">
           <%= render 'shared/search_form' %>
         </div>

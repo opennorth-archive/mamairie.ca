@@ -40,7 +40,7 @@ class Person
   end
 
   def others_in_borough
-    borough.people.sort(:name.asc).all - [self]
+    Person.where(:borough_id => borough_id).order(:name)
   end
 
   # @todo web and wikipedia methods that get the best localization (add to borough and person pages)
