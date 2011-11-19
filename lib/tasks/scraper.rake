@@ -77,10 +77,8 @@ namespace :scraper do
 
       # @note feed.updated? doesn't guarantee new entries.
       if feed.new_entries.present?
-        source.attributes = {
-          etag: feed.etag,
-          last_modified: feed.last_modified,
-        }
+        source.etag = feed.etag
+        source.last_modified = feed.last_modified
         source.save!
 
         feed.new_entries.each do |entry|
