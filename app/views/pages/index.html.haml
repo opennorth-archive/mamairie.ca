@@ -1,2 +1,15 @@
-%h1 Pages#index
-%p Find me in app/views/pages/index.html.haml
+.row
+  .span8
+    %ul
+      - @boroughs.each do |borough|
+        %li
+          = link_to borough.name, borough
+    %ul
+      - @people.each do |person|
+        %li
+          = link_to person.name, person
+  .span8
+    %ul
+      - @activities.each do |activity|
+        %li
+          = render 'shared/#{activity.source}', activity: activity

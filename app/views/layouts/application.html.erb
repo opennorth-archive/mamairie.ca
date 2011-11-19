@@ -1,14 +1,43 @@
 <!DOCTYPE html>
-<html>
+<!--[if lt IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie10 lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie10 lt-ie9" lang="en"> <![endif]-->
+<!--[if IE 9]>    <html class="no-js lt-ie10" lang="en"> <![endif]-->
+<!--[if gt IE 9]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
 <head>
-  <title>MaMairie</title>
-  <%= stylesheet_link_tag    "application" %>
-  <%= javascript_include_tag "application" %>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title><%= title %></title>
+  <meta name="description" content="<%=t '.description' %>">
+  <meta name="author" content="<%=t '.author' %>">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <%= stylesheet_link_tag 'application' %>
+  <%= javascript_include_tag 'application' %>
   <%= csrf_meta_tags %>
 </head>
-<body>
+<body id="<%= I18n.locale %>">
 
-<%= yield %>
+<div class="container">
+  <div class="row">
+    <div class="span16">
+      <header>
+        <h1>Ma Mairie</h1>
+        <p>Suivez l'activité de vos élus à la Ville de Montréal</p>
+      </header>
+      <div class="hero-unit">
+        <%= render 'shared/search_form' %>
+      </div>
+    </div>
+  </div>
+  <%= yield %>
+</div>
+
+<script>
+  var _gaq=[['_setAccount','<%=t '.google_analytics' %>'],['_trackPageview'],['_trackPageLoadTime']];
+  (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+  g.src=('https:'==location.protocol?'https://ssl':'http://www')+'.google-analytics.com/ga.js';
+  s.parentNode.insertBefore(g,s)}(document,'script'));
+</script>
 
 </body>
 </html>
