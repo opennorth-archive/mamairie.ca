@@ -1,12 +1,14 @@
-%p#notice= notice
+.container
+  .row
+    .span10
+      %h2
+        = @borough.name
+      %ul
+        - @borough.people.sort(:name.asc).each do |person|
+          %li
+            = render 'shared/mini_person', person: person
 
-%p
-  %b Name:
-  = @borough.name
-%p
-  %b Services:
-  = @borough.services_id
+      = render 'shared/budget', borough: borough
 
-= link_to 'Edit', edit_borough_path(@borough)
-\|
-= link_to 'Back', boroughs_path
+    .span6
+      %aside

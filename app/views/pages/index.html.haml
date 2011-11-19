@@ -1,15 +1,16 @@
-.row
-  .span8
-    %ul
-      - @boroughs.each do |borough|
-        %li
-          = link_to borough.name, borough
-    %ul
-      - @people.each do |person|
-        %li
-          = link_to person.name, person
-  .span8
-    %ul
-      - @activities.each do |activity|
-        %li
-          = render 'shared/#{activity.source}', activity: activity
+.container
+  .row
+    .span8
+      %ul
+        - @boroughs.each do |borough|
+          %li
+            = link_to borough.name, borough
+      %ul
+        - @people.each do |person|
+          %li
+            = link_to person.name, person
+    .span8
+      %ul
+        - @activities.each do |activity|
+          %li
+            = render 'shared/#{activity.source}', activity: activity
