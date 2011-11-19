@@ -88,4 +88,12 @@ aside {padding-left:20px;margin-left:20px;border-left:1px solid #eee;}
 
 .activity.feed { img {margin-bottom:10px;}}
 
+.span5 {
+  .activity {
+    img {
+      margin-bottom:20px;position:relative;top:3px;
+    }
+  }
+}
 .social {img {position:relative;top:2px;}font-size:1.1em;margin-bottom:10px;margin-top:5px}
+

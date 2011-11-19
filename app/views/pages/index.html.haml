@@ -6,12 +6,7 @@
 
       .activities
         - @activities.each do |activity|
-          .activity
-            .photo= image_tag activity.profile_image_url, class: "thumbnail"
-            .title= link_to activity.screen_name
-            .snippet.dim= activity.body
-          .spacer
-            / = render "shared/#{activity.source}", activity: activity
+          = render "shared/#{activity.source}", activity: activity
     .span11
       %h3 
         Choisissez un arrondissement:
