@@ -8,7 +8,26 @@
 # French Canadian adjustments
 # by Serafim Junior Dos Santos Fagundes <serafim@cyb3r.ca>
 
-fr-CA:
+fr:
+  layouts:
+    application:
+      description: ""
+      author: Nord Ouvert
+      google_analytics: UA-21866813-9
+  pages:
+    index:
+      title: "Ma Mairie"
+    search:
+      title: "Ma Mairie"
+    about:
+      title: "Ma Mairie"
+  boroughs:
+    show:
+      title: "Ma Mairie"
+  people:
+    show:
+      title: "Ma Mairie"
+
   date:
     formats:
       default: "%Y-%m-%d"
