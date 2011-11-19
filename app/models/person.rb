@@ -35,9 +35,15 @@ class Person
 
   before_validation :set_slug
 
+  def twitter_url
+    "http://twitter.com/#{twitter}" if twitter
+  end
+
   def others_in_borough
     borough.people.sort(:name.asc).all - [self]
   end
+
+  # @todo web and wikipedia methods that get the best localization (add to borough and person pages)
 
 private
 
