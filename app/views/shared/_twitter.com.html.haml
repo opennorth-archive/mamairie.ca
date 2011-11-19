@@ -1,0 +1,4 @@
+.activity.feed
+  .photo= image_tag activity.extra[:profile_image_url], class: "thumbnail"
+  .title= link_to activity.extra[:name]
+  .snippet.dim= activity.body

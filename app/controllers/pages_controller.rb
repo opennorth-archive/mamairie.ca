@@ -3,7 +3,7 @@ class PagesController < ApplicationController
   def index
     @boroughs = Borough.fields(:name, :slug).all
     @people = Person.all
-    @activities = Activity.sort(:published_at.desc).limit(10)
+    @activities = Activity.where(:source => "twitter.com").sort(:published_at.desc).limit(10)
   end
 
   def search
