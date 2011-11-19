@@ -1,5 +1,6 @@
 # coding: utf-8
 namespace :scraper do
+  desc 'Add mayors and councillors'
   task :retrieve => :environment do
     require 'runner'
     Runner.new.run [
@@ -8,7 +9,8 @@ namespace :scraper do
   end
 
   # Run on occasion
-  task :images => :environment do
+  desc 'Download photos of mayors and councillors'
+  task :photos => :environment do
     require 'open-uri'
     Person.all.each do |person|
       filename = File.join Rails.root, 'app', 'assets', 'images', 'photos', "#{person.slug}.jpg"
@@ -21,14 +23,17 @@ namespace :scraper do
   end
 
   # Run on occasion
+  desc 'Import Wikipedia content'
   task :wikipedia => :environment do
 
   end
 
+  desc 'Import Twitter tweets'
   task :twitter => :environment do
 
   end
 
+  desc 'Import Google News articles'
   task :google_news => :environment do
     include ActionView::Helpers
 
@@ -54,10 +59,11 @@ namespace :scraper do
     Person.all.each do |person|
       source = person.sources[GOOGLE_NEWS_KEY] || person.sources.build(name: GOOGLE_NEWS_KEY)
       activity = person.activities.where(source: GOOGLE_NEWS_KEY).sort(:published_at.desc).first
+      q = source.extra.has_key?(:q) ? source.extra[:q] : person.name
 
       # https://gist.github.com/132671
       tmp = Feedzirra::Parser::RSS.new
-      tmp.feed_url = GOOGLE_NEWS_URL + GOOGLE_NEWS_PARAMS.merge(q: %("#{person.name}" location:Québec)).to_param
+      tmp.feed_url = GOOGLE_NEWS_URL + GOOGLE_NEWS_PARAMS.merge(q: %("#{q}" location:Québec)).to_param
       tmp.etag = source.etag
       tmp.last_modified = source.last_modified
 
