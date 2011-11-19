@@ -17,31 +17,22 @@
   <%= csrf_meta_tags %>
 </head>
 <body id="<%= I18n.locale %>">
-  <div class="topbar">
-    <div class="topbar-inner">
-      <div class="container">
-        <a class="brand" href="<%= root_url %>">Ma Mairie</a>
-        <ul class="nav">
-<<<<<<< HEAD
-          <li class=""><a href="/">Overview</a></li>
-          <li class=""><a href="#about">Boroughs</a></li>
-          <li class=""><a href="#grid-system">Districs</a></li>
-=======
-          <li class=""><a href="#overview">Accueil</a></li>
-          <li class=""><a href="#about">Arrondissement</a></li>
-          <li class=""><a href="#grid-system">Districts</a></li>
->>>>>>> 0b2116b1bf5c4a23407f4ec83ca2c4896778b8b4
-          <li class=""><a href="#layouts">Parties</a></li>
-          <li class=""><a href="#typography">À Propos</a></li>
-        </ul>
-      </div>
+
+<div class="topbar">
+  <div class="topbar-inner">
+    <div class="container">
+      <a class="brand" href="<%= root_url %>">Ma Mairie</a>
+      <ul class="nav">
+        <li class=""><a href="/">Accueil</a></li>
+      </ul>
     </div>
   </div>
+</div>
 
-  <div class="container">
-    <div class="row">
-      <div class="span16">
-        <% if controller_name == "pages" %>
+<div class="container">
+  <div class="row">
+    <div class="span16">
+      <% if controller_name == "pages" %>
         <header>
           <h1>
             <!-- <%= image_tag "logo_small.png" %><br> -->
@@ -49,23 +40,21 @@
           </h1>
           <h2>Suivez l'activité de vos élus à la Ville de Montréal</h1>
         </header>
-<<<<<<< HEAD
-=======
-        <% if flash.alert %>
-          <div class="alert-message error">
-            <a class="close" href="#">×</a>
-            <p><%= flash.alert %></p>
-          </div>
->>>>>>> 0b2116b1bf5c4a23407f4ec83ca2c4896778b8b4
-        <% end %>
-        <div class="hero-unit">
-          <%= render 'shared/search_form' %>
+      <% end %>
+      <% if flash.alert %>
+        <div class="alert-message error">
+          <a class="close" href="#">×</a>
+          <p><%= flash.alert %></p>
         </div>
+      <% end %>
+      <div class="hero-unit">
+        <%= render 'shared/search_form' %>
       </div>
     </div>
   </div>
+</div>
 
-  <%= yield %>
+<%= yield %>
 
 <script>
   var _gaq=[['_setAccount','<%=t '.google_analytics' %>'],['_trackPageview'],['_trackPageLoadTime']];

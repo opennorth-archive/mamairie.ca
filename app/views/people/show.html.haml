@@ -1,7 +1,7 @@
 #person.container
   .row
     .span3.sidebar
-      .photo= image_tag @person.photo_url, class: "thumbnail"
+      .photo= image_tag @person.photo_path, class: "thumbnail"
       .spacer
       .sidenav
         = link_to "Biography"
@@ -26,8 +26,6 @@
           .spacer
           
       = render 'shared/mini_council', people: @person.others_in_borough
-      - @person.activities.each do |activity|
-        
     .span6
       %aside
         %ul
@@ -63,7 +61,7 @@
             - @person.positions.each do |position|
               %li
                 = position
-        - if @person.responsibilities
+        - if @person.responsibilities.present?
           %section#responsibilities
             %h3 Responsabilités
             - @person.responsibilities.each do |section,responsibilities|
@@ -73,7 +71,7 @@
                 - responsibilities.each do |responsibility|
                   %li
                     = responsibility
-        - if @person.functions
+        - if @person.functions.present?
           %section#functions
             %h3 Fonctions et comités stratégiques
             %ul

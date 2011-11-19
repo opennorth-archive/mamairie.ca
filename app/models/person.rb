@@ -49,7 +49,7 @@ class Person
 
   def photo_path
     if photo_retrieved?
-      "photos/#{person.slug}.jpg"
+      "photos/#{slug}.jpg"
     else
       photo_url
     end
