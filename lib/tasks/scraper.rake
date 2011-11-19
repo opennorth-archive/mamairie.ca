@@ -30,7 +30,58 @@ namespace :scraper do
 
   desc 'Import Twitter tweets'
   task :twitter => :environment do
+    require 'time'
+    TWITTER_KEY = 'twitter.com'
 
+    # @note OAuth calls raise limit to 350 per hour: https://dev.twitter.com/docs/rate-limiting
+    # @note Apigee supposedly has higher rate limits
+    Twitter.configure do |config|
+      config.consumer_key = ENV['TWITTER_CONSUMER_KEY']
+      config.consumer_secret = ENV['TWITTER_CONSUMER_SECRET']
+      config.oauth_token = ENV['TWITTER_OAUTH_TOKEN']
+      config.oauth_token_secret = ENV['TWITTER_OAUTH_TOKEN_SECRET']
+    end
+    Twitter.gateway = ENV['APIGEE_TWITTER_API_ENDPOINT']
+
+    Person.where(twitter: {'$exists' => true}).sort(:name.asc).all.each do |person|
+      activity = person.activities.where(source: TWITTER_KEY).sort(:published_at.desc).first
+
+      # @note We can paginate at most 3,200 tweets: https://dev.twitter.com/docs/things-every-developer-should-know
+      1.upto(16) do |page|
+        p Twitter.rate_limit_status.remaining_hits # @todo remove line
+        # @todo if import is interrupted due to rate limit, rest of history will not be imported
+        if Twitter.rate_limit_status.remaining_hits.zero?
+          raise "No remaining Twitter hits. Reset in #{Twitter.reset_time_in_seconds} seconds."
+        end
+
+        begin
+          tweets = Twitter.user_timeline(person.twitter, count: 200, since_id: activity.id_str, page: page)
+        rescue Twitter::BadGateway => e
+          puts "Retrying in 2... #{e}"
+          sleep 2
+          retry
+        end
+
+        break if tweets.empty?
+
+        p "Importing #{tweets.size} for #{person.name}" # @todo remove line
+
+        tweets.each do |tweet|
+          person.activities.create!({
+            source:       TWITTER_KEY,
+            url:          "http://twitter.com/#{tweet.user.screen_name}/status/#{tweet.id_str}",
+            body:         tweet.text,
+            published_at: Time.parse(tweet.created_at),
+            extra: {
+              name:              tweet.user.name,
+              screen_name:       tweet.user.screen_name,
+              profile_image_url: tweet.user.profile_image_url,
+              id_str:            tweet.id_str,
+            },
+          })
+        end
+      end
+    end
   end
 
   desc 'Import Google News articles'
@@ -83,17 +134,19 @@ namespace :scraper do
 
         feed.new_entries.each do |entry|
           doc = Nokogiri::HTML(entry.summary, nil, 'utf-8')
-          author, body = doc.css('font[size="-1"]')[0..1].map(&:text)
+          publisher, body = doc.css('font[size="-1"]')[0..1].map(&:text)
 
           person.activities.create!({
-            title:        entry.title.sub(/ - #{Regexp.escape(author)}/, ''),
-            author:       author,
-            body:         body,
-            url:          entry.url,
-            photo_url:    doc.at_css('img').andand[:src],
-            published_at: entry.published,
-            source_id:    entry.entry_id,
             source:       GOOGLE_NEWS_KEY,
+            url:          entry.url,
+            body:         body,
+            published_at: entry.published,
+            extra: {
+              publisher: publisher,
+              title:     entry.title.sub(/ - #{Regexp.escape(publisher)}/, ''),
+              image:     doc.at_css('img').andand[:src],
+              guid:      entry.entry_id,
+            }
           })
         end
       end
