@@ -13,5 +13,5 @@ class Activity
   timestamps!
 
   ensure_index :source
-  ensure_index [:published_at, -1]
+  ensure_index [[:published_at, -1]]
 end

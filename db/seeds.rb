@@ -141,6 +141,6 @@ end
 }.each do |slug,districts|
   borough = Borough.find_by_slug(slug)
   districts.each do |name|
-    borough.districts.create! name: name, slug: name.slug
+    borough.districts.create! name: name
   end
 end

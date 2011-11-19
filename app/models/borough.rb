@@ -17,7 +17,7 @@ class Borough
   SERVICES_URL = 'http://servicesenligne2.ville.montreal.qc.ca/sel/LesArrondissements/get'
 
   def self.find_by_postal_code(postal_code)
-    borough = where(:postal_codes => postal_code).first
+    borough = where(postal_codes: postal_code).first
     if borough.nil?
       borough = find_by_service_id! Nokogiri::HTML(RestClient.get(SERVICES_URL, params: {codePostal: postal_code})).at_css('table.bteintc a').text
       borough.postal_codes << postal_code

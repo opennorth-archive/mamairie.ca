@@ -14,6 +14,8 @@ gem 'twitter-text'
 # Rake
 gem 'andand'
 gem 'faraday'
+gem 'home_run' # faster date parsing
+gem 'feedzirra'
 gem 'nokogiri'
 gem 'rest-client'
 gem 'dragonfly', :git => 'git://github.com/jpmckinney/dragonfly.git'

@@ -3,13 +3,22 @@ class Person
   belongs_to :borough
   belongs_to :district
   belongs_to :party
-  many :addresses
+  many :addresses do
+    def [](name)
+      detect{|x| x.name == name.to_s}
+    end
+  end
+  many :sources do
+    def [](name)
+      detect{|x| x.name == name.to_s}
+    end
+  end
   many :activities
 
   key :name, String, required: true
   key :slug, String, required: true
   key :email, String
-  key :gender, String, required: true
+  key :gender, String, required: true, in: %w(m f)
   key :positions, Array, required: true
   key :responsibilities, Hash
   key :functions, Array
@@ -24,7 +33,14 @@ class Person
   ensure_index :name
   ensure_index :slug
 
-  def find_address_by_name(name)
-    addresses.detect{|address| address.name == name}
+  before_validation :set_slug
+
+private
+
+  def set_slug
+    if name
+      parts = name.slug.split('-')
+      self.slug = "#{parts.first}-#{parts.last}"
+    end
   end
 end
