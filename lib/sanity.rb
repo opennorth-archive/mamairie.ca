@@ -53,6 +53,4 @@ describe MaMairie do
       entries.should be_empty, "expected #{url} to be empty, got #{entries.inspect}"
     end
   end
-
-  # @todo check that tweet counts on Twitter and in MongoDB match 
 end

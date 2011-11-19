@@ -46,16 +46,17 @@ namespace :scraper do
     Person.where(twitter: {'$exists' => true}).sort(:name.asc).all.each do |person|
       activity = person.activities.where(source: TWITTER_KEY).sort(:published_at.desc).first
 
+      since_id = activity ? activity.extra[:id_str] : 1
+
       # @note We can paginate at most 3,200 tweets: https://dev.twitter.com/docs/things-every-developer-should-know
       1.upto(16) do |page|
-        p Twitter.rate_limit_status.remaining_hits # @todo remove line
         # @todo if import is interrupted due to rate limit, rest of history will not be imported
         if Twitter.rate_limit_status.remaining_hits.zero?
           raise "No remaining Twitter hits. Reset in #{Twitter.reset_time_in_seconds} seconds."
         end
 
         begin
-          tweets = Twitter.user_timeline(person.twitter, count: 200, since_id: activity.id_str, page: page)
+          tweets = Twitter.user_timeline(person.twitter, count: 200, since_id: since_id, page: page)
         rescue Twitter::BadGateway => e
           puts "Retrying in 2... #{e}"
           sleep 2
@@ -63,8 +64,6 @@ namespace :scraper do
         end
 
         break if tweets.empty?
-
-        p "Importing #{tweets.size} for #{person.name}" # @todo remove line
 
         tweets.each do |tweet|
           person.activities.create!({
