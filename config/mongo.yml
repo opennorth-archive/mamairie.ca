@@ -1,0 +1,15 @@
+defaults: &defaults
+  host: 127.0.0.1
+  port: 27017
+
+development:
+  <<: *defaults
+  database: ma_mairie_development
+
+test:
+  <<: *defaults
+  database: ma_mairie_test
+
+# set these environment variables on your prod server
+production:
+  uri: <%= ENV['MONGOLAB_URI'] %>

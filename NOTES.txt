@@ -1,10 +1,18 @@
-# Process
+# Setup
 
 rake db:seed
 rake scraper:retrieve
+rake fixes:google_news
 rake scraper:photos
 rake scraper:wikipedia
-rake fixes:google_news
+rake scraper:google_news
+rake scraper:twitter
+rspec lib/sanity.rb
+
+# Periodically
+
+rake scraper:photos
+rake scraper:wikipedia
 rake scraper:google_news
 rake scraper:twitter
 rspec lib/sanity.rb
