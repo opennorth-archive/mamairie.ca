@@ -24,41 +24,39 @@ module VilleMontrealQcCa
 
     def retrieve(args)
       csv = {}
-      CSV.parse(open(SPREADSHEET_URL).read, :headers => true) do |row|
+      CSV.parse(open(SPREADSHEET_URL).read, headers: true) do |row|
         csv[row['name']] = {
-          :twitter => row['twitter'] && row['twitter'].sub(/\A@/, '').strip,
-          :facebook => row['facebook'].andand.strip,
-          :wikipedia => {
-            :en => row['wikipedia_en'] && row['wikipedia_en'].sub(%r{\Ahttp://en\.wikipedia\.org/wiki/}, '').strip,
-            :fr => row['wikipedia_fr'] && row['wikipedia_fr'].sub(%r{\Ahttp://fr\.wikipedia\.org/wiki/}, '').strip,
+          twitter: row['twitter'] && row['twitter'].sub(/\A@/, '').strip,
+          facebook: row['facebook'].andand.strip,
+          wikipedia: {
+            en: row['wikipedia_en'] && row['wikipedia_en'].sub(%r{\Ahttp://en\.wikipedia\.org/wiki/}, '').strip,
+            fr: row['wikipedia_fr'] && row['wikipedia_fr'].sub(%r{\Ahttp://fr\.wikipedia\.org/wiki/}, '').strip,
           },
-          :web => {
-            :en => row['web_en'].andand.strip,
-            :fr => row['web_fr'].andand.strip,
+          web: {
+            en: row['web_en'].andand.strip,
+            fr: row['web_fr'].andand.strip,
           },
         }
       end
 
       # @todo mark people for hiding
-      Nokogiri::HTML(Iconv.conv('UTF-8', 'ISO-8859-1', RestClient.post(PEOPLE_URL, :action_affiche => 'affiche'))).css('.donn_listeVue1 a').each do |a|
-        # @note city mayor has two entries
+      Nokogiri::HTML(Iconv.conv('UTF-8', 'ISO-8859-1', RestClient.post(PEOPLE_URL, action_affiche: 'affiche'))).css('.donn_listeVue1 a').each do |a|
+        # @note City mayor has two entries.
         borough_name = a.css('span.titre').text.split(',').last.strip.tr("\u0096\u0097", "–—")
         next if borough_name == 'Ville de Montréal'
 
         gender, *name = a[:title].split
         name = name.join(' ')
 
-        person = Person.find_by_name(name) || Person.new(:name => name)
+        person = Person.find_by_name(name) || Person.new(name: name)
         if person.new_record?
           log.info "Adding new person #{person.name}"
         end
 
         doc = Nokogiri::HTML(open("http://ville.montreal.qc.ca#{a[:href]}").read, nil, 'UTF-8')
         src = doc.at_css('.imageDroite').andand[:src]
-        pieces = name.slug.split('-')
 
         person.attributes = {
-          slug:             "#{pieces.first}-#{pieces.last}",
           email:            doc.at_css('input[name=recipient]').andand[:value],
           gender:           nil,
           positions:        a.inner_html.split('<br>')[1..-1].map(&:strip),
@@ -74,6 +72,7 @@ module VilleMontrealQcCa
           district_id:      nil,
           party_id:         nil,
         }
+        person.addresses.clear
 
         suffix = "for #{person.name} (#{a[:href].split('=').last.to_i})"
 
@@ -96,7 +95,6 @@ module VilleMontrealQcCa
           log.warn "Missing spreadsheet row #{suffix}"
         end
 
-        addresses = []
         doc.css('#print tr').each_with_index do |tr,index|
           if index.zero?
             parts = tr.text.split("\n").map(&:strip).reject(&:empty?)
@@ -135,13 +133,12 @@ module VilleMontrealQcCa
               }
             when "Bureau d'arrondissement", "Hôtel de ville"
               numbers = tr.css('td:eq(2)').inner_html.split('<br>').map{|x| x.gsub(/\D/, '')}
-              address = person.find_address_by_name(section) || person.addresses.build(:name => section)
-              address.attributes = {
+              person.addresses.build({
+                name:    section,
                 address: strings,
-                tel: numbers.first,
-                fax: numbers.last,
-              }
-              addresses << address
+                tel:     numbers.first,
+                fax:     numbers.last,
+              })
             else
               log.warn "Unknown section '#{section}' #{suffix}"
             end
@@ -151,14 +148,13 @@ module VilleMontrealQcCa
         %w(email photo_url).each do |attribute|
           log.info "Missing #{attribute} #{suffix}" if person[attribute].blank?
         end
-        person.save!
-
         addresses.each do |address|
           %w(tel fax).each do |attribute|
             log.info "Missing #{attribute} #{suffix}" if address[attribute].blank?
           end
-          address.save!
         end
+
+        person.save!
       end
     end
   end
