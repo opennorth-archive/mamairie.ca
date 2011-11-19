@@ -17,17 +17,11 @@
           = @person.positions.first
       .activities
         - @activities.each do |activity|
-          / .activity
-          /   .photo= image_tag "http://placehold.it/60x60", class: "thumbnail"
-          /   .title= link_to "Example News Item"
-          /   .snippet.dim This is body text from news item or blog.
-          = activity.inspect
           = render "shared/#{activity.source}", activity: activity
           .spacer
-          
+
       = render 'shared/mini_council', people: @person.others_in_borough
-      - @person.activities.each do |activity|
-        
+
     .span6
       %aside
         %ul

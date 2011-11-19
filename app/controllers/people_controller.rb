@@ -14,8 +14,7 @@ class PeopleController < ApplicationController
   # GET /people/1.json
   def show
     @person = Person.find(params[:id])
-    @activities = Activity.where(:source => "twitter.com").sort(:published_at.desc).limit(10)
-
+    @activities = Activity.where(:person_id => @person.id, :source => "twitter.com").sort(:published_at.desc).limit(10)
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @person }
