@@ -13,4 +13,4 @@
       %ul
         - @activities.each do |activity|
           %li
-            = render 'shared/#{activity.source}', activity: activity
+            = render "shared/#{activity.source}", activity: activity
