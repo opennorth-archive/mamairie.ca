@@ -3,10 +3,7 @@
     .span10
       %h2
         = @borough.name
-      %ul
-        - @borough.people.sort(:name.asc).each do |person|
-          %li
-            = render 'shared/mini_person', person: person
+      = render 'shared/mini_council', people: @borough.people.sort(:name.asc)
       = render 'shared/budget', borough: @borough
     .span6
       %aside
