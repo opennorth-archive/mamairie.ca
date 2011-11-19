@@ -6,6 +6,12 @@ class Borough
   key :name, String, required: true, unique: true
   key :slug, String, required: true, unique: true
   key :services_id, String, required: true, unique: true
+  key :twitter, String
+  key :facebook, String
+  key :youtube, String
+  key :flickr, String
+  key :wikipedia, Hash
+  key :web, Hash
   # @note As postal_codes can become large, explicitly select fields on queries.
   key :postal_codes, Array
 
@@ -28,5 +34,9 @@ class Borough
 
   def url
     "http://ville.montreal.qc.ca/#{slug}"
+  end
+
+  def twitter_url
+    "http://twitter.com/#{twitter}" if twitter
   end
 end
