@@ -7,9 +7,9 @@
       .activities
         - @activities.each do |activity|
           .activity
-            .photo= image_tag "http://placehold.it/60x60", class: "thumbnail"
-            .title= link_to "Example News Item"
-            .snippet.dim This is body text from news item or blog.
+            .photo= image_tag activity.profile_image_url, class: "thumbnail"
+            .title= link_to activity.screen_name
+            .snippet.dim= activity.body
           .spacer
             / = render "shared/#{activity.source}", activity: activity
     .span11
