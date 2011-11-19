@@ -24,13 +24,14 @@
 
     .span6
       %aside
-        %ul
-          - if @person.twitter
-            %li
-              = link_to 'Twitter', @person.twitter_url
-          - if @person.facebook
-            %li
-              = link_to 'Twitter', @person.facebook
+        %h3 Connect
+        - if @person.twitter
+          .social
+            = link_to @person.twitter_url do
+              = image_tag "https://www.nimonikapp.ca/images/twitter_small.png"
+              Twitter
+        - if @person.facebook
+          = link_to 'Twitter', @person.facebook
         %section#coordinates
           %h3 Coordonnées
           - if @person.email
