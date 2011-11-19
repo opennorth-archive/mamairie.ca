@@ -70,14 +70,14 @@ namespace :scraper do
             party_id:     person.party_id,
             borough_id:   person.borough_id,
             district_id:  person.district_id,
-            url:          "http://twitter.com/#{tweet.user.screen_name}/status/#{tweet.id_str}",
-            body:         tweet.text,
-            published_at: Time.parse(tweet.created_at),
+            url:          "http://twitter.com/#{tweet.attrs['user']['screen_name']}/status/#{tweet.attrs['id_str']}",
+            body:         tweet.attrs['text'],
+            published_at: Time.parse(tweet.attrs['created_at']),
             extra: {
-              name:              tweet.user.name,
-              screen_name:       tweet.user.screen_name,
-              profile_image_url: tweet.user.profile_image_url,
-              id_str:            tweet.id_str,
+              name:              tweet.attrs['user']['name'],
+              screen_name:       tweet.attrs['user']['screen_name'],
+              profile_image_url: tweet.attrs['user']['profile_image_url'],
+              id_str:            tweet.attrs['id_str'],
             },
           })
         end
