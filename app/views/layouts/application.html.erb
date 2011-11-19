@@ -13,11 +13,9 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <link href='http://fonts.googleapis.com/css?family=Cabin:700' rel='stylesheet' type='text/css'>
   <%= stylesheet_link_tag 'application' %>
-  <%= javascript_include_tag 'application' %>
   <%= csrf_meta_tags %>
 </head>
 <body id="<%= I18n.locale %>">
-<<<<<<< HEAD
 
 <div class="topbar">
   <div class="topbar-inner">
@@ -57,6 +55,8 @@
 
 <%= yield %>
 
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.min.js"></script>
+<%= javascript_include_tag 'application' %>
 <script>
   var _gaq=[['_setAccount','<%=t '.google_analytics' %>'],['_trackPageview'],['_trackPageLoadTime']];
   (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
