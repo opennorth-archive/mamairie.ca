@@ -1,11 +1,17 @@
 .container
   .row
-    .span10
+    .span16
       %h2
         = @borough.name
-      = render 'shared/mini_council', people: @borough.people.sort(:name.asc)
-      = render 'shared/budget', borough: @borough
-    .span6
+      = render 'shared/mini_council', people: @borough.people
+      /= render 'shared/budget', borough: @borough
+  .row.spacer
+    .span11#activities
+      %ul.unstyled
+        - @activities.each do |activity|
+          %li
+            = render "shared/#{activity.source}", activity: activity
+    .span5
       %aside
         %ul
           - if @borough.twitter

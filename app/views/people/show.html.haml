@@ -1,36 +1,32 @@
 #person.container
   .row
-    .span3.sidebar
-      .photo= image_tag @person.photo_path, class: "thumbnail"
-      .spacer
-      .sidenav
-        = link_to "Biography"
-        = link_to "Contact"
-        = link_to "Budget"
-        = link_to "Share"
-        
-    .span7
+    .span2
+      = image_tag @person.photo.large.url, size: '90x120', alt: ''
+      %abbr.label(class="#{@person.party_slug}")= @person.party_name
+      = link_to "Biography"
+      = link_to "Contact"
+      = link_to "Budget"
+      = link_to "Share"
+    .span9
+      = render 'shared/mini_council', people: @person.others_in_borough
       %h1
-        == #{@person.name}
+        = @person.name
       %h3
-        %span.dim
+        %span
           = @person.positions.first
-      .activities
-        - @activities.each do |activity|
-          = render "shared/#{activity.source}", activity: activity
-          .spacer
-
-      / = render 'shared/mini_council', people: @person.others_in_borough
-    .span6
+        #activities
+          %ul.unstyled
+            - @activities.each do |activity|
+              %li
+                = render "shared/#{activity.source}", activity: activity
+    .span5
       %aside
-        %h3 Connect
         - if @person.twitter
           .social
             = link_to @person.twitter_url do
               = image_tag "https://www.nimonikapp.ca/images/twitter_small.png"
-              Twitter
         - if @person.facebook
-          = link_to 'Twitter', @person.facebook
+          = link_to 'Facebook', @person.facebook
         %section#coordinates
           %h3 Coordonnées
           - if @person.email
@@ -41,7 +37,7 @@
               = address.name
             %p
               - address.address.each do |line|
-                = line
+                = line.html_safe
                 %br
             - if address.tel
               %p

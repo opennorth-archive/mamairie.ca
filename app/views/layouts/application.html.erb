@@ -22,16 +22,9 @@
       <header>
         <h1><%= link_to_unless_current 'Ma Mairie', root_path %></h1>
       </header>
-      <% if flash.alert %>
-        <div class="alert-message error fade in">
-          <a class="close" href="#">×</a>
-          <p><%= flash.alert %></p>
-        </div>
-      <% end %>
     </div>
   </div>
 </div>
-
 
 <%= yield %>
 

@@ -31,9 +31,76 @@
 // -----------------------------------------------------------------------------
 body {
   font-size: 16px;
+  line-height: 1.5em;
+}
+p {
+  font-size: inherit;
+  line-height: normal;
 }
 h1 a {
-  color: #000;
+  color: #404040;
+}
+
+header,
+#tagline {
+  text-align: center;
+}
+
+.hero-unit {
+  margin-top: 30px;
+  padding: 5px;
+  font-size: 15px;
+  text-align: center;
+  input {
+    padding: 9px 14px 9px;
+    font-size: 15px;
+    line-height: normal;
+    @include border-radius(6px);
+  }
+  label {
+    float: none;
+    width: auto;
+    font-weight: bold;
+    font-size: 15px;
+    line-height: normal;
+    text-align: left;
+  }
+  .help-block {
+    max-width: none;
+  }
+}
+.newsletter {
+  text-align: center;
+  font-size: 15px;
+  line-height: normal;
+  p {
+    font-weight: bold;
+  }
+  label {
+    float: none;
+    width: auto;
+    font-size: 15px;
+    line-height: normal;
+    text-align: left;
+  }
+}
+
+#activities {
+  img {
+    float: left;
+    margin-top: 3px;
+  }
+  li {
+    clear: left;
+    min-height: 60px;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #ebebeb;
+  }
+  .person,
+  .activity {
+    margin-left: 53px;
+  }
 }
 
 #boroughs {
@@ -55,26 +122,29 @@ h1 a {
     height: 5em;
     clear: left;
   }
+  .person,
+  .activity {
+    margin-left: 53px;
+  }
 }
 
-#activities {
-  img {
-    float: left;
-    margin-top: 3px;
-  }
+#council {
+  text-align: center;
   li {
-    clear: left;
-    min-height: 60px;
-    margin-bottom: 10px;
-    padding-bottom: 10px;
-    border-bottom: 1px solid #ebebeb;
+    float: left;
+    width: 160px;
+    height: 160px;
+    padding: 6px;
+  }
+  .well {
+    padding: 5px;
+    margin: 0;
+    .position {
+      font-weight: bold;
+    }
   }
 }
 
-.person,
-.activity {
-  margin-left: 53px;
-}
 .title,
 .name,
 .body {
@@ -127,6 +197,16 @@ h1 a {
 }
 .ind {
   background-color: #999;
+}
+
+.spacer {
+  margin-top: 30px;
+}
+
+aside {
+  padding-left: 1em;
+  border-left: 1px solid #ebebeb;
+  font-size: 0.75em;
 }
 
 // Bootstrap IE6 ---------------------------------------------------------------

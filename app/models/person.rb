@@ -47,6 +47,10 @@ class Person
     positions.first[/\A\S+/]
   end
 
+  def mayor?
+    %w(Maire Mairesse).include? position
+  end
+
   def others_in_borough
     Person.where(:borough_id => borough_id).order(:name)
   end

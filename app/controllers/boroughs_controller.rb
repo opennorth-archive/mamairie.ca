@@ -14,6 +14,7 @@ class BoroughsController < ApplicationController
   # GET /boroughs/1.json
   def show
     @borough = Borough.find_by_slug(params[:id])
+    @activities = Activity.where(borough_id: @borough.id).sort(:published_at.desc).limit(40)
 
     respond_to do |format|
       format.html # show.html.erb
