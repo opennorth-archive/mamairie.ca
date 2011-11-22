@@ -6,7 +6,4 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require jquery.easing.1.3
-//= require jquery.scrollTo-min
-//= require jquery.timeago
 //= require_tree .
