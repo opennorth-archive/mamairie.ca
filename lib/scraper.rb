@@ -28,6 +28,8 @@ module VilleMontrealQcCa
         csv[row['name']] = {
           twitter: row['twitter'] && row['twitter'].sub(/\A@/, '').strip,
           facebook: row['facebook'].andand.strip,
+          youtube: row['youtube'].andand.strip,
+          flickr: row['flickr'].andand.strip,
           wikipedia: {
             en: row['wikipedia_en'] && row['wikipedia_en'].sub(%r{\Ahttp://en\.wikipedia\.org/wiki/}, '').strip,
             fr: row['wikipedia_fr'] && row['wikipedia_fr'].sub(%r{\Ahttp://fr\.wikipedia\.org/wiki/}, '').strip,

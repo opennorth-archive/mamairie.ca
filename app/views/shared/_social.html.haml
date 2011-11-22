@@ -5,10 +5,10 @@
   - if entity.facebook
     %li
       = link_to image_tag('blank.gif', size: '25x25', alt: 'Facebook', title: 'Facebook'), entity.facebook, class: 'facebook'
-  - if entity.respond_to?(:youtube) && entity.youtube
+  - if entity.youtube
     %li
       = link_to image_tag('blank.gif', size: '25x25', alt: 'YouTube', title: 'YouTube'), entity.youtube, class: 'youtube'
-  - if entity.respond_to?(:flickr) && entity.flickr
+  - if entity.flickr
     %li
       = link_to image_tag('blank.gif', size: '25x25', alt: 'Flickr', title: 'Flickr'), entity.flickr, class: 'flickr'
   - if entity.wikipedia_url

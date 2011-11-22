@@ -29,6 +29,8 @@ class Person
   key :functions, Array
   key :twitter, String
   key :facebook, String
+  key :youtube, String
+  key :flickr, String
   key :wikipedia, Hash
   key :web, Hash
   key :photo_src, String
