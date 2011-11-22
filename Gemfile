@@ -5,6 +5,7 @@ gem 'rails', '3.1.0'
 # Bundle edge Rails instead:
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'
 
+# Model
 gem 'mongo', '= 1.4.0'
 gem 'bson', '= 1.4.0'
 gem 'bson_ext', '= 1.4.0'
@@ -12,8 +13,15 @@ gem 'mongo_mapper'
 
 gem 'twitter'
 gem 'twitter-text'
+gem 'unicode_utils'
 
-# Rake
+# Uploads
+gem 'fog'
+gem 'rmagick'
+gem 'carrierwave'
+gem 'mm-carrierwave'
+
+# Scraper
 gem 'andand'
 gem 'faraday'
 gem 'home_run' # faster date parsing
@@ -22,7 +30,6 @@ gem 'nokogiri'
 gem 'rest-client'
 gem 'dragonfly', :git => 'git://github.com/jpmckinney/dragonfly.git'
 gem 'unbreakable', '~> 0.0.4'
-gem 'unicode_utils'
 
 # Gems used only for assets and not required
 # in production environments by default.
