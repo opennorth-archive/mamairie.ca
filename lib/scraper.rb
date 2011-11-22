@@ -127,9 +127,9 @@ module VilleMontrealQcCa
             case section
             when 'Fonction(s) et comité(s) stratégique(s)'
               person.functions = strings.map{|x| x.sub(/[:;]\z/, '')}
-            when 'Responsibilité(s)'
+            when 'Responsabilité(s)'
               person.responsibilities = {
-                # Remove "responsibilité comme", "responsibilité au"
+                # Remove "responsabilité comme", "responsabilité au"
                 strings[0].sub(':', '').split[2..-1].join(' ').capitalize =>
                 strings[1..-1].map{|x| x.sub!(/\A- +/, '')}
               }
