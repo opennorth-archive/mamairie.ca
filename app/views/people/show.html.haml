@@ -27,6 +27,12 @@
                 = link_to person.name, person_path(id: person.slug)
               .position
                 = person.position
+      .newsletter
+        %p Voudriez-vous recevoir des mises à jour directement de votre élu? Enregistrer votre intérêt ci-dessous.
+        %form(action="http://opennorth.us2.list-manage.com/subscribe/post?u=a602fac79ef3dc584bf1a2743&id=bd133c7a86" method="post")
+          <label for="mce-EMAIL">Courriel</label>
+          <input type="text" value="" name="EMAIL" id="mce-EMAIL" />
+          <input type="submit" class="btn" value="Enregistrer" />
       #activities
         %ul.unstyled
           - @activities.each do |activity|
