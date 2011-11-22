@@ -11,8 +11,10 @@ namespace :scraper do
   # Run on occasion
   desc 'Download photos of mayors and councillors'
   task :photos => :environment do
-    Person.all.each do |person|
-      unless person.photo_src.nil? or person.photo?
+    # https://github.com/technoweenie/faraday/wiki/Setting-up-SSL-certificates
+    OpenSSL::SSL::VERIFY_PEER = OpenSSL::SSL::VERIFY_NONE
+    Person.where(photo_src: {'$exists' => true}).each do |person|
+      unless (Faraday.head(person.photo.url).status rescue false)
         person.remote_photo_url = person.photo_src
         person.save!
       end
@@ -22,7 +24,7 @@ namespace :scraper do
   # Run on occasion
   desc 'Import Wikipedia content'
   task :wikipedia => :environment do
-    # @todo Skip for hackathon.
+    # @todo
   end
 
   desc 'Import Twitter tweets'

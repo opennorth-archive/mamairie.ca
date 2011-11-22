@@ -18,6 +18,8 @@ class Person
   many :activities
 
   key :name, String, required: true
+  key :first_name, String, required: true
+  key :last_name, String, required: true
   key :slug, String, required: true
   key :email, String
   key :gender, String, required: true, in: %w(m f)
@@ -29,13 +31,15 @@ class Person
   key :wikipedia, Hash
   key :web, Hash
   key :photo_src, String
+  key :party_slug, String, required: true
   key :source_url, String, required: true
   timestamps!
 
   ensure_index :name
   ensure_index :slug
+  ensure_index :last_name
 
-  before_validation :set_slug
+  before_validation :set_attributes
 
   def twitter_url
     "http://twitter.com/#{twitter}" if twitter
@@ -45,11 +49,20 @@ class Person
     Person.where(:borough_id => borough_id).order(:name)
   end
 
-  # @todo web and wikipedia methods that get the best localization (add to borough and person pages)
+  def wikipedia_url
+    wikipedia[I18n.locale]
+  end
+
+  def web_url
+    web[I18n.locale]
+  end
 
 private
 
-  def set_slug
+  def set_attributes
     self.slug = name.slug.sub(/-.+-/, '-') if name
+    self.first_name = name[/\A\S+/] if name
+    self.last_name = name[/\S+\z/] if name
+    self.party_slug = party.slug if party
   end
 end

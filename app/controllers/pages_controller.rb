@@ -14,8 +14,7 @@ class PagesController < ApplicationController
       begin
         redirect_to Borough.find_by_postal_code(params[:q].gsub(/[^A-Za-z0-9]/, '').upcase)
       rescue MongoMapper::DocumentNotFound
-        # @todo add postal code to error message
-        flash.alert = "Ce code postal n'est pas recensé dans notre système. Assurez-vous d'avoir entré un code postal de la Ville de Montréal."
+        flash.alert = "Le code postal #{params[:q]} n'est pas recensé dans notre système. Assurez-vous d'avoir entré un code postal de la Ville de Montréal."
         redirect_to root_path
       rescue Timeout::Error
         flash.alert = "Le site de la Ville de Montréal ne répond pas. S'il vous plaît réessayer."
