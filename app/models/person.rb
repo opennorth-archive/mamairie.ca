@@ -31,8 +31,10 @@ class Person
   key :wikipedia, Hash
   key :web, Hash
   key :photo_src, String
-  key :party_slug, String, required: true
   key :source_url, String, required: true
+  key :borough_name, String, required: true
+  key :party_name, String, required: true
+  key :party_slug, String, required: true
   timestamps!
 
   ensure_index :name
@@ -41,12 +43,16 @@ class Person
 
   before_validation :set_attributes
 
-  def twitter_url
-    "http://twitter.com/#{twitter}" if twitter
+  def position
+    positions.first[/\A\S+/]
   end
 
   def others_in_borough
     Person.where(:borough_id => borough_id).order(:name)
+  end
+
+  def twitter_url
+    "http://twitter.com/#{twitter}" if twitter
   end
 
   def wikipedia_url
@@ -60,9 +66,17 @@ class Person
 private
 
   def set_attributes
-    self.slug = name.slug.sub(/-.+-/, '-') if name
-    self.first_name = name[/\A\S+/] if name
-    self.last_name = name[/\S+\z/] if name
-    self.party_slug = party.slug if party
+    if name
+      self.slug = name.slug.sub(/-.+-/, '-')
+      self.first_name = name[/\A\S+/]
+      self.last_name = name[/\S+\z/]
+    end
+    if party
+      self.party_slug = party.slug
+      self.party_name = party.name
+    end
+    if borough
+      self.borough_name = borough.name
+    end
   end
 end

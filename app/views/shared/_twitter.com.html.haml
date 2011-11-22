@@ -1,4 +1,13 @@
-.activity.feed
-  .photo= image_tag activity.extra[:profile_image_url], class: "thumbnail"
-  .title= link_to activity.extra[:name]
-  .snippet.dim= activity.body
+= image_tag(activity.person.photo.thumb.url || activity.image, size: '48x48', alt: '')
+.activity
+  .title
+    = link_to activity.person.name, person_path(id: activity.person.slug)
+    %abbr.label(class="#{activity.person.party_slug}" title="#{activity.person.party_name}")= activity.person.party_slug.first.upcase
+    %span.meta
+      = activity.person.borough_name
+  .body
+    = auto_link_usernames_or_lists(auto_link_urls_custom(auto_link_hashtags(activity.body).html_safe).html_safe).html_safe
+  .timestamp
+    = timestamp(activity.published_at)
+    via
+    = link_to 'Twitter', activity.url

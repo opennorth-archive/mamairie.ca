@@ -30,7 +30,6 @@ namespace :scraper do
   desc 'Import Twitter tweets'
   task :twitter => :environment do
     require 'time'
-    TWITTER_KEY = 'twitter.com'
 
     # @note OAuth calls raise limit to 350 per hour: https://dev.twitter.com/docs/rate-limiting
     # @note Apigee supposedly has higher rate limits
@@ -43,7 +42,7 @@ namespace :scraper do
     Twitter.gateway = ENV['APIGEE_TWITTER_API_ENDPOINT']
 
     Person.where(twitter: {'$exists' => true}).sort(:name.asc).all.each do |person|
-      activity = person.activities.where(source: TWITTER_KEY).sort(:published_at.desc).first
+      activity = person.activities.where(source: Activity::TWITTER).sort(:published_at.desc).first
 
       since_id = activity ? activity.extra[:id_str] : 1
 
@@ -66,7 +65,7 @@ namespace :scraper do
 
         tweets.each do |tweet|
           person.activities.create!({
-            source:       TWITTER_KEY,
+            source:       Activity::TWITTER,
             party_id:     person.party_id,
             borough_id:   person.borough_id,
             district_id:  person.district_id,
@@ -89,7 +88,6 @@ namespace :scraper do
   task :google_news => :environment do
     include ActionView::Helpers
 
-    GOOGLE_NEWS_KEY = 'news.google.ca'
     GOOGLE_NEWS_URL = 'http://news.google.ca/news?'
     GOOGLE_NEWS_PARAMS = {
       pz:      1,
@@ -109,8 +107,8 @@ namespace :scraper do
     }
 
     Person.sort(:name.asc).all.each do |person|
-      source = person.sources[GOOGLE_NEWS_KEY] || person.sources.build(name: GOOGLE_NEWS_KEY)
-      activity = person.activities.where(source: GOOGLE_NEWS_KEY).sort(:published_at.desc).first
+      source = person.sources[Activity::GOOGLE_NEWS] || person.sources.build(name: Activity::GOOGLE_NEWS)
+      activity = person.activities.where(source: Activity::GOOGLE_NEWS).sort(:published_at.desc).first
       q = source.extra.has_key?(:q) ? source.extra[:q] : person.name
 
       # https://gist.github.com/132671
@@ -138,7 +136,7 @@ namespace :scraper do
           publisher, body = doc.css('font[size="-1"]')[0..1].map(&:text)
 
           person.activities.create!({
-            source:       GOOGLE_NEWS_KEY,
+            source:       Activity::GOOGLE_NEWS,
             party_id:     person.party_id,
             borough_id:   person.borough_id,
             district_id:  person.district_id,

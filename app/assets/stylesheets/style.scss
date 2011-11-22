@@ -1,3 +1,134 @@
+// Mixins ----------------------------------------------------------------------
+// http://css3please.com/
+@mixin border-radius($radius) {
+  -webkit-border-radius: $radius;
+  -moz-border-radius: $radius;
+  border-radius: $radius;
+}
+@mixin border-direction-radius($direction, $radius) {
+  -webkit-border-#{$direction}-radius: $radius;
+  -moz-border-#{$direction}-radius: $radius;
+  border-#{$direction}-radius: $radius;
+}
+@mixin gradient($from, $to) {
+  background-color: $to;
+  background-repeat: repeat-x;
+  background-image: -webkit-gradient(linear, left top, left bottom, from($from), to($to));
+  background-image: -webkit-linear-gradient(top, $from, $to);
+  background-image:    -moz-linear-gradient(top, $from, $to);
+  background-image:     -ms-linear-gradient(top, $from, $to);
+  background-image:      -o-linear-gradient(top, $from, $to);
+  background-image:         linear-gradient(top, $from, $to);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#{$from}', endColorstr='#{$to}');
+}
+@mixin background-rgba($red, $green, $blue, $opacity, $rgba) {
+  background-color: transparent;
+  background-color: rgba($red, $green, $blue, $opacity);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#{$rgba}',endColorstr='#{$rgba}');
+  zoom: 1;
+}
+
+// -----------------------------------------------------------------------------
+body {
+  font-size: 16px;
+}
+h1 a {
+  color: #000;
+}
+
+#boroughs {
+  font-size: 0.75em;
+  .span4 {
+    width: 230px;
+    margin-left: 0;
+    &:first-child {
+      margin-left: 20px;
+    }
+  }
+}
+
+#people {
+  img {
+    float: left;
+  }
+  li {
+    height: 5em;
+    clear: left;
+  }
+}
+
+#activities {
+  img {
+    float: left;
+    margin-top: 3px;
+  }
+  li {
+    clear: left;
+    min-height: 60px;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #ebebeb;
+  }
+}
+
+.person,
+.activity {
+  margin-left: 53px;
+}
+.title,
+.name,
+.body {
+  font-size: 0.875em;
+  word-wrap: break-word;
+}
+.title {
+  font-weight: bold;
+}
+.by {
+  font-size: 0.875em;
+  font-weight: bold;
+  color: #444;
+}
+.body {
+  color: #444;
+}
+.borough,
+.position {
+  font-size: 0.75em;
+}
+.timestamp {
+  font-size: 0.6875em;
+}
+.timestamp a {
+  color: gray;
+  &:hover {
+    color: gray;
+  }
+}
+.timestamp .mention {
+  color: #444;
+  &:hover {
+    color: gray;
+  }
+}
+.meta {
+  font-weight: normal;
+  font-size: 0.85em;
+}
+
+.pm {
+  background-color: #174a8a;
+}
+.um {
+  background-color: #b51d24;
+}
+.vm {
+  background-color: #b0bb19;
+}
+.ind {
+  background-color: #999;
+}
+
 // Bootstrap IE6 ---------------------------------------------------------------
 .lt-ie7 {
   // blockquote small:before{content:'\2014 \00A0';}

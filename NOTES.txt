@@ -11,6 +11,7 @@ rspec lib/sanity.rb
 
 # Periodically
 
+bundle exec rake scraper:retrieve
 bundle exec rake scraper:photos
 bundle exec rake scraper:wikipedia
 bundle exec rake scraper:google_news

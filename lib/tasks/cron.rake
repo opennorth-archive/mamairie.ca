@@ -1,5 +1,7 @@
 task :cron => :environment do
-  Rake::Task['scraper:retrieve'].invoke
+  if Time.now.hour == 0
+    Rake::Task['scraper:retrieve'].invoke
+  end
   Rake::Task['scraper:twitter'].invoke
   Rake::Task['scraper:google_news'].invoke
 end

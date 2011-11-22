@@ -2,8 +2,8 @@
 class PagesController < ApplicationController
   def index
     @boroughs = Borough.fields(:name, :slug).sort(:name.asc).all
-    @people = Person.all
-    @activities = Activity.sort(:published_at.desc).limit(10)
+    @people = Person.sort(:last_name.asc).all
+    @activities = Activity.where(source: Activity::GOOGLE_NEWS).sort(:published_at.desc).limit(50)
   end
 
   def search
@@ -12,7 +12,8 @@ class PagesController < ApplicationController
       redirect_to root_path
     else
       begin
-        redirect_to Borough.find_by_postal_code(params[:q].gsub(/[^A-Za-z0-9]/, '').upcase)
+        borough = Borough.find_by_postal_code(params[:q].gsub(/[^A-Za-z0-9]/, '').upcase)
+        redirect_to borough_path(id: borough.slug)
       rescue MongoMapper::DocumentNotFound
         flash.alert = "Le code postal #{params[:q]} n'est pas recensé dans notre système. Assurez-vous d'avoir entré un code postal de la Ville de Montréal."
         redirect_to root_path
