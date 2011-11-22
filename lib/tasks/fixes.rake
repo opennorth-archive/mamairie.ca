@@ -14,6 +14,7 @@ namespace :fixes do
     end
     {
       'André Savard' => ['hockey', 'Rétro Laser'],
+      'Pierre Mainville' => ['Louis-Pierre Mainville'],
     }.each do |name,as_eq|
       person = Person.find_by_name! name
       source = person.sources['news.google.ca'] || person.sources.build(name: 'news.google.ca')

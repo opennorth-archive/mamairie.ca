@@ -68,7 +68,7 @@ class Person
         /\(\p{Lu}+\)\z/i,
       ].reduce(function) do |string,regex|
         string.sub(regex, '')
-      end
+      end.capitalize
     end
   end
 
