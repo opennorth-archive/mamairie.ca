@@ -13,7 +13,7 @@ class BoroughsController < ApplicationController
   # GET /boroughs/1
   # GET /boroughs/1.json
   def show
-    @borough = Borough.find(params[:id])
+    @borough = Borough.find_by_slug(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb

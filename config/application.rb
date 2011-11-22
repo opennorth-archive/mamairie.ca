@@ -57,4 +57,6 @@ module MaMairie
   end
 end
 
+require 'carrierwave/orm/mongomapper'
+require 'enumerable_extensions'
 require 'string_extensions'

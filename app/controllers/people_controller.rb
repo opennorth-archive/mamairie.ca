@@ -13,7 +13,7 @@ class PeopleController < ApplicationController
   # GET /people/1
   # GET /people/1.json
   def show
-    @person = Person.find(params[:id])
+    @person = Person.find_by_slug(params[:id])
     @activities = @person.activities.sort(:published_at.desc).limit(10)
 
     respond_to do |format|

@@ -1,7 +1,7 @@
 # coding: utf-8
 class PagesController < ApplicationController
   def index
-    @boroughs = Borough.fields(:name, :slug).all
+    @boroughs = Borough.fields(:name, :slug).sort(:name.asc).all
     @people = Person.all
     @activities = Activity.sort(:published_at.desc).limit(10)
   end
