@@ -81,7 +81,7 @@ class Person
   end
 
   def wikipedia_url
-    wikipedia[I18n.locale]
+    "http://fr.wikipedia.org/wiki/#{wikipedia[I18n.locale]}" if wikipedia[I18n.locale]
   end
 
   def web_url
