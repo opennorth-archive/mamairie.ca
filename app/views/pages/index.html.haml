@@ -3,7 +3,6 @@
     .span5
       %h3
         Nouvelles
-
       .activities
         - @activities.each do |activity|
           = render "shared/#{activity.source}", activity: activity

@@ -6,4 +6,6 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require bootstrap-alerts
+//= require scripts
 //= require_tree .

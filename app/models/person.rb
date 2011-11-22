@@ -48,11 +48,7 @@ class Person
   end
 
   def photo_path
-    if photo_retrieved?
-      "photos/#{slug}.jpg"
-    else
-      photo_url
-    end
+    photo_retrieved? ? "photos/#{slug}.jpg" : photo_url
   end
 
   def others_in_borough

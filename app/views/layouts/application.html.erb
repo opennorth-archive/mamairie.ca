@@ -11,47 +11,27 @@
   <meta name="description" content="<%=t '.description' %>">
   <meta name="author" content="<%=t '.author' %>">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <link href='http://fonts.googleapis.com/css?family=Cabin:700' rel='stylesheet' type='text/css'>
   <%= stylesheet_link_tag 'application' %>
   <%= csrf_meta_tags %>
 </head>
 <body id="<%= I18n.locale %>">
 
-<div class="topbar">
-  <div class="topbar-inner">
-    <div class="container">
-      <a class="brand" href="<%= root_url %>">Ma Mairie</a>
-      <ul class="nav">
-        <li class=""><a href="/">Accueil</a></li>
-      </ul>
-    </div>
-  </div>
-</div>
-
 <div class="container">
   <div class="row">
     <div class="span16">
-      <% if controller_name == "pages" %>
-        <header>
-          <h1 style="margin-top:0px">
-            <!-- <%= image_tag "logo_small.png" %><br> -->
-            <%= link_to "Ma Mairie", root_url %>
-          </h1>
-          <h2>Suivez l'activité de vos élus à la Ville de Montréal</h1>
-        </header>
-      <% end %>
+      <header>
+        <h1><%= link_to_unless_current 'Ma Mairie', root_path %></h1>
+      </header>
       <% if flash.alert %>
-        <div class="alert-message error">
+        <div class="alert-message error fade in">
           <a class="close" href="#">×</a>
           <p><%= flash.alert %></p>
         </div>
       <% end %>
-      <div class="hero-unit">
-        <%= render 'shared/search_form' %>
-      </div>
     </div>
   </div>
 </div>
+
 
 <%= yield %>
 

@@ -1,0 +1,2 @@
+$ ->
+  $('.alert-message').alert()

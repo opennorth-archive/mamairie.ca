@@ -5,5 +5,4 @@ class Address
   key :address, Array, required: true
   key :tel, Integer
   key :fax, Integer
-
 end
