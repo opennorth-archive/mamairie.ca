@@ -37,11 +37,24 @@ p {
   font-size: inherit;
   line-height: normal;
 }
+h1 {
+  padding-top: 24px;
+}
 h1 a {
   color: #404040;
 }
 
-header,
+header {
+  position: relative;
+  text-align: center;
+  h1 {
+  }
+  img {
+    position: absolute;
+    right: 0;
+    top: 5px;
+  }
+}
 #tagline {
   text-align: center;
 }
@@ -222,7 +235,7 @@ h2 span {
   color: #999;
 }
 
-#icons {
+.icons {
   li {
     display: inline;
   }
@@ -235,23 +248,23 @@ h2 span {
     background-repeat: no-repeat;
   }
 }
-#twitter {
+.twitter {
   background-position: -26px 0;
   &:hover {background-position: -26px -26px;}
 }
-#facebook {
+.facebook {
   background-position: -52px 0;
   &:hover {background-position: -52px -26px;}
 }
-#flickr {
+.flickr {
   background-position: -78px 0;
   &:hover {background-position: -78px -26px;}
 }
-#youtube {
+.youtube {
   background-position: -156px 0;
   &:hover {background-position: -156px -26px;}
 }
-#wikipedia {
+.wikipedia {
   background-position: -182px 0;
   &:hover {background-position: -182px -26px;}
 }

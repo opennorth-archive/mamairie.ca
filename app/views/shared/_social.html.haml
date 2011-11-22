@@ -1,16 +1,16 @@
-%ul.unstyled#icons
+%ul.unstyled.icons
   - if entity.twitter
     %li
-      = link_to image_tag('blank.gif', size: '25x25', alt: 'Twitter', title: 'Twitter'), entity.twitter_url, id: 'twitter'
+      = link_to image_tag('blank.gif', size: '25x25', alt: 'Twitter', title: 'Twitter'), entity.twitter_url, class: 'twitter'
   - if entity.facebook
     %li
-      = link_to image_tag('blank.gif', size: '25x25', alt: 'Facebook', title: 'Facebook'), entity.facebook, id: 'facebook'
+      = link_to image_tag('blank.gif', size: '25x25', alt: 'Facebook', title: 'Facebook'), entity.facebook, class: 'facebook'
   - if entity.respond_to?(:youtube) && entity.youtube
     %li
-      = link_to image_tag('blank.gif', size: '25x25', alt: 'YouTube', title: 'YouTube'), entity.youtube, id: 'youtube'
+      = link_to image_tag('blank.gif', size: '25x25', alt: 'YouTube', title: 'YouTube'), entity.youtube, class: 'youtube'
   - if entity.respond_to?(:flickr) && entity.flickr
     %li
-      = link_to image_tag('blank.gif', size: '25x25', alt: 'Flickr', title: 'Flickr'), entity.flickr, id: 'flickr'
+      = link_to image_tag('blank.gif', size: '25x25', alt: 'Flickr', title: 'Flickr'), entity.flickr, class: 'flickr'
   - if entity.wikipedia_url
     %li
-      = link_to image_tag('blank.gif', size: '25x25', alt: 'Wikipédia', title: 'Wikipédia'), entity.wikipedia_url, id: 'wikipedia'
+      = link_to image_tag('blank.gif', size: '25x25', alt: 'Wikipédia', title: 'Wikipédia'), entity.wikipedia_url, class: 'wikipedia'

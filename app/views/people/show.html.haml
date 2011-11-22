@@ -15,7 +15,8 @@
       %h2
         #{@person.name},
         %span
-          = @person.positions.first
+          #{@person.position},
+          = link_to @person.borough_name, borough_path(id: @person.borough_slug)
       %ul.unstyled#council-mini
         - @person.others_in_borough.sort_by{|x| x.mayor? ? 'A' : x.last_name}.each do |person|
           %li(class="#{'well' if person.mayor?}")
@@ -58,7 +59,7 @@
           %section#positions
             %h3 Positions
             %ul
-              - @person.other_positions.each do |position|
+              - @person.positions.each do |position|
                 %li
                   = position
         - if @person.functions.present?

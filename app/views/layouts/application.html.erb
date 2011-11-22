@@ -20,7 +20,13 @@
   <div class="row">
     <div class="span16">
       <header>
-        <h1><%= link_to_unless_current 'Ma Mairie', root_path %></h1>
+        <h1>
+          <%= link_to_unless_current 'Ma Mairie', root_path %>
+          <span class="icons">
+            <%= link_to image_tag('blank.gif', size: '25x25', alt: 'Suivez @Ma_Mairie sur Twitter', title: 'Suivez @Ma_Mairie sur Twitter'), 'http://twitter.com/ma_mairie', class: 'twitter' %>
+          </span>
+        </h1>
+        <%= link_to image_tag('logo.png', size: '186x61', alt: 'Nord Ouvert'), 'http://nordouvert.ca/' %>
       </header>
     </div>
   </div>

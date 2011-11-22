@@ -34,6 +34,7 @@ class Person
   key :photo_src, String
   key :source_url, String, required: true
   key :borough_name, String, required: true
+  key :borough_slug, String, required: true
   key :party_name, String, required: true
   key :party_slug, String, required: true
   timestamps!
@@ -99,6 +100,7 @@ private
     end
     if borough
       self.borough_name = borough.name
+      self.borough_slug = borough.slug
     end
   end
 end
