@@ -7,9 +7,17 @@ namespace :fixes do
       'Christian B. Dubois' => 'Christian Dubois',
       'Dimitrios Jim Beis' => 'Jim Beis',
     }.each do |name,alt|
-      person = Person.find_by_name name
+      person = Person.find_by_name! name
       source = person.sources['news.google.ca'] || person.sources.build(name: 'news.google.ca')
       source.extra[:q] = alt
+      person.save!
+    end
+    {
+      'André Savard' => 'hockey',
+    }.each do |name,exclude|
+      person = Person.find_by_name! name
+      source = person.sources['news.google.ca'] || person.sources.build(name: 'news.google.ca')
+      source.extra[:as_eq] = exclude
       person.save!
     end
   end

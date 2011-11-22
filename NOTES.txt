@@ -18,6 +18,30 @@ bundle exec rake scraper:google_news
 bundle exec rake scraper:twitter
 rspec lib/sanity.rb
 
+
+
+# Setup
+
+heroku run rake db:seed
+heroku run rake scraper:retrieve
+heroku run rake fixes:google_news
+heroku run rake scraper:photos
+heroku run rake scraper:wikipedia
+heroku run rake scraper:google_news
+heroku run rake scraper:twitter
+rspec lib/sanity.rb
+
+# Periodically
+
+heroku run rake scraper:retrieve
+heroku run rake scraper:photos
+heroku run rake scraper:wikipedia
+heroku run rake scraper:google_news
+heroku run rake scraper:twitter
+rspec lib/sanity.rb
+
+
+
 # Google News
 
 English results (blocked by hl, ned)
