@@ -110,7 +110,7 @@ namespace :scraper do
       source = person.sources[Activity::GOOGLE_NEWS] || person.sources.build(name: Activity::GOOGLE_NEWS)
       activity = person.activities.where(source: Activity::GOOGLE_NEWS).sort(:published_at.desc).first
       q = source.extra.has_key?(:q) ? source.extra[:q] : person.name
-      q = [%("#{q}"), 'location:Québec', source.extra[:as_eq]].compact.join(' ')
+      q = [%("#{q}"), 'location:Québec', source.extra[:as_eq].andand.map{|x| %(-"#{x}")}].flatten.compact.join(' ')
 
       # https://gist.github.com/132671
       tmp = Feedzirra::Parser::RSS.new

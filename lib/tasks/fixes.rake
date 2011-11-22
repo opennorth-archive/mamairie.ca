@@ -6,18 +6,18 @@ namespace :fixes do
       'Bertrand A. Ward' => 'Bertrand Ward',
       'Christian B. Dubois' => 'Christian Dubois',
       'Dimitrios Jim Beis' => 'Jim Beis',
-    }.each do |name,alt|
+    }.each do |name,q|
       person = Person.find_by_name! name
       source = person.sources['news.google.ca'] || person.sources.build(name: 'news.google.ca')
-      source.extra[:q] = alt
+      source.extra[:q] = q
       person.save!
     end
     {
-      'André Savard' => 'hockey',
-    }.each do |name,exclude|
+      'André Savard' => ['hockey', 'Rétro Laser'],
+    }.each do |name,as_eq|
       person = Person.find_by_name! name
       source = person.sources['news.google.ca'] || person.sources.build(name: 'news.google.ca')
-      source.extra[:as_eq] = exclude
+      source.extra[:as_eq] = as_eq
       person.save!
     end
   end
