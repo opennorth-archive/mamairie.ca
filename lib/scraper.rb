@@ -66,7 +66,7 @@ module VilleMontrealQcCa
           facebook:         nil,
           wikipedia:        nil,
           web:              nil,
-          photo_url:        src && "http://ville.montreal.qc.ca#{src}",
+          photo_src:        src && "http://ville.montreal.qc.ca#{src}",
           source_url:       a[:href],
           borough_id:       nil,
           district_id:      nil,
@@ -145,7 +145,7 @@ module VilleMontrealQcCa
           end
         end
 
-        %w(email photo_url).each do |attribute|
+        %w(email photo_src).each do |attribute|
           log.info "Missing #{attribute} #{suffix}" if person[attribute].blank?
         end
         person.addresses.each do |address|

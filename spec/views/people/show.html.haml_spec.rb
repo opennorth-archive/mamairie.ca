@@ -13,7 +13,7 @@ describe "people/show.html.haml" do
       :facebook => "Facebook",
       :twitter => "Twitter",
       :web => "Web",
-      :photo_url => "Photo Url",
+      :photo_src => "Photo Url",
       :source_id => 1,
       :source_url => "Source Url"
     ))

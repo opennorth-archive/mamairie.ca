@@ -11,12 +11,10 @@ namespace :scraper do
   # Run on occasion
   desc 'Download photos of mayors and councillors'
   task :photos => :environment do
-    require 'open-uri'
     Person.all.each do |person|
-      unless person.photo_url.nil? or person.photo_retrieved?
-        File.open(person.photo_filename, 'wb') do |f|
-          f.write open(person.photo_url).read
-        end
+      unless person.photo_src.nil? or person.photo?
+        person.remote_photo_url = person.photo_src
+        person.save!
       end
     end
   end

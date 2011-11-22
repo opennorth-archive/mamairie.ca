@@ -1,5 +1,7 @@
 class Person
   include MongoMapper::Document
+  mount_uploader :photo, PhotoUploader
+
   belongs_to :borough
   belongs_to :district
   belongs_to :party
@@ -26,7 +28,7 @@ class Person
   key :facebook, String
   key :wikipedia, Hash
   key :web, Hash
-  key :photo_url, String
+  key :photo_src, String
   key :source_url, String, required: true
   timestamps!
 
@@ -37,18 +39,6 @@ class Person
 
   def twitter_url
     "http://twitter.com/#{twitter}" if twitter
-  end
-
-  def photo_filename
-    File.join Rails.root, 'app', 'assets', 'images', 'photos', "#{slug}.jpg"
-  end
-
-  def photo_retrieved?
-    File.exist? photo_filename
-  end
-
-  def photo_path
-    photo_retrieved? ? "photos/#{slug}.jpg" : photo_url
   end
 
   def others_in_borough

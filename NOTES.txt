@@ -1,20 +1,20 @@
 # Setup
 
-rake db:seed
-rake scraper:retrieve
-rake fixes:google_news
-rake scraper:photos
-rake scraper:wikipedia
-rake scraper:google_news
-rake scraper:twitter
+bundle exec rake db:seed
+bundle exec rake scraper:retrieve
+bundle exec rake fixes:google_news
+bundle exec rake scraper:photos
+bundle exec rake scraper:wikipedia
+bundle exec rake scraper:google_news
+bundle exec rake scraper:twitter
 rspec lib/sanity.rb
 
 # Periodically
 
-rake scraper:photos
-rake scraper:wikipedia
-rake scraper:google_news
-rake scraper:twitter
+bundle exec rake scraper:photos
+bundle exec rake scraper:wikipedia
+bundle exec rake scraper:google_news
+bundle exec rake scraper:twitter
 rspec lib/sanity.rb
 
 # Google News
