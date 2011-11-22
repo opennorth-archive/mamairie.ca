@@ -1,3 +1,4 @@
+# coding: utf-8
 class Person
   include MongoMapper::Document
   mount_uploader :photo, PhotoUploader
@@ -47,12 +48,29 @@ class Person
     positions.first[/\A\S+/]
   end
 
+  def other_positions
+    positions[1..-1]
+  end
+
   def mayor?
     %w(Maire Mairesse).include? position
   end
 
+  def human_functions
+    functions.map do |function|
+      [ /\AMembre de la commission (de|du|sur) /i,
+        /\AMembre d[eu] /i,
+        / – (Agglomération|Ville) de Montréal\z/i,
+        / de la Communauté métropolitaine de Montréal\z/i,
+        /\(\p{Lu}+\)\z/i,
+      ].reduce(function) do |string,regex|
+        string.sub(regex, '')
+      end
+    end
+  end
+
   def others_in_borough
-    Person.where(:borough_id => borough_id).order(:name)
+    Person.where(borough_id: borough_id, id: {'$ne' => id})
   end
 
   def twitter_url

@@ -3,30 +3,37 @@
     .span2
       = image_tag @person.photo.large.url, size: '90x120', alt: ''
       %abbr.label(class="#{@person.party_slug}")= @person.party_name
-      = link_to "Biography"
-      = link_to "Contact"
-      = link_to "Budget"
-      = link_to "Share"
+      .addthis_toolbox.addthis_default_style
+        <a class="addthis_button_preferred_1"></a>
+        <a class="addthis_button_preferred_2"></a>
+        <a class="addthis_button_preferred_3"></a>
+        <a class="addthis_button_preferred_4"></a>
+        <br>
+        <a class="addthis_button_compact"></a>
+        <a class="addthis_counter addthis_bubble_style"></a>
     .span9
-      = render 'shared/mini_council', people: @person.others_in_borough
-      %h1
-        = @person.name
-      %h3
+      %h2
+        #{@person.name},
         %span
           = @person.positions.first
-        #activities
-          %ul.unstyled
-            - @activities.each do |activity|
-              %li
-                = render "shared/#{activity.source}", activity: activity
+      %ul.unstyled#council-mini
+        - @person.others_in_borough.sort_by{|x| x.mayor? ? 'A' : x.last_name}.each do |person|
+          %li(class="#{'well' if person.mayor?}")
+            = link_to image_tag(person.photo.thumb.url, size: '48x48', alt: ''), person_path(id: person.slug)
+            .person
+              .name
+                %abbr.label(class="#{person.party_slug}" title="#{person.party_name}")= person.party_slug.first.upcase
+                = link_to person.name, person_path(id: person.slug)
+              .position
+                = person.position
+      #activities
+        %ul.unstyled
+          - @activities.each do |activity|
+            %li
+              = render "shared/#{activity.source}", activity: activity
     .span5
       %aside
-        - if @person.twitter
-          .social
-            = link_to @person.twitter_url do
-              = image_tag "https://www.nimonikapp.ca/images/twitter_small.png"
-        - if @person.facebook
-          = link_to 'Facebook', @person.facebook
+        = render 'shared/social', entity: @person
         %section#coordinates
           %h3 Coordonnées
           - if @person.email
@@ -47,26 +54,31 @@
               %p
                 %b Fax
                 = number_to_phone address.fax, area_code: true
-        %section#positions
-          %h3 Positions
-          %ul
-            - @person.positions.each do |position|
-              %li
-                = position
+        - if @person.other_positions.present?
+          %section#positions
+            %h3 Positions
+            %ul
+              - @person.other_positions.each do |position|
+                %li
+                  = position
+        - if @person.functions.present?
+          %section#functions
+            %h3 Comités
+            %ul
+              - @person.human_functions.each do |function|
+                %li
+                  = function
         - if @person.responsibilities.present?
           %section#responsibilities
-            %h3 Responsabilités
             - @person.responsibilities.each do |section,responsibilities|
-              %h4
+              %h3
                 = section
               %ul
                 - responsibilities.each do |responsibility|
                   %li
                     = responsibility
-        - if @person.functions.present?
-          %section#functions
-            %h3 Fonctions et comités stratégiques
-            %ul
-              - @person.functions.each do |function|
-                %li
-                  = function
+        - if @person.web_url
+          %p
+            = link_to web_url_text(@person.web_url), @person.web_url
+
+<script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=jpmckinney"></script>

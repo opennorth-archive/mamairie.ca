@@ -1,4 +1,0 @@
-%ul.unstyled#council
-  - people.sort_by{|x| x.mayor? ? 'A' : x.last_name}.each do |person|
-    %li(class="#{'well' if person.mayor?}")
-      = render 'shared/mini_person', person: person

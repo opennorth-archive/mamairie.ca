@@ -60,7 +60,7 @@ module VilleMontrealQcCa
           email:            doc.at_css('input[name=recipient]').andand[:value],
           gender:           nil,
           positions:        a.inner_html.split('<br>')[1..-1].map(&:strip),
-          responsabilities: nil,
+          responsibilities: nil,
           functions:        nil,
           twitter:          nil,
           facebook:         nil,
@@ -124,10 +124,10 @@ module VilleMontrealQcCa
             strings = tr.css('td:eq(1)').inner_html.split('<br>')[1..-1].map(&:strip)
             case section
             when 'Fonction(s) et comité(s) stratégique(s)'
-              person.functions = strings
-            when 'Responsabilité(s)'
+              person.functions = strings.map{|x| x.sub(/[:;]\z/, '')}
+            when 'responsibilité(s)'
               person.responsibilities = {
-                # Remove "Responsabilité comme", "Responsabilité au"
+                # Remove "responsibilité comme", "responsibilité au"
                 strings[0].sub(':', '').split[2..-1].join(' ').capitalize =>
                 strings[1..-1].map{|x| x.sub!(/\A- +/, '')}
               }

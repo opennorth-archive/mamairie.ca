@@ -144,6 +144,23 @@ header,
     }
   }
 }
+#council-mini {
+  text-align: center;
+  font-size: 0.875em;
+  li {
+    float: left;
+    width: 115px;
+    height: 115px;
+    padding: 6px;
+  }
+  .well {
+    padding: 5px;
+    margin: 0;
+    .position {
+      font-weight: bold;
+    }
+  }
+}
 
 .title,
 .name,
@@ -199,6 +216,49 @@ header,
   background-color: #999;
 }
 
+h2 span {
+  font-weight: normal;
+  font-size: 0.75em;
+  color: #999;
+}
+
+#icons {
+  li {
+    display: inline;
+  }
+  a {
+    display: inline-block;
+    width: 25px;
+    height: 25px;
+    margin-right: 5px;
+    background-image: url(/assets/social_icons.png);
+    background-repeat: no-repeat;
+  }
+}
+#twitter {
+  background-position: -26px 0;
+  &:hover {background-position: -26px -26px;}
+}
+#facebook {
+  background-position: -52px 0;
+  &:hover {background-position: -52px -26px;}
+}
+#flickr {
+  background-position: -78px 0;
+  &:hover {background-position: -78px -26px;}
+}
+#youtube {
+  background-position: -156px 0;
+  &:hover {background-position: -156px -26px;}
+}
+#wikipedia {
+  background-position: -182px 0;
+  &:hover {background-position: -182px -26px;}
+}
+
+.addthis_toolbox {
+  margin-top: 1em;
+}
 .spacer {
   margin-top: 30px;
 }

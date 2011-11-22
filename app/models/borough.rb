@@ -39,4 +39,12 @@ class Borough
   def twitter_url
     "http://twitter.com/#{twitter}" if twitter
   end
+
+  def wikipedia_url
+    wikipedia[I18n.locale]
+  end
+
+  def web_url
+    web[I18n.locale]
+  end
 end

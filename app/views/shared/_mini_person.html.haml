@@ -1,7 +1,0 @@
-= link_to image_tag(person.photo.large.url, size: '90x120', alt: ''), person_path(id: person.slug)
-.person
-  .name
-    = link_to person.name, person_path(id: person.slug)
-    %abbr.label(class="#{person.party_slug}" title="#{person.party_name}")= person.party_slug.first.upcase
-  .position
-    = person.position

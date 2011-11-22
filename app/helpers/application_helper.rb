@@ -1,3 +1,4 @@
+# coding: utf-8
 module ApplicationHelper
   include Twitter::Autolink
 
@@ -12,6 +13,19 @@ module ApplicationHelper
       %(<span title="#{timestamp.iso8601}">#{timestamp.strftime '%-d %b'}</span>).html_safe
     else
       %(<span title="#{timestamp.iso8601}">#{timestamp.strftime '%-d %b %y'}</span>).html_safe
+    end
+  end
+
+  def web_url_text(url)
+    case url[%r{^http://(?:www\.)?([a-z0-9-]+)\.(?:com|org)/}, 1].downcase
+    when 'projetmontreal'
+      'page sur ProjetMontreal.org'
+    when 'unionmontreal'
+      'page sur UnionMontreal.com'
+    when 'visionmtl'
+      'page sur VisionMTL.com'
+    else
+      'son site'
     end
   end
 end

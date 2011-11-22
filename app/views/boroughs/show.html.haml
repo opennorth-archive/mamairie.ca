@@ -3,8 +3,16 @@
     .span16
       %h2
         = @borough.name
-      = render 'shared/mini_council', people: @borough.people
-      /= render 'shared/budget', borough: @borough
+      %ul.unstyled#council
+        - @borough.people.sort_by{|x| x.mayor? ? 'A' : x.last_name}.each do |person|
+          %li(class="#{'well' if person.mayor?}")
+            = link_to image_tag(person.photo.large.url, size: '90x120', alt: ''), person_path(id: person.slug)
+            .person
+              .name
+                = link_to person.name, person_path(id: person.slug)
+                %abbr.label(class="#{person.party_slug}" title="#{person.party_name}")= person.party_slug.first.upcase
+              .position
+                = person.position
   .row.spacer
     .span11#activities
       %ul.unstyled
@@ -13,18 +21,6 @@
             = render "shared/#{activity.source}", activity: activity
     .span5
       %aside
-        %ul
-          - if @borough.twitter
-            %li
-              = link_to 'Twitter', @borough.twitter_url
-          - if @borough.facebook
-            %li
-              = link_to 'Twitter', @borough.facebook
-          - if @borough.youtube
-            %li
-              = link_to 'Twitter', @borough.youtube
-          - if @borough.flickr
-            %li
-              = link_to 'Twitter', @borough.flickr
+        = render 'shared/social', entity: @borough
         %p
           = link_to "#{@borough.name} sur ville.montreal.qc.ca", @borough.url
