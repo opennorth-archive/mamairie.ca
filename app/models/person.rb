@@ -77,7 +77,7 @@ class Person
   end
 
   def source_id
-    source_id[/\d+\z/]
+    source_url[/\d+\z/]
   end
 
   def url
