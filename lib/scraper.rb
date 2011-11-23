@@ -42,10 +42,12 @@ module VilleMontrealQcCa
       end
 
       # @todo mark people for hiding
+      previous = nil
       Nokogiri::HTML(Iconv.conv('UTF-8', 'ISO-8859-1', RestClient.post(PEOPLE_URL, action_affiche: 'affiche'))).css('.donn_listeVue1 a').each do |a|
-        # @note City mayor has two entries.
         borough_name = a.css('span.titre').text.split(',').last.strip.tr("\u0096\u0097", "–—")
-        next if borough_name == 'Ville de Montréal'
+        positions = a.inner_html.split('<br>')[1..-1].map(&:strip)
+        # @note City mayor has two entries.
+        next if borough_name == 'Ville de Montréal' or ['Conseiller de la Ville désigné', 'Conseillère de la Ville désignée'].include?(positions.first)
 
         gender, *name = a[:title].split
         name = name.join(' ')
@@ -61,7 +63,7 @@ module VilleMontrealQcCa
         person.attributes = {
           email:            doc.at_css('input[name=recipient]').andand[:value],
           gender:           nil,
-          positions:        a.inner_html.split('<br>')[1..-1].map(&:strip),
+          positions:        positions,
           responsibilities: nil,
           functions:        nil,
           twitter:          nil,
