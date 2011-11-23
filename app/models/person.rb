@@ -76,6 +76,14 @@ class Person
     Person.where(borough_id: borough_id, id: {'$ne' => id})
   end
 
+  def source_id
+    source_id[/\d+\z/]
+  end
+
+  def url
+    "http://ville.montreal.qc.ca/portal/page?_pageid=5798,85809754&_dad=portal&_schema=PORTAL&id=#{source_id}"
+  end
+
   def twitter_url
     "http://twitter.com/#{twitter}" if twitter
   end
