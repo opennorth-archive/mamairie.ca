@@ -6,7 +6,7 @@
     %span.meta
       = activity.person.borough_name
   .body
-    = auto_link_usernames_or_lists(auto_link_urls_custom(auto_link_hashtags(activity.body).html_safe).html_safe).html_safe
+    = Twitter::Autolink.auto_link(activity.body).html_safe
   .timestamp
     = timestamp(activity.published_at)
     via
