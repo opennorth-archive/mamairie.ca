@@ -15,8 +15,8 @@
       %h2
         #{@person.name},
         %span
-          #{@person.position},
-          = link_to @person.borough_name, borough_path(id: @person.borough_slug)
+          #{link_to @person.borough_name, borough_path(id: @person.borough_slug)},
+          = @person.district_id ? @person.district.name : @person.positions.first
       %ul.unstyled#council-mini
         - @person.others_in_borough.sort_by{|x| x.mayor? ? 'A' : x.last_name}.each do |person|
           %li(class="#{'well' if person.mayor?}")
@@ -26,7 +26,7 @@
                 %abbr.label(class="#{person.party_slug}" title="#{person.party_name}")= person.party_slug.first.upcase
                 = link_to person.name, person_path(id: person.slug)
               .position
-                = person.position
+                = person.district_id ? person.district.name : person.positions.first
       .newsletter
         %p Voudriez-vous recevoir des mises à jour directement de votre élu? Enregistrer votre intérêt ci-dessous.
         %form(action="http://opennorth.us2.list-manage.com/subscribe/post?u=a602fac79ef3dc584bf1a2743&id=bd133c7a86" method="post")

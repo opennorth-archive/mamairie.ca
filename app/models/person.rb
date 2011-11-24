@@ -55,6 +55,10 @@ class Person
     positions[1..-1]
   end
 
+  def district_name
+    district.short_name || district.name
+  end
+
   def mayor?
     %w(Maire Mairesse).include? position
   end

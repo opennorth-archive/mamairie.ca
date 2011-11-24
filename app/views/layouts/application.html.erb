@@ -14,14 +14,14 @@
   <%= stylesheet_link_tag 'application' %>
   <%= csrf_meta_tags %>
 </head>
-<body id="<%= I18n.locale %>">
+<body id="<%= I18n.locale %>" class="<%= "#{controller.controller_name}-#{controller.action_name}" %>">
 
 <div class="container">
   <div class="row">
     <div class="span16">
       <header>
         <h1>
-          <%= link_to_unless_current(image_tag('mamairie_logo_75.png', alt: 'Ma Mairie'), root_path){image_tag('mamairie_logo_150.png', alt: 'Ma Mairie')} %>
+          <%= link_to_unless_current(image_tag('mamairie_logo_75.png', size: '123x75', alt: 'Ma Mairie'), root_path){image_tag('mamairie_logo_150.png', size: '246x150', alt: 'Ma Mairie')} %>
         </h1>
         <%= link_to image_tag('nordouvert_logo.png', size: '186x61', alt: 'Nord Ouvert'), 'http://nordouvert.ca/', id: 'logo' %>
       </header>

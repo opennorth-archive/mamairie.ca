@@ -4,6 +4,7 @@ class District
 
   key :name, String, required: true, unique: true
   key :slug, String, required: true, unique: true
+  key :short_name, String
 
   ensure_index :name
   ensure_index :slug

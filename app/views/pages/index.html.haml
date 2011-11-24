@@ -45,6 +45,6 @@
                         = link_to person.name, person_path(id: person.slug)
                         %abbr.label(class="#{person.party_slug}" title="#{person.party_name}")= person.party_slug.first.upcase
                       .borough
-                        = person.borough_name
+                        = person.borough.short_name || person.borough_name
                       .position
-                        = person.position
+                        = person.district_id ? person.district_name : person.positions.first

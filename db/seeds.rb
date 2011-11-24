@@ -20,23 +20,23 @@ end
 [
   {slug: 'ahuntsic-cartierville', name: 'Ahuntsic-Cartierville', services_id: 'Ahuntsic - Cartierville'},
   {slug: 'anjou', name: 'Anjou', services_id: 'Anjou'},
-  {slug: 'cdn-ndg', name: 'Côte-des-Neiges—Notre-Dame-de-Grâce', services_id: 'Côte-des-Neiges - Notre-Dame-de-Grâce'},
+  {slug: 'cdn-ndg', name: 'Côte-des-Neiges—Notre-Dame-de-Grâce', services_id: 'Côte-des-Neiges - Notre-Dame-de-Grâce', 'CDN-NDG'},
   {slug: 'ibsg', name: "L'Île-Bizard—Sainte-Geneviève", services_id: "L'Île-Bizard - Sainte-Geneviève"},
   {slug: 'lachine', name: 'Lachine', services_id: 'Lachine'},
   {slug: 'lasalle', name: 'LaSalle', services_id: 'LaSalle'},
   {slug: 'plateau', name: 'Le Plateau-Mont-Royal', services_id: 'Le Plateau-Mont-Royal'},
   {slug: 'sud-ouest', name: 'Le Sud-Ouest', services_id: 'Le Sud-Ouest'},
-  {slug: 'mhm', name: 'Mercier—Hochelaga-Maisonneuve', services_id: 'Mercier - Hochelaga-Maisonneuve'},
+  {slug: 'mhm', name: 'Mercier—Hochelaga-Maisonneuve', services_id: 'Mercier - Hochelaga-Maisonneuve', short_name: 'MHM'},
   {slug: 'mtlnord', name: 'Montréal-Nord', services_id: 'Montréal-Nord'},
   {slug: 'outremont', name: 'Outremont', services_id: 'Outremont'},
   {slug: 'pierrefonds-roxboro', name: 'Pierrefonds-Roxboro', services_id: 'Pierrefonds - Roxboro'},
-  {slug: 'rdp-pat', name: 'Rivière-des-Prairies—Pointe-aux-Trembles', services_id: 'Rivière-des-Prairies - Pointe-aux-Trembles'},
+  {slug: 'rdp-pat', name: 'Rivière-des-Prairies—Pointe-aux-Trembles', services_id: 'Rivière-des-Prairies - Pointe-aux-Trembles', short_name: 'RDP-PAT'},
   {slug: 'rpp', name: 'Rosemont—La Petite–Patrie', services_id: 'Rosemont - La Petite-Patrie'},
   {slug: 'saint-laurent', name: 'Saint-Laurent', services_id: 'Saint-Laurent'},
   {slug: 'st-leonard', name: 'Saint-Léonard', services_id: 'Saint-Léonard'},
   {slug: 'verdun', name: 'Verdun', services_id: 'Verdun'},
   {slug: 'villemarie', name: 'Ville-Marie', services_id: 'Ville-Marie'},
-  {slug: 'vsp', name: 'Villeray—Saint-Michel—Parc-Extension', services_id: 'Villeray - Saint-Michel - Parc-Extension'},
+  {slug: 'vsp', name: 'Villeray—Saint-Michel—Parc-Extension', services_id: 'Villeray - Saint-Michel - Parc-Extension', short_name: 'VSP'},
 ].each do |params|
   Borough.create! params
 end

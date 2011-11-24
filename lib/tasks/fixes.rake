@@ -24,4 +24,29 @@ namespace :fixes do
       person.save!
     end
   end
+
+  desc 'Add short names to boroughs'
+  task :boroughs => :environment do
+    {
+      'cdn-ndg' => 'CDN-NDG',
+      'mhm' => 'MHM',
+      'rdp-pat' => 'RDP-PAT',
+      'vsp' => 'VSP',
+    }.each do |slug,short_name|
+      borough = Borough.find_by_slug! slug
+      borough.short_name = short_name
+      borough.save!
+    end
+  end
+
+  desc 'Add short names to districts'
+  task :districts => :environment do
+    {
+      'Saint-Henri—Petite-Bourgogne—Pointe-Saint-Charles' => 'St-Henri—Petite-Bourgogne—Pointe-St-Charles'
+    }.each do |name,short_name|
+      district = District.find_by_name! name
+      district.short_name = short_name
+      district.save!
+    end
+  end
 end
