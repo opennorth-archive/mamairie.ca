@@ -12,6 +12,7 @@ gem 'bson', '= 1.4.0'
 gem 'bson_ext', '= 1.4.0'
 gem 'mongo_mapper'
 
+gem 'airbrake'
 gem 'twitter'
 gem 'twitter-text'
 gem 'unicode_utils'
