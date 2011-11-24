@@ -2,7 +2,7 @@
   .row
     .span2
       = image_tag @person.photo.large.url, size: '90x120', alt: ''
-      %abbr.label(class="#{@person.party_slug}")= @person.party_name
+      %span.label(class="#{@person.party_slug}")= @person.party_name
       .addthis_toolbox.addthis_default_style
         <a class="addthis_button_preferred_1"></a>
         <a class="addthis_button_preferred_2"></a>
