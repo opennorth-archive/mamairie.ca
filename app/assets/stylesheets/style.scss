@@ -38,7 +38,7 @@ p {
   line-height: normal;
 }
 h1 {
-  padding-top: 24px;
+  padding-top: 10px;
 }
 h1 a {
   color: #404040;
@@ -47,14 +47,13 @@ h1 a {
 header {
   position: relative;
   text-align: center;
-  h1 {
-  }
-  img {
-    position: absolute;
-    right: 0;
-    top: 5px;
-  }
 }
+#logo {
+  position: absolute;
+  right: 0;
+  top: 5px;
+}
+
 #tagline {
   text-align: center;
 }
