@@ -1,5 +1,15 @@
 # coding: utf-8
 namespace :fixes do
+  EXCLUSIONS = {
+    'Élaine Ayotte' => ['SEPAQ'],
+    'Daniel Bélanger' => ['procureur de la Couronne', 'musiciens', 'musique', 'musicale', 'chanson', 'chansons'],
+    'Céline Forget' => ['Cinémaboule'],
+    'Pierre Mainville' => ['Louis-Pierre Mainville'],
+    'François Robert' => ['Jean-François Robert', 'Photo François Robert'],
+    'André Savard' => ['hockey', 'Rétro Laser'],
+    'Gilles Deguire' => ['Ri-Do-Rare'],
+  }
+
   desc 'Add alternative keywords for Google News Search'
   task :google_news => :environment do
     {
@@ -12,16 +22,20 @@ namespace :fixes do
       source.extra[:q] = q
       person.save!
     end
-    {
-      'André Savard' => ['hockey', 'Rétro Laser'],
-      'Pierre Mainville' => ['Louis-Pierre Mainville'],
-      'Élaine Ayotte' => ['SEPAQ'],
-      'Céline Forget' => ['Cinémaboule'],
-    }.each do |name,as_eq|
+    EXCLUSIONS.each do |name,as_eq|
       person = Person.find_by_name! name
       source = person.sources['news.google.ca'] || person.sources.build(name: 'news.google.ca')
       source.extra[:as_eq] = as_eq
       person.save!
+    end
+  end
+
+  desc 'Re-retrieve news items from certain people'
+  task :remove_news => :environment do
+    EXCLUSIONS.each do |name|
+      person = Person.find_by_name! name
+      person.activities.where(source: Activity::GOOGLE_NEWS).destroy_all
+      Activity.google_news(person)
     end
   end
 

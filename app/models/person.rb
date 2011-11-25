@@ -80,6 +80,10 @@ class Person
     Person.where(borough_id: borough_id, id: {'$ne' => id})
   end
 
+  def latest_activity(source)
+    activities.where(source: source).sort(:published_at.desc).first
+  end
+
   def source_id
     source_url[/\d+\z/]
   end
