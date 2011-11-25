@@ -30,8 +30,8 @@ namespace :fixes do
     end
   end
 
-  desc 'Re-retrieve news items from certain people'
-  task :remove_news => :environment do
+  desc 'Update news items from certain people'
+  task :update_news => :environment do
     EXCLUSIONS.each do |name|
       person = Person.find_by_name! name
       person.activities.where(source: Activity::GOOGLE_NEWS).destroy_all
