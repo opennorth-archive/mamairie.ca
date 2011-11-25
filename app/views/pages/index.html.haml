@@ -19,6 +19,8 @@
           <input type="submit" class="btn" value="Inscrivez-moi!" />
   .row
     .span7#activities
+      %span.icons
+        = link_to image_tag('blank.gif', size: '25x25', alt: "S'abonner au flux RSS", title: "S'abonner au flux RSS"), feed_path(format: 'atom'), class: 'rss'
       %ul.unstyled
         - @activities.each do |activity|
           %li

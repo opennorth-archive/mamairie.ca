@@ -35,6 +35,8 @@
           <input type="text" value="" name="EMAIL" id="mce-EMAIL" />
           <input type="submit" class="btn" value="Enregistrer" />
       #activities
+        %span.icons
+          = link_to image_tag('blank.gif', size: '25x25', alt: "S'abonner au flux RSS", title: "S'abonner au flux RSS"), person_path(id: @person.slug, format: 'atom'), class: 'rss'
         %ul.unstyled
           - @activities.each do |activity|
             %li
@@ -57,7 +59,7 @@
             - if address.tel
               %p
                 %b Tél
-                = number_to_phone address.tel, area_code: true
+                = number_to_phone address.tel, area_code: true, extension: address.ext
             - if address.fax
               %p
                 %b Fax

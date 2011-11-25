@@ -102,6 +102,7 @@ header {
 }
 
 #activities {
+  position: relative;
   img {
     float: left;
     margin-top: 3px;
@@ -116,6 +117,11 @@ header {
   .person,
   .activity {
     margin-left: 53px;
+  }
+  .icons {
+    position: absolute;
+    right: -5px;
+    top: 0;
   }
 }
 
@@ -219,57 +225,10 @@ header {
   font-size: 0.85em;
 }
 
-.pm {
-  background-color: #174a8a;
-}
-.um {
-  background-color: #b51d24;
-}
-.vm {
-  background-color: #b0bb19;
-}
-.ind {
-  background-color: #999;
-}
-
 h2 span {
   font-weight: normal;
   font-size: 0.75em;
   color: #999;
-}
-
-.icons {
-  li {
-    display: inline;
-  }
-  a {
-    display: inline-block;
-    width: 25px;
-    height: 25px;
-    margin-right: 5px;
-    background-image: url(/assets/social_icons.png);
-    background-repeat: no-repeat;
-  }
-}
-.twitter {
-  background-position: -26px 0;
-  &:hover {background-position: -26px -26px;}
-}
-.facebook {
-  background-position: -52px 0;
-  &:hover {background-position: -52px -26px;}
-}
-.flickr {
-  background-position: -78px 0;
-  &:hover {background-position: -78px -26px;}
-}
-.youtube {
-  background-position: -156px 0;
-  &:hover {background-position: -156px -26px;}
-}
-.wikipedia {
-  background-position: -182px 0;
-  &:hover {background-position: -182px -26px;}
 }
 
 .addthis_toolbox {
@@ -283,6 +242,67 @@ aside {
   padding-left: 1em;
   border-left: 1px solid #ebebeb;
   font-size: 0.75em;
+}
+
+// Party colors ----------------------------------------------------------------
+.pm {
+  background-color: #174a8a;
+}
+.um {
+  background-color: #b51d24;
+}
+.vm {
+  background-color: #b0bb19;
+}
+.ind {
+  background-color: #999;
+}
+
+// Social icons ----------------------------------------------------------------
+.icons {
+  li {
+    display: inline;
+  }
+  a {
+    display: inline-block;
+    width: 25px;
+    height: 25px;
+    margin-right: 5px;
+    background-image: url(/assets/social_icons.png);
+    background-repeat: no-repeat;
+  }
+}
+.rss {
+  background-position: 0 0;
+  &:hover {background-position: 0 -26px;}
+}
+.twitter {
+  background-position: -26px 0;
+  &:hover {background-position: -26px -26px;}
+}
+.facebook {
+  background-position: -52px 0;
+  &:hover {background-position: -52px -26px;}
+}
+.flickr {
+  background-position: -78px 0;
+  &:hover {background-position: -78px -26px;}
+}
+.myspace {
+  background-position: -104px 0;
+  &:hover {background-position: -104px -26px;}
+}
+.linkedin {
+  background-position: -130px 0;
+  &:hover {background-position: -130px -26px;}
+}
+.youtube {
+  background-position: -156px 0;
+  &:hover {background-position: -156px -26px;}
+}
+.wikipedia {
+  background-position: -182px 0;
+  &:hover {background-position: -182px -26px;}
 }
 
 // Bootstrap IE6 ---------------------------------------------------------------

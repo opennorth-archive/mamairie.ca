@@ -34,7 +34,7 @@ namespace :fixes do
   task :update_news => :environment do
     EXCLUSIONS.each do |name|
       person = Person.find_by_name! name
-      person.activities.where(source: Activity::GOOGLE_NEWS).destroy_all
+      person.activities.where(source: Activity::GOOGLE_NEWS).each{|x| x.destroy!}
       Activity.google_news(person)
     end
   end
