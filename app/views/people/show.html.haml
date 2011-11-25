@@ -1,3 +1,4 @@
+- content_for(:head){auto_discovery_link_tag :atom, format: 'atom'}
 #person.container
   .row
     .span2
@@ -26,7 +27,7 @@
                 %abbr.label(class="#{person.party_slug}" title="#{person.party_name}")= person.party_slug.first.upcase
                 = link_to person.name, person_path(id: person.slug)
               .position
-                = person.district_id ? person.district.name : person.positions.first
+                = person.district_id ? person.district.name : person.position
       .newsletter
         %p Voudriez-vous recevoir des mises à jour directement de votre élu? Enregistrer votre intérêt ci-dessous.
         %form(action="http://opennorth.us2.list-manage.com/subscribe/post?u=a602fac79ef3dc584bf1a2743&id=bd133c7a86" method="post")

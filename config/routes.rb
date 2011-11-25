@@ -3,6 +3,7 @@ MaMairie::Application.routes.draw do
   resources :people, :only => :show
   match 'about' => 'pages#about'
   match 'search' => 'pages#search'
+  match 'feed' => 'pages#index'
   root :to => 'pages#index'
 
   # The priority is based upon order of creation:

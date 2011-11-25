@@ -19,6 +19,7 @@ class PeopleController < ApplicationController
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @person }
+      format.atom { head :no_content if @activities.empty? }
     end
   end
 end

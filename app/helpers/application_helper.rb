@@ -15,6 +15,7 @@ module ApplicationHelper
   end
 
   def web_url_text(url)
+    # @todo use URI.parse for safer parsing
     case url[%r{\Ahttp://(?:www\.)?([a-z0-9-]+)\.(?:com|org)/}, 1].downcase
     when 'projetmontreal'
       'page sur ProjetMontreal.org'
@@ -23,7 +24,7 @@ module ApplicationHelper
     when 'visionmtl'
       'page sur VisionMTL.com'
     else
-      'son site'
+      'son site personnel'
     end
   end
 end

@@ -4,6 +4,11 @@ class PagesController < ApplicationController
     @boroughs = Borough.fields(:name, :slug).sort(:name.asc).all
     @people = Person.sort(:last_name.asc).all
     @activities = Activity.sort(:published_at.desc).limit(40)
+
+    respond_to do |format|
+      format.html
+      format.atom { head :no_content if @activities.empty? }
+    end
   end
 
   def search

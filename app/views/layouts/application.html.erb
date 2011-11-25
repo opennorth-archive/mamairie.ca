@@ -11,6 +11,7 @@
   <meta name="description" content="<%=t '.description' %>">
   <meta name="author" content="<%=t '.author' %>">
   <meta name="viewport" content="width=device-width,initial-scale=1">
+  <%= yield :head %>
   <%= stylesheet_link_tag 'application' %>
   <%= csrf_meta_tags %>
 </head>
