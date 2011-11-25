@@ -69,7 +69,7 @@ class Activity
       begin
         tweets = Twitter.user_timeline(person.twitter, count: 200, since_id: since_id, page: page)
       rescue StandardError => e
-        puts "Retrying in 2... #{e}"
+        Rails.logger.warn "Retrying in 2... #{e}"
         sleep 2
         retry
       end
@@ -121,7 +121,7 @@ class Activity
 
     # @note feed.updated? doesn't guarantee new entries.
     if Fixnum === feed
-      log.error tmp.feed_url
+      Rails.logger.warn tmp.feed_url
     elsif feed.new_entries.present?
       source.etag = feed.etag
       source.last_modified = feed.last_modified

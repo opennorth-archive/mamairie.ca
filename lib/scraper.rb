@@ -60,7 +60,7 @@ module VilleMontrealQcCa
         begin
           doc = Nokogiri::HTML(open("http://ville.montreal.qc.ca#{a[:href]}").read, nil, 'UTF-8')
         rescue Timeout::Error
-          log.error "Timeout, retrying in 2..."
+          log.warn "Timeout, retrying in 2..."
           sleep 2
           retry
         end
@@ -89,7 +89,7 @@ module VilleMontrealQcCa
 
         borough = Borough.find_by_name(borough_name)
         if borough.nil?
-          log.error "Unknown borough '#{borough_name}' #{suffix}"
+          log.warn "Unknown borough '#{borough_name}' #{suffix}"
         else
           person.borough_id = borough.id
         end
@@ -117,7 +117,7 @@ module VilleMontrealQcCa
               end
               district = District.find_by_name(district_name)
               if district.nil?
-                log.error "Unknown district '#{district_name}' #{suffix}"
+                log.warn "Unknown district '#{district_name}' #{suffix}"
               else
                 person.district_id = district.id
               end
@@ -126,7 +126,7 @@ module VilleMontrealQcCa
             party_name = parts.last.sub(/ \([A-Z]{2,3}\)\z/, '')
             party = Party.find_by_name(party_name)
             if party.nil?
-              log.error "Unknown party '#{party_name}' #{suffix}"
+              log.warn "Unknown party '#{party_name}' #{suffix}"
             else
               person.party_id = party.id
             end
@@ -167,7 +167,7 @@ module VilleMontrealQcCa
           %w(tel fax).each do |attribute|
             log.info "Missing #{attribute} #{suffix}" if address[attribute].blank?
             unless address[attribute].blank? or address[attribute].to_s.size == 10
-              log.info "#{attribute} (#{address[attribute]}) doesn't have 10 digits #{suffix}"
+              log.warn "#{attribute} (#{address[attribute]}) doesn't have 10 digits #{suffix}"
             end
           end
         end
