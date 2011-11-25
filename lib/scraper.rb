@@ -57,7 +57,14 @@ module VilleMontrealQcCa
           log.info "Adding new person #{person.name}"
         end
 
-        doc = Nokogiri::HTML(open("http://ville.montreal.qc.ca#{a[:href]}").read, nil, 'UTF-8')
+        begin
+          doc = Nokogiri::HTML(open("http://ville.montreal.qc.ca#{a[:href]}").read, nil, 'UTF-8')
+        rescue Timeout::Error
+          log.error "Timeout, retrying in 2..."
+          sleep 2
+          retry
+        end
+
         src = doc.at_css('.imageDroite').andand[:src]
 
         person.attributes = {
@@ -136,12 +143,16 @@ module VilleMontrealQcCa
                 strings[1..-1].map{|x| x.sub!(/\A- +/, '')}
               }
             when "Bureau d'arrondissement", "Hôtel de ville"
-              numbers = tr.css('td:eq(2)').inner_html.split('<br>').map{|x| x.gsub(/\D/, '')}
+              numbers = tr.css('td:eq(2)').text
+              tel = numbers[/Téléphone[[:space:]:]+([0-9 -]+)/, 1]
+              fax = numbers[/Télécopieur[[:space:]:]+([0-9 -]+)/, 1]
+              ext = numbers[/poste (\d+)/, 1]
               person.addresses.build({
                 name:    section,
                 address: strings,
-                tel:     numbers.first,
-                fax:     numbers.last,
+                tel:     tel.andand.gsub(/\D/, ''),
+                fax:     fax.andand.gsub(/\D/, ''),
+                ext:     ext,
               })
             else
               log.warn "Unknown section '#{section}' #{suffix}"
@@ -155,6 +166,9 @@ module VilleMontrealQcCa
         person.addresses.each do |address|
           %w(tel fax).each do |attribute|
             log.info "Missing #{attribute} #{suffix}" if address[attribute].blank?
+            unless address[attribute].blank? or address[attribute].to_s.size == 10
+              log.info "#{attribute} (#{address[attribute]}) doesn't have 10 digits #{suffix}"
+            end
           end
         end
 

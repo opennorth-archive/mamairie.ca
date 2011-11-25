@@ -4,5 +4,6 @@ class Address
   key :name, String, required: true
   key :address, Array, required: true
   key :tel, Integer
+  key :ext, Integer
   key :fax, Integer
 end
