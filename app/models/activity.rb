@@ -120,7 +120,9 @@ class Activity
     feed = Feedzirra::Feed.update(tmp)
 
     # @note feed.updated? doesn't guarantee new entries.
-    if feed.new_entries.present?
+    if Fixnum === feed
+      log.error tmp.feed_url
+    elsif feed.new_entries.present?
       source.etag = feed.etag
       source.last_modified = feed.last_modified
       source.save!
