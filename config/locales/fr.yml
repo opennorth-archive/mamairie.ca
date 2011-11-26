@@ -11,7 +11,7 @@
 fr:
   layouts:
     application:
-      description: ""
+      description: Suivez l'activité de vos élus à la Ville de Montréal
       author: Nord Ouvert
       google_analytics: UA-21866813-9
   pages:
