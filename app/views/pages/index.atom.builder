@@ -1,7 +1,7 @@
 atom_feed(:language => locale) do |feed|
-  feed.title('Ma Mairie')
+  feed.title t('.feed.title')
   feed.author do
-    feed.name('Ma Mairie')
+    feed.name t('.feed.author')
   end
   feed.updated(@activities.first.published_at)
 

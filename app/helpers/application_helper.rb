@@ -18,13 +18,13 @@ module ApplicationHelper
     # @note May raise an error if regular expression doesn't match
     case url[%r{\Ahttp://(?:www\.)?([a-z0-9-]+)\.(?:com|org)\b}, 1].downcase
     when 'projetmontreal'
-      'page sur ProjetMontreal.org'
+      t('links.projetmontreal')
     when 'unionmontreal'
-      'page sur UnionMontreal.com'
+      t('links.unionmontreal')
     when 'visionmtl'
-      'page sur VisionMTL.com'
+      t('links.visionmtl')
     else
-      'son site personnel'
+      t('links.personal')
     end
   end
 end

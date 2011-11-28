@@ -1,6 +1,6 @@
 = form_tag search_path, method: :get do
   %fieldset
     .clearfix
-      = label_tag :q, 'Trouvez vos élus pour commencer :'
-      = text_field_tag :q, params[:q], placeholder: 'Indiquez votre code postal', class: 'large'
-      = submit_tag 'Rechercher', class: 'btn primary large'
+      = label_tag :q, t('search.label')
+      = text_field_tag :q, params[:q], placeholder: t('search.placeholder'), class: 'large'
+      = submit_tag t('search.submit'), class: 'btn primary large'

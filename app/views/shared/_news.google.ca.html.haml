@@ -9,5 +9,5 @@
     = activity.body
   .timestamp
     = timestamp(activity.published_at)
-    mentionnant
+    =t 'mentioning'
     = link_to activity.person.name, person_path(id: activity.person.slug), class: 'mention'

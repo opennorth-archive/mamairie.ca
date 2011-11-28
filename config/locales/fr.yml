@@ -9,6 +9,26 @@
 # by Serafim Junior Dos Santos Fagundes <serafim@cyb3r.ca>
 
 fr:
+  mentioning: mentionnant
+  via: via
+
+  logo:
+    large: mamairie_logo_150.png
+    medium: mamairie_logo_75.png
+    alt: Ma Mairie
+  creator:
+    name: Nord Ouvert
+    logo: nordouvert_logo.png
+    url: http://nordouvert.ca/
+  search:
+    label: "Trouvez vos élus pour commencer :"
+    placeholder: Indiquez votre code postal
+    submit: Rechercher
+    errors:
+      blank: Vous n'avez pas indiqué un code postal.
+      not_found: "Le code postal <strong>%{q}</strong> n'est pas recensé dans notre système. Assurez-vous d'avoir entré un code postal de la Ville de Montréal."
+      timeout: Le site de la Ville de Montréal ne répond pas. S'il vous plaît réessayer.
+
   layouts:
     application:
       description: Suivez l'activité de vos élus à la Ville de Montréal
@@ -16,17 +36,48 @@ fr:
       google_analytics: UA-21866813-9
   pages:
     index:
-      title: "Ma Mairie"
-    search:
-      title: "Ma Mairie"
+      title: Ma Mairie
+      tagline: Suivez l'activité de vos élus à la Ville de Montréal
+      newsletter:
+        text: Nous allons ajouter plusieurs nouvelles fonctionnalités dans les prochaines semaines.
+        call_to_action: Inscrivez votre adresse courriel pour être avisé de mises à jour.
+        email: Courriel
+        submit: Inscrivez-moi!
+      boroughs: Arrondissements
+      officials: Élus
+      feed:
+        subscribe: S'abonner au flux RSS
+        title: Ma Mairie
+        author: Ma Mairie
     about:
-      title: "Ma Mairie"
+      title: Ma Mairie
   boroughs:
     show:
-      title: "Ma Mairie"
+      title: Ma Mairie
+      feed:
+        subscribe: S'abonner au flux RSS
+        author: Ma Mairie
   people:
     show:
-      title: "Ma Mairie"
+      title: Ma Mairie
+      tel: Tél
+      fax: Fax
+      contact: Coordonnées
+      positions: Positions
+      committees: Comités
+      newsletter:
+        text: Voudriez-vous recevoir des mises à jour directement de votre élu? Enregistrer votre intérêt ci-dessous.
+        email: Courriel
+        submit: Enregistrer
+      feed:
+        subscribe: S'abonner au flux RSS
+        author: Ma Mairie
+  links:
+    projetmontreal: page sur ProjetMontreal.org
+    unionmontreal: page sur UnionMontreal.com
+    visionmtl: page sur VisionMTL.com
+    personal: son site personnel
+    villemontrealqcca: "%{name} sur ville.montreal.qc.ca"
 
   date:
     formats:

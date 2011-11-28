@@ -17,7 +17,7 @@
   .row.spacer
     .span11#activities
       %span.icons
-        = link_to image_tag('blank.gif', size: '25x25', alt: "S'abonner au flux RSS", title: "S'abonner au flux RSS"), borough_path(id: @borough.slug, format: 'atom'), class: 'rss'      
+        = link_to image_tag('blank.gif', size: '25x25', alt: t('.feed.subscribe'), title: t('.feed.subscribe')), borough_path(id: @borough.slug, format: 'atom'), class: 'rss'      
       %ul.unstyled
         - @activities.each do |activity|
           %li
@@ -26,4 +26,4 @@
       %aside
         = render 'shared/social', entity: @borough
         %p
-          = link_to "#{@borough.name} sur ville.montreal.qc.ca", @borough.url
+          = link_to t('links.villemontrealqcca', name: @borough.name), @borough.url
