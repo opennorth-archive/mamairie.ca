@@ -5,3 +5,5 @@ tmp/
 .sass-cache/
 .DS_Store
 config/initializers/_heroku.rb
+translations.csv
+

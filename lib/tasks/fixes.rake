@@ -45,7 +45,7 @@ namespace :fixes do
   desc 'Add short names to districts'
   task :districts => :environment do
     {
-      'Saint-Henri—Petite-Bourgogne—Pointe-Saint-Charles' => 'St-Henri—Petite-Bourgogne—Pointe-St-Charles'
+      'Saint-Henri—Petite-Bourgogne—Pointe-Saint-Charles' => 'St-Henri—Petite-Bourgogne—Pointe-St-Charles',
     }.each do |name,short_name|
       district = District.find_by_name! name
       district.short_name = short_name
