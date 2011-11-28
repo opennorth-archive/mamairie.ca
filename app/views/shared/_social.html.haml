@@ -14,3 +14,7 @@
   - if entity.wikipedia_url
     %li
       = link_to image_tag('blank.gif', size: '25x25', alt: 'Wikipédia', title: 'Wikipédia'), entity.wikipedia_url, class: 'wikipedia'
+- if entity.twitter
+  = link_to t('social.twitter', name: entity.twitter), entity.twitter_url, :class => 'twitter-follow-button', 'data-lang' => I18n.locale
+
+<script src="//platform.twitter.com/widgets.js" type="text/javascript"></script>

@@ -172,7 +172,7 @@ header {
   li {
     float: left;
     width: 115px;
-    height: 115px;
+    height: 150px;
     padding: 6px;
   }
   .well {
@@ -232,7 +232,8 @@ h2 span {
 }
 
 .addthis_toolbox {
-  margin-top: 1em;
+  clear: left;
+  margin-bottom: 1em;
 }
 .spacer {
   margin-top: 30px;

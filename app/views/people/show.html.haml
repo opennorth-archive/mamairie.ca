@@ -4,14 +4,6 @@
     .span2
       = image_tag @person.photo.large.url, size: '90x120', alt: ''
       %span.label(class="#{@person.party_slug}")= @person.party_name
-      .addthis_toolbox.addthis_default_style
-        <a class="addthis_button_preferred_1"></a>
-        <a class="addthis_button_preferred_2"></a>
-        <a class="addthis_button_preferred_3"></a>
-        <a class="addthis_button_preferred_4"></a>
-        <br>
-        <a class="addthis_button_compact"></a>
-        <a class="addthis_counter addthis_bubble_style"></a>
     .span9
       %h2
         #{@person.name},
@@ -28,12 +20,13 @@
                 = link_to person.name, person_path(id: person.slug)
               .position
                 = person.district_id ? person.district.name : person.position
-      .newsletter
+      .newsletter.well
         %p=t '.newsletter.text'
         %form(action="http://opennorth.us2.list-manage.com/subscribe/post?u=a602fac79ef3dc584bf1a2743&id=bd133c7a86" method="post")
           = label_tag 'mce-EMAIL', t('.newsletter.email')
           = text_field_tag 'EMAIL', nil, id: 'mce-EMAIL'
           = submit_tag t('.newsletter.submit'), class: 'btn'
+      = render 'shared/share'
       #activities
         %span.icons
           = link_to image_tag('blank.gif', size: '25x25', alt: t('.feed.subscribe'), title: t('.feed.subscribe')), person_path(id: @person.slug, format: 'atom'), class: 'rss'
@@ -89,8 +82,6 @@
                     = responsibility
         - if @person.web_url
           %p
-            = link_to web_url_text(@person.web_url), @person.web_url
+            = link_to web_url_text(@person), @person.web_url
         %p
           = link_to t('links.villemontrealqcca', name: @person.name), @person.url
-
-<script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=jpmckinney"></script>

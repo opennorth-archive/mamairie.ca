@@ -53,13 +53,13 @@ fr:
       title: Ma Mairie
   boroughs:
     show:
-      title: Ma Mairie
+      title: "%{name} - Ma Mairie"
       feed:
         subscribe: S'abonner au flux RSS
         author: Ma Mairie
   people:
     show:
-      title: Ma Mairie
+      title: "%{name} - Ma Mairie"
       tel: Tél
       fax: Fax
       contact: Coordonnées
@@ -72,11 +72,13 @@ fr:
       feed:
         subscribe: S'abonner au flux RSS
         author: Ma Mairie
+  social:
+    twitter: "Suivez %{name}"
   links:
-    projetmontreal: page sur ProjetMontreal.org
-    unionmontreal: page sur UnionMontreal.com
-    visionmtl: page sur VisionMTL.com
-    personal: son site personnel
+    projetmontreal: "%{name} sur ProjetMontreal.org"
+    unionmontreal: "%{name} sur UnionMontreal.com"
+    visionmtl: "%{name} sur VisionMTL.com"
+    personal: "site personnel de %{name}"
     villemontrealqcca: "%{name} sur ville.montreal.qc.ca"
 
   date:

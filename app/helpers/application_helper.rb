@@ -1,7 +1,13 @@
 # coding: utf-8
 module ApplicationHelper
   def title
-    t "#{controller.controller_name}.#{controller.action_name}.title"
+    params = {}
+    if @person
+      params[:name] = @person.name
+    elsif @borough
+      params[:name] = @borough.name
+    end
+    t "#{controller.controller_name}.#{controller.action_name}.title", params
   end
 
   def timestamp(timestamp)
@@ -14,17 +20,17 @@ module ApplicationHelper
     end
   end
 
-  def web_url_text(url)
+  def web_url_text(person)
     # @note May raise an error if regular expression doesn't match
-    case url[%r{\Ahttp://(?:www\.)?([a-z0-9-]+)\.(?:com|org)\b}, 1].downcase
+    case person.web_url[%r{\Ahttp://(?:www\.)?([a-z0-9-]+)\.(?:com|org)\b}, 1].downcase
     when 'projetmontreal'
-      t('links.projetmontreal')
+      t('links.projetmontreal', name: person.name)
     when 'unionmontreal'
-      t('links.unionmontreal')
+      t('links.unionmontreal', name: person.name)
     when 'visionmtl'
-      t('links.visionmtl')
+      t('links.visionmtl', name: person.name)
     else
-      t('links.personal')
+      t('links.personal', name: person.name)
     end
   end
 end
