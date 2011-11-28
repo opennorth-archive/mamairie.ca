@@ -1,13 +1,24 @@
-= image_tag(activity.person.photo.thumb.url || activity.image, size: '48x48', alt: '')
+- if @person
+  = image_tag('twitter_32.png', size: '32x32', alt: 'Twitter', title: 'Twitter', class: 'bird')
+- else
+  = image_tag(activity.person.photo.thumb.url || activity.image, size: '48x48', alt: '')
 .activity
-  .title
-    = link_to activity.person.name, person_path(id: activity.person.slug)
-    %abbr.label(class="#{activity.person.party_slug}" title="#{activity.person.party_name}")= activity.person.party_slug.first.upcase
-    %span.meta
-      = activity.person.borough_name
+  - unless @person
+    .title
+      = link_to activity.person.name, person_path(id: activity.person.slug)
+      %abbr.label(class="#{activity.person.party_slug}" title="#{activity.person.party_name}")= activity.person.party_slug.first.upcase
+      %span.meta
+        = activity.person.borough_name
   .body
     = Twitter::Autolink.auto_link(activity.body).html_safe
   .timestamp
-    = timestamp(activity.published_at)
-    =t 'via'
-    = link_to 'Twitter', activity.url
+    = link_to timestamp(activity.published_at), activity.url
+    = link_to "https://twitter.com/intent/tweet?in_reply_to=#{activity.extra[:id_str]}&lang=#{locale}", class: 'twitter-intent' do
+      %span.inline-block.twitter-icon.reply
+      %span=t 'social.reply'
+    = link_to "https://twitter.com/intent/retweet?tweet_id=#{activity.extra[:id_str]}&lang=#{locale}", class: 'twitter-intent' do
+      %span.inline-block.twitter-icon.retweet
+      %span=t 'social.retweet'
+    = link_to "https://twitter.com/intent/favorite?tweet_id=#{activity.extra[:id_str]}&lang=#{locale}", class: 'twitter-intent' do
+      %span.inline-block.twitter-icon.reply
+      %span=t 'social.favorite'

@@ -235,6 +235,9 @@ h2 span {
   clear: left;
   margin-bottom: 1em;
 }
+.bird {
+  margin-left: 8px;
+}
 .spacer {
   margin-top: 30px;
 }
@@ -304,6 +307,44 @@ aside {
 .wikipedia {
   background-position: -182px 0;
   &:hover {background-position: -182px -26px;}
+}
+
+.twitter-intent:hover {
+  text-decoration: none;
+  span {
+    text-decoration: underline;
+  }
+  .reply {background-position: -16px 0;}
+  .favorite {background-position: -48px 0;}
+  .retweet {background-position: -96px 0;}
+}
+.twitter-icon {
+  width: 16px;
+  height: 16px;
+  margin-bottom: -3px;
+  vertical-align: baseline;
+  background-image: url(/assets/twitter_icons.png);
+  background-repeat: no-repeat;
+}
+.reply {
+  background-position: 0 0;
+}
+.favorite {
+  background-position: -32px 0;
+  &.on {background-position: -64px 0;}
+}
+.retweet {
+  background-position: -80px 0;
+  &.on {background-position: -112px 0;}
+}
+
+// IE --------------------------------------------------------------------------
+.inline-block {
+  display: inline-block;
+}
+.lt-ie8 .inline-block {
+  zoom: 1;
+  display: inline;
 }
 
 // Bootstrap IE6 ---------------------------------------------------------------

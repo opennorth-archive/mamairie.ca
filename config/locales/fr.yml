@@ -28,6 +28,11 @@ fr:
       blank: Vous n'avez pas indiqué un code postal.
       not_found: "Le code postal <strong>%{q}</strong> n'est pas recensé dans notre système. Assurez-vous d'avoir entré un code postal de la Ville de Montréal."
       timeout: Le site de la Ville de Montréal ne répond pas. S'il vous plaît réessayer.
+  social:
+    twitter: "Suivre %{name}"
+    favorite: Ajouter en favori
+    retweet: Retweeter
+    reply: Répondre
 
   layouts:
     application:
@@ -72,8 +77,6 @@ fr:
       feed:
         subscribe: S'abonner au flux RSS
         author: Ma Mairie
-  social:
-    twitter: "Suivez %{name}"
   links:
     projetmontreal: "%{name} sur ProjetMontreal.org"
     unionmontreal: "%{name} sur UnionMontreal.com"

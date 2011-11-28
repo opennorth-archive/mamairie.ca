@@ -12,11 +12,11 @@ module ApplicationHelper
 
   def timestamp(timestamp)
     if timestamp.utc.to_date == Date.today
-      %(<span class="timeago" title="#{timestamp.iso8601}">#{timestamp.strftime '%-d %b'}</span>).html_safe
+      %(<abbr class="timeago" title="#{timestamp.iso8601}">#{timestamp.strftime '%-d %b'}</abbr>).html_safe
     elsif timestamp > Time.now - 31_556_926
-      %(<span title="#{timestamp.iso8601}">#{timestamp.strftime '%-d %b'}</span>).html_safe
+      %(<abbr title="#{timestamp.strftime '%H:%M, %-d %b'}">#{timestamp.strftime '%-d %b'}</abbr>).html_safe
     else
-      %(<span title="#{timestamp.iso8601}">#{timestamp.strftime '%-d %b %y'}</span>).html_safe
+      %(<abbr title="#{timestamp.strftime '%H:%M, %-d %b %y'}">#{timestamp.strftime '%-d %b %y'}</abbr>).html_safe
     end
   end
 
