@@ -135,7 +135,7 @@ module VilleMontrealQcCa
             strings = tr.css('td:eq(1)').inner_html.split('<br>')[1..-1].map(&:strip)
             case section
             when 'Fonction(s) et comité(s) stratégique(s)'
-              person.functions = strings.map{|x| x.sub(/[:;]\z/, '')}
+              person.functions = strings.map{|x| x.sub(/[:;]\z/, '')}.reject{|x| x.empty?}
             when 'Responsabilité(s)'
               person.responsibilities = {
                 # Remove "responsabilité comme", "responsabilité au"
