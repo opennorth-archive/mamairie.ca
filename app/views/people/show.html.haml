@@ -26,10 +26,8 @@
           = label_tag 'mce-EMAIL', t('.newsletter.email')
           = text_field_tag 'EMAIL', nil, id: 'mce-EMAIL'
           = submit_tag t('.newsletter.submit'), class: 'btn'
-      = render 'shared/share'
+      = render 'shared/share', url: person_url(id: @person.slug, format: 'atom')
       #activities
-        %span.icons
-          = link_to image_tag('blank.gif', size: '25x25', alt: t('.feed.subscribe'), title: t('.feed.subscribe')), person_path(id: @person.slug, format: 'atom'), class: 'rss'
         %ul.unstyled
           - @activities.each do |activity|
             %li

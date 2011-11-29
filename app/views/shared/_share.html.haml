@@ -1,3 +1,15 @@
+-# http://lifehacker.com/5857566/most-popular-rss-newsreader-google-reader
+-# http://www.google.com/webmasters/add.html
+-# http://dev.netvibes.com/doc/api/subscribe
+%ul.unstyled.feeds
+  %li
+    = link_to image_tag('blank.gif', size: '18x18', alt: t('feed.subscribe'), title: t('feed.subscribe')), url, class: 'rss'
+  %li
+    = link_to image_tag('blank.gif', size: '18x18', alt: t('feed.google'), title: t('feed.google')), "http://fusion.google.com/add?source=atgs&feedurl=#{escape_url url}", class: 'google'
+  %li
+    = link_to image_tag('blank.gif', size: '18x18', alt: t('feed.feedly'), title: t('feed.feedly')), "http://www.feedly.com/home#subscription/feed/#{url}[action.subscribe", class: 'feedly'
+  %li
+    = link_to image_tag('blank.gif', size: '18x18', alt: t('feed.netvibes'), title: t('feed.netvibes')), "http://www.netvibes.com/subscribe.php?url=#{escape_url url}", class: 'netvibes'
 .addthis_toolbox.addthis_default_style
   <a class="addthis_button_preferred_1"></a>
   <a class="addthis_button_preferred_2"></a>

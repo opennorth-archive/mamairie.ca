@@ -286,6 +286,7 @@ aside {
   .retweet {background-position: -96px 0;}
 }
 .twitter-icon {
+  display: inline-block;
   width: 16px;
   height: 16px;
   margin-bottom: -3px;
@@ -305,6 +306,38 @@ aside {
   &.on {background-position: -112px 0;}
 }
 
+.feeds {
+  float: right;
+  margin-bottom: 0;
+  li {
+    display: inline;
+  }
+  a {
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    margin-right: 5px;
+    background-image: url(/assets/feed_icons.png);
+    background-repeat: no-repeat;
+  }
+}
+.rss {
+  background-position: 0 0;
+  &:hover {background-position: 0 -18px;}
+}
+.google {
+  background-position: -18px 0;
+  &:hover {background-position: -18px -18px;}
+}
+.feedly {
+  background-position: -36px 0;
+  &:hover {background-position: -36px -18px;}
+}
+.netvibes {
+  background-position: -54px 0;
+  &:hover {background-position: -54px -18px;}
+}
+
 .icons {
   li {
     display: inline;
@@ -317,10 +350,6 @@ aside {
     background-image: url(/assets/social_icons.png);
     background-repeat: no-repeat;
   }
-}
-.rss {
-  background-position: 0 0;
-  &:hover {background-position: 0 -26px;}
 }
 .twitter {
   background-position: -26px 0;
@@ -355,9 +384,14 @@ aside {
 .inline-block {
   display: inline-block;
 }
-.lt-ie8 .inline-block {
-  zoom: 1;
-  display: inline;
+.lt-ie8 {
+  .inline-block,
+  .twitter-icon,
+  .icons a,
+  .feeds a {
+    zoom: 1;
+    display: inline;
+  }
 }
 
 // Bootstrap IE6 ---------------------------------------------------------------

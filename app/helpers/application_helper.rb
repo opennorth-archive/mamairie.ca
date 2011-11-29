@@ -44,6 +44,10 @@ module ApplicationHelper
     t "layouts.#{controller.send :_layout}.description"
   end
 
+  def escape_url(url)
+    URI.escape url, Regexp.new("[^#{URI::REGEXP::PATTERN::UNRESERVED}]", false, 'N')
+  end
+
   def timestamp(timestamp)
     if timestamp.utc.to_date == Date.today
       %(<abbr class="timestamp timeago" title="#{timestamp.iso8601}">#{timestamp.strftime '%-d %b'}</abbr>).html_safe

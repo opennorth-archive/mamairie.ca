@@ -17,11 +17,11 @@
     = link_to timestamp(activity.published_at), activity.url
     %span.intents
       = link_to "https://twitter.com/intent/tweet?in_reply_to=#{activity.extra[:id_str]}&lang=#{locale}", class: 'twitter-intent' do
-        %span.inline-block.twitter-icon.reply
+        %span.twitter-icon.reply
         %span=t 'social.reply'
       = link_to "https://twitter.com/intent/retweet?tweet_id=#{activity.extra[:id_str]}&lang=#{locale}", class: 'twitter-intent' do
-        %span.inline-block.twitter-icon.retweet
+        %span.twitter-icon.retweet
         %span=t 'social.retweet'
       = link_to "https://twitter.com/intent/favorite?tweet_id=#{activity.extra[:id_str]}&lang=#{locale}", class: 'twitter-intent' do
-        %span.inline-block.twitter-icon.favorite
+        %span.twitter-icon.favorite
         %span=t 'social.favorite'

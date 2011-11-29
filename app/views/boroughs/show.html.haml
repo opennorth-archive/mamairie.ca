@@ -15,13 +15,13 @@
               .position
                 = person.district_id ? person.district.name : person.positions.first
   .row.spacer
-    .span11#activities
-      %span.icons
-        = link_to image_tag('blank.gif', size: '25x25', alt: t('.feed.subscribe'), title: t('.feed.subscribe')), borough_path(id: @borough.slug, format: 'atom'), class: 'rss'      
-      %ul.unstyled
-        - @activities.each do |activity|
-          %li
-            = render "shared/#{activity.source}", activity: activity
+    .span11
+      = render 'shared/share', url: borough_url(id: @borough.slug, format: 'atom')
+      #activities
+        %ul.unstyled
+          - @activities.each do |activity|
+            %li
+              = render "shared/#{activity.source}", activity: activity
     .span5
       %aside
         = render 'shared/social', entity: @borough

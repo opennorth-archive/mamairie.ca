@@ -33,6 +33,11 @@ fr:
     favorite: Favoriser
     retweet: Retweeter
     reply: Répondre
+  feed:
+    subscribe: S'abonner au flux RSS
+    google: S'abonner via Google Reader
+    feedly: S'abonner via Feedly
+    netvibes: S'abonner via Netvibes
 
   layouts:
     application:
@@ -55,7 +60,6 @@ fr:
       boroughs: Arrondissements
       officials: Élus
       feed:
-        subscribe: S'abonner au flux RSS
         title: Ma Mairie
         author: Ma Mairie
     about:
@@ -64,7 +68,6 @@ fr:
     show:
       title: "%{name} - Ma Mairie"
       feed:
-        subscribe: S'abonner au flux RSS
         author: Ma Mairie
   people:
     show:
@@ -79,7 +82,6 @@ fr:
         email: Courriel
         submit: Enregistrer
       feed:
-        subscribe: S'abonner au flux RSS
         author: Ma Mairie
   links:
     projetmontreal: "%{name} sur ProjetMontreal.org"

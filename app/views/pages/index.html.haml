@@ -18,13 +18,13 @@
           = text_field_tag 'EMAIL', nil, id: 'mce-EMAIL'
           = submit_tag t('.newsletter.submit'), class: 'btn'
   .row
-    .span7#activities
-      %span.icons
-        = link_to image_tag('blank.gif', size: '25x25', alt: t('.feed.subscribe'), title: t('.feed.subscribe')), feed_path(format: 'atom'), class: 'rss'
-      %ul.unstyled
-        - @activities.each do |activity|
-          %li
-            = render "shared/#{activity.source}", activity: activity
+    .span7
+      = render 'shared/share', url: feed_url(format: 'atom')
+      #activities
+        %ul.unstyled
+          - @activities.each do |activity|
+            %li
+              = render "shared/#{activity.source}", activity: activity
     .span9
       .well
         %h2=t '.boroughs'
