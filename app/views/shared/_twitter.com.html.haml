@@ -15,12 +15,13 @@
     - unless @person
       = image_tag('twitter_16.png', size: '16x16', alt: 'Twitter', title: 'Twitter', class: 'bird-small')
     = link_to timestamp(activity.published_at), activity.url
-    = link_to "https://twitter.com/intent/tweet?in_reply_to=#{activity.extra[:id_str]}&lang=#{locale}", class: 'twitter-intent' do
-      %span.inline-block.twitter-icon.reply
-      %span=t 'social.reply'
-    = link_to "https://twitter.com/intent/retweet?tweet_id=#{activity.extra[:id_str]}&lang=#{locale}", class: 'twitter-intent' do
-      %span.inline-block.twitter-icon.retweet
-      %span=t 'social.retweet'
-    = link_to "https://twitter.com/intent/favorite?tweet_id=#{activity.extra[:id_str]}&lang=#{locale}", class: 'twitter-intent' do
-      %span.inline-block.twitter-icon.reply
-      %span=t 'social.favorite'
+    %span.intents
+      = link_to "https://twitter.com/intent/tweet?in_reply_to=#{activity.extra[:id_str]}&lang=#{locale}", class: 'twitter-intent' do
+        %span.inline-block.twitter-icon.reply
+        %span=t 'social.reply'
+      = link_to "https://twitter.com/intent/retweet?tweet_id=#{activity.extra[:id_str]}&lang=#{locale}", class: 'twitter-intent' do
+        %span.inline-block.twitter-icon.retweet
+        %span=t 'social.retweet'
+      = link_to "https://twitter.com/intent/favorite?tweet_id=#{activity.extra[:id_str]}&lang=#{locale}", class: 'twitter-intent' do
+        %span.inline-block.twitter-icon.reply
+        %span=t 'social.favorite'
