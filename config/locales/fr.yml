@@ -41,6 +41,7 @@ fr:
       description: Suivez l'activité de vos élus à la Ville de Montréal
       author: Nord Ouvert
       facebook_admins: "100002666906486"
+      facebook_locale: fr_CA
       google_analytics: UA-21866813-9
   pages:
     index:

@@ -28,7 +28,7 @@
   <meta property="og:site_name" content="<%=t '.name' %>">
   <meta property="fb:admins" content="<%=t '.facebook_admins' %>">
   <meta property="og:description" content="<%= og_description %>">
-  <meta property="og:locale" content="<%= locale %>">
+  <meta property="og:locale" content="<%=t '.facebook_locale' %>">
   <%= yield :head %>
   <%= stylesheet_link_tag 'application' %>
   <%= csrf_meta_tags %>
