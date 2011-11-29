@@ -21,13 +21,14 @@
   <meta name="msapplication-tooltip" content="<%=t '.description' %>">
   <meta name="msapplication-starturl" content="<%=t '.url' %>?pinned=true">
   <meta name="msapplication-navbutton-color" content="#ad1e23">
-  <meta property="og:title" content="<%= og_title %>"/>
-  <meta property="og:type" content="<%= og_type %>"/>
-  <meta property="og:url" content="<%= request.url %>"/>
-  <meta property="og:image" content="<%= og_image %>"/>
-  <meta property="og:site_name" content="<%=t '.name' %>"/>
-  <meta property="fb:admins" content="<%=t '.facebook_admins' %>"/>
-  <meta property="og:description" content="<%= og_description %>"/>
+  <meta property="og:title" content="<%= og_title %>">
+  <meta property="og:type" content="<%= og_type %>">
+  <meta property="og:url" content="<%= request.url %>">
+  <meta property="og:image" content="<%= og_image %>">
+  <meta property="og:site_name" content="<%=t '.name' %>">
+  <meta property="fb:admins" content="<%=t '.facebook_admins' %>">
+  <meta property="og:description" content="<%= og_description %>">
+  <meta property="og:locale" content="<%= locale %>">
   <%= yield :head %>
   <%= stylesheet_link_tag 'application' %>
   <%= csrf_meta_tags %>

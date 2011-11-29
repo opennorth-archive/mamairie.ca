@@ -10,6 +10,8 @@ module ApplicationHelper
     t "#{controller.controller_name}.#{controller.action_name}.title", params
   end
 
+  # Open Graph tags
+
   def og_title
     if @person
       @person.name
@@ -19,22 +21,25 @@ module ApplicationHelper
       'Ma Mairie'
     end
   end
+
   def og_type
     if @person
       'politician'
     elsif @borough
-      'borough'
+      'city'
     else
       'website'
     end
   end
+
   def og_image
     if @person
-      @person.photo.large.url
+      'http:' + @person.photo.large.url
     else
       root_url.chomp('/') + image_path(t('logo.medium'))
     end
   end
+
   def og_description
     t "layouts.#{controller.send :_layout}.description"
   end
