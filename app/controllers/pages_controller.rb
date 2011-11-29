@@ -24,7 +24,7 @@ class PagesController < ApplicationController
         Query.find_or_create_by_query(params[:q]).update_attribute(:found, false)
         flash.alert = t('search.errors.not_found', q: params[:q]).html_safe
         redirect_to root_path
-      rescue Timeout::Error, RestClient::GatewayTimeout, Errno::EHOSTUNREACH
+      rescue Timeout::Error, RestClient::GatewayTimeout, Errno::EHOSTUNREACH, Errno::ECONNREFUSED
         Query.find_or_create_by_query('ERROR').increment(count: 1)
         flash.alert = t('search.errors.timeout')
         redirect_to root_path

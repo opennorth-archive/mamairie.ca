@@ -241,10 +241,6 @@ h2 span {
   color: #999;
 }
 
-.addthis_toolbox {
-  clear: left;
-  margin-bottom: 1em;
-}
 .bird {
   margin-left: 8px;
 }
@@ -314,28 +310,58 @@ aside {
   }
   a {
     display: inline-block;
-    width: 18px;
-    height: 18px;
-    margin-right: 5px;
-    background-image: url(/assets/feed_icons.png);
+    width: 16px;
+    height: 16px;
+    margin-left: 1px;
+    background-image: url(/assets/feed_icons.gif);
     background-repeat: no-repeat;
   }
 }
 .rss {
   background-position: 0 0;
-  &:hover {background-position: 0 -18px;}
+  &:hover {background-position: 0 -16px;}
 }
 .google {
-  background-position: -18px 0;
-  &:hover {background-position: -18px -18px;}
+  background-position: -16px 0;
+  &:hover {background-position: -16px -16px;}
 }
 .feedly {
-  background-position: -36px 0;
-  &:hover {background-position: -36px -18px;}
+  background-position: -32px 0;
+  &:hover {background-position: -32px -16px;}
 }
 .netvibes {
-  background-position: -54px 0;
-  &:hover {background-position: -54px -18px;}
+  background-position: -48px 0;
+  &:hover {background-position: -48px -16px;}
+}
+
+.addthis_toolbox {
+  clear: left;
+  min-height: 19px;
+  margin-bottom: 1em;
+}
+.at300bs {
+  background-image: url(/assets/feed_icons.gif);
+  &:hover {opacity:1;} // override
+}
+.at15t_twitter {
+  background-position: -64px 0;
+  &:hover {background-position: -64px -16px;}
+}
+.at15t_facebook {
+  background-position: -80px 0;
+  &:hover {background-position: -80px -16px;}
+}
+.at15t_compact {
+  background-position: -96px 0;
+  &:hover {background-position: -96px -16px;}
+}
+.at15t_email {
+  background-position: -112px 0;
+  &:hover {background-position: -112px -16px;}
+}
+.at15t_print {
+  background-position: -128px 0;
+  &:hover {background-position: -128px -16px;}
 }
 
 .icons {
@@ -378,6 +404,10 @@ aside {
 .wikipedia {
   background-position: -182px 0;
   &:hover {background-position: -182px -26px;}
+}
+
+.twitter-follow-button {
+  min-height: 20px;
 }
 
 // IE --------------------------------------------------------------------------

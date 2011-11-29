@@ -37,10 +37,6 @@ class Borough
     "http://ville.montreal.qc.ca/#{slug}"
   end
 
-  def twitter_url
-    "http://twitter.com/#{twitter}" if twitter
-  end
-
   def wikipedia_url
     wikipedia[I18n.locale]
   end

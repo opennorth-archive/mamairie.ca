@@ -11,7 +11,6 @@ module ApplicationHelper
   end
 
   # Open Graph tags
-
   def og_title
     if @person
       @person.name
@@ -44,10 +43,20 @@ module ApplicationHelper
     t "layouts.#{controller.send :_layout}.description"
   end
 
+  # Feeds
   def escape_url(url)
     URI.escape url, Regexp.new("[^#{URI::REGEXP::PATTERN::UNRESERVED}]", false, 'N')
   end
 
+  # Social
+  def twitter_url(screen_name)
+    "http://twitter.com/#{screen_name}"
+  end
+  def twitter_button(screen_name)
+    link_to t('social.twitter', name: screen_name), twitter_url(screen_name), :class => 'twitter-follow-button', 'data-lang' => locale
+  end
+
+  # Other
   def timestamp(timestamp)
     if timestamp.utc.to_date == Date.today
       %(<abbr class="timestamp timeago" title="#{timestamp.iso8601}">#{timestamp.strftime '%-d %b'}</abbr>).html_safe

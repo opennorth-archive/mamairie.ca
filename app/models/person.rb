@@ -100,10 +100,6 @@ class Person
     "http://ville.montreal.qc.ca/portal/page?_pageid=5798,85809754&_dad=portal&_schema=PORTAL&id=#{source_id}"
   end
 
-  def twitter_url
-    "http://twitter.com/#{twitter}" if twitter
-  end
-
   def wikipedia_url
     "http://fr.wikipedia.org/wiki/#{wikipedia[I18n.locale]}" if wikipedia[I18n.locale]
   end

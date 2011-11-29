@@ -61,3 +61,12 @@ Maurice Cohen
 
 One result if scoring=r
 Catherine Clément-Talbot
+
+
+
+# Images
+http://s2.googleusercontent.com/s2/favicons?domain=feedly.com
+http://s2.googleusercontent.com/s2/favicons?domain=netvibes.com
+http://s2.googleusercontent.com/s2/favicons?domain=addthis.com
+http://www.iconfinder.com/icondetails/28295/16/google_icon
+http://www.iconfinder.com/icondetails/28308/16/feed_rss_icon
