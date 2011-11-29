@@ -52,8 +52,8 @@ module ApplicationHelper
   def twitter_url(screen_name)
     "http://twitter.com/#{screen_name}"
   end
-  def twitter_button(screen_name)
-    link_to t('social.twitter', name: screen_name), twitter_url(screen_name), :class => 'twitter-follow-button', 'data-lang' => locale
+  def twitter_button(screen_name, options = {})
+    link_to t('social.twitter', name: screen_name), twitter_url(screen_name), {'class' => 'twitter-follow-button', 'data-lang' => locale}.merge(options)
   end
 
   # Other

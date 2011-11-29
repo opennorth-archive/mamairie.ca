@@ -49,6 +49,12 @@ h1 a {
 }
 header {
   position: relative;
+  .twitter-follow-button {
+    position: absolute;
+    right: 0;
+    top: 71px;
+    text-align: right;
+  }
 }
 #logo {
   position: absolute;

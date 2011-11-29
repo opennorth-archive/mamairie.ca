@@ -18,6 +18,7 @@ describe MaMairie do
     end + Person.all.map(&:photo_src) + ['http://ville.montreal.qc.ca/portal/page?_pageid=5798,85809573&_dad=portal&_schema=PORTAL']
     uris.flatten.compact.each do |uri|
       Faraday.head(uri).status.should == 200
+      Faraday.get(uri).body.should_not match /Fatal error/i
     end
   end
 

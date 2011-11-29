@@ -15,4 +15,4 @@
     %li
       = link_to image_tag('blank.gif', size: '25x25', alt: 'Wikipédia', title: 'Wikipédia'), entity.wikipedia_url, class: 'wikipedia'
 - if entity.twitter
-  = twitter_button(entity.twitter)
+  = twitter_button entity.twitter
