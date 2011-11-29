@@ -101,39 +101,6 @@ header {
   }
 }
 
-#activities {
-  position: relative;
-  img {
-    float: left;
-    margin-top: 3px;
-  }
-  li {
-    clear: left;
-    min-height: 60px;
-    margin-bottom: 10px;
-    padding-bottom: 10px;
-    border-bottom: 1px solid #ebebeb;
-    .intents {
-      display: none;
-    }
-    &:hover {
-      background-color: #fff;
-      .intents {
-        display: inline;
-      }
-    }
-  }
-  .person,
-  .activity {
-    margin-left: 53px;
-  }
-  .icons {
-    position: absolute;
-    right: -5px;
-    top: 0;
-  }
-}
-
 #boroughs {
   font-size: 0.75em;
   .span4 {
@@ -194,6 +161,54 @@ header {
   }
 }
 
+#activities {
+  position: relative;
+  .image {
+    float: left;
+    margin: 3px 0 0 8px;
+  }
+  li {
+    clear: left;
+    min-height: 60px;
+    padding: 10px 0;
+    border-top: 1px solid #ebebeb;
+    .intents {
+      display: none;
+    }
+    &:hover {
+      background-color: #f4f4f4;
+      border-color: #ccc;
+      .intents {
+        display: inline;
+      }
+    }
+  }
+  .person,
+  .activity {
+    margin-left: 64px;
+  }
+  .icons {
+    position: absolute;
+    right: -5px;
+    top: 0;
+  }
+}
+
+.meta {
+  font-size: 0.6875em;
+  .mention {
+    color: #444;
+    &:hover {
+      color: gray;
+    }
+  }
+}
+.timestamp {
+  color: gray;
+  &:hover {
+    color: gray;
+  }
+}
 .title,
 .name,
 .body {
@@ -202,6 +217,10 @@ header {
 }
 .title {
   font-weight: bold;
+  .meta {
+    font-weight: normal;
+    font-size: 0.85em;
+  }
 }
 .by {
   font-size: 0.875em;
@@ -214,25 +233,6 @@ header {
 .borough,
 .position {
   font-size: 0.75em;
-}
-.timestamp {
-  font-size: 0.6875em;
-}
-.timestamp a {
-  color: gray;
-  &:hover {
-    color: gray;
-  }
-}
-.timestamp .mention {
-  color: #444;
-  &:hover {
-    color: gray;
-  }
-}
-.meta {
-  font-weight: normal;
-  font-size: 0.85em;
 }
 
 h2 span {
@@ -249,7 +249,7 @@ h2 span {
   margin-left: 8px;
 }
 .bird-small {
-  margin-right: 5px;
+  margin-bottom: -3px;
 }
 .spacer {
   margin-top: 30px;

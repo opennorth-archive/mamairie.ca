@@ -30,7 +30,7 @@ fr:
       timeout: Le site de la Ville de Montréal ne répond pas. S'il vous plaît réessayer.
   social:
     twitter: "Suivre %{name}"
-    favorite: Ajouter en favori
+    favorite: Favoriser
     retweet: Retweeter
     reply: Répondre
 
