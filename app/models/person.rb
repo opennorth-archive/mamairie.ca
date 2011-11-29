@@ -84,6 +84,14 @@ class Person
     activities.where(source: source).sort(:published_at.desc).first
   end
 
+  def tel
+    @tel ||= addresses.detect{|x| x.tel}.andand.tel
+  end
+
+  def fax
+    @fax ||= addresses.detect{|x| x.fax}.andand.fax
+  end
+
   def source_id
     source_url[/\d+\z/]
   end
