@@ -7,13 +7,31 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <link rel="dns-prefetch" href="//ajax.googleapis.com">
+  <link rel="dns-prefetch" href="//platform.twitter.com">
+  <link rel="dns-prefetch" href="//s7.addthis.com">
+  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/apple-touch-icon-114x114-precomposed.png">
+  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/apple-touch-icon-72x72-precomposed.png">
+  <link rel="apple-touch-icon-precomposed" href="/apple-touch-icon-precomposed.png">
   <title><%= title %></title>
   <meta name="description" content="<%=t '.description' %>">
   <meta name="author" content="<%=t '.author' %>">
   <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="application-name" content="<%=t '.name' %>">
+  <meta name="msapplication-tooltip" content="<%=t '.description' %>">
+  <meta name="msapplication-starturl" content="<%=t '.url' %>?pinned=true">
+  <meta name="msapplication-navbutton-color" content="#ad1e23">
+  <meta property="og:title" content="<%= og_title %>"/>
+  <meta property="og:type" content="<%= og_type %>"/>
+  <meta property="og:url" content="<%= request.url %>"/>
+  <meta property="og:image" content="<%= og_image %>"/>
+  <meta property="og:site_name" content="<%=t '.name' %>"/>
+  <meta property="fb:admins" content="<%=t '.facebook_admins' %>"/>
+  <meta property="og:description" content="<%= og_description %>"/>
   <%= yield :head %>
   <%= stylesheet_link_tag 'application' %>
   <%= csrf_meta_tags %>
+  <%= javascript_include_tag 'modernizr-2.0.6.min' %>
 </head>
 <body id="<%= locale %>" class="<%= "#{controller.controller_name}-#{controller.action_name}" %>">
 

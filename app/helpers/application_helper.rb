@@ -10,6 +10,35 @@ module ApplicationHelper
     t "#{controller.controller_name}.#{controller.action_name}.title", params
   end
 
+  def og_title
+    if @person
+      @person.name
+    elsif @borough
+      @borough.name
+    else
+      'Ma Mairie'
+    end
+  end
+  def og_type
+    if @person
+      'politician'
+    elsif @borough
+      'borough'
+    else
+      'website'
+    end
+  end
+  def og_image
+    if @person
+      @person.photo.large.url
+    else
+      root_url.chomp('/') + image_path(t('logo.medium'))
+    end
+  end
+  def og_description
+    t "layouts.#{controller.send :_layout}.description"
+  end
+
   def timestamp(timestamp)
     if timestamp.utc.to_date == Date.today
       %(<abbr class="timeago" title="#{timestamp.iso8601}">#{timestamp.strftime '%-d %b'}</abbr>).html_safe
