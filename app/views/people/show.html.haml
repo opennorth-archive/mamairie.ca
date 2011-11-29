@@ -1,11 +1,4 @@
-- content_for(:head) do
-  = auto_discovery_link_tag :atom, format: 'atom'
-  - if @person.email
-    %meta(property="og:email" content="#{@person.email}")
-  - if @person.tel
-    %meta(property="og:phone_number" content="#{number_to_phone @person.tel}")
-  - if @person.email
-    %meta(property="og:fax_number" content="#{number_to_phone @person.fax}")
+- content_for(:head){auto_discovery_link_tag :atom, format: 'atom'}
 #person.container
   .row
     .span2
