@@ -1,5 +1,5 @@
 - if activity.image
-  = image_tag(activity.image, size: '48x48', alt: '')
+  .image= image_tag(activity.image, size: '48x48', alt: '')
 .activity
   .title
     = link_to activity.extra[:title], activity.url
@@ -7,7 +7,7 @@
     = activity.extra[:publisher]
   .body
     = activity.body
-  .timestamp
+  .meta
     = timestamp(activity.published_at)
     =t 'mentioning'
     = link_to activity.person.name, person_path(id: activity.person.slug), class: 'mention'
