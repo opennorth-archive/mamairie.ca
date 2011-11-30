@@ -65,8 +65,19 @@ Catherine Clément-Talbot
 
 
 # Images
+
 http://s2.googleusercontent.com/s2/favicons?domain=feedly.com
 http://s2.googleusercontent.com/s2/favicons?domain=netvibes.com
 http://s2.googleusercontent.com/s2/favicons?domain=addthis.com
 http://www.iconfinder.com/icondetails/28295/16/google_icon
 http://www.iconfinder.com/icondetails/28308/16/feed_rss_icon
+
+
+
+# Reporting
+usage of social sharing buttons http://www.addthis.com/analytics
+mailing list subscribers https://us2.admin.mailchimp.com/lists/members/?id=516681
+Twitter followers https://twitter.com/#!/ma_mairie
+media and blog mentions http://opennorth.ca/press/
+social media activity
+feed subscribers
