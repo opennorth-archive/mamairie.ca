@@ -21,12 +21,12 @@ fr:
     logo: nordouvert_logo.png
     url: http://nordouvert.ca/
   search:
-    label: "Trouvez vos élus pour commencer :"
+    label: "Trouvez d'abord vos élu(e)s :"
     placeholder: Indiquez votre code postal
     submit: Rechercher
     errors:
-      blank: Vous n'avez pas indiqué un code postal.
-      not_found: "Le code postal <strong>%{q}</strong> n'est pas recensé dans notre système. Assurez-vous d'avoir entré un code postal de la Ville de Montréal."
+      blank: Vous n'avez pas inscrit de code postal.
+      not_found: "Le code postal <strong>%{q}</strong> ne figure pas dans notre base de données. Assurez-vous d'avoir inscrit un code postal de la Ville de Montréal."
       timeout: Le site de la Ville de Montréal ne répond pas. S'il vous plaît réessayer.
   social:
     twitter: "Suivre %{name}"
@@ -43,7 +43,7 @@ fr:
     application:
       name: Ma Mairie
       url: http://mamairie.ca/
-      description: Suivez l'activité de vos élus à la Ville de Montréal
+      description: Suivez l'activité de vos élu(e)s à la Ville de Montréal
       author: Nord Ouvert
       facebook_admins: "100002666906486"
       facebook_locale: fr_ca
@@ -51,14 +51,14 @@ fr:
   pages:
     index:
       title: Ma Mairie
-      tagline: Suivez l'activité de vos élus à la Ville de Montréal
+      tagline: Suivez l'activité de vos élu(e)s à la Ville de Montréal
       newsletter:
         text: Nous allons ajouter plusieurs nouvelles fonctionnalités dans les prochaines semaines.
-        call_to_action: Inscrivez votre adresse courriel pour être avisé de mises à jour.
-        email: Courriel
-        submit: Inscrivez-moi!
+        call_to_action: Inscrivez votre adresse de courriel pour être avisé(e) lors des mises à jour.
+        email: Adresse de courriel
+        submit: Abonner moi
       boroughs: Arrondissements
-      officials: Élus
+      officials: Élu(e)s
       feed:
         title: Ma Mairie
         author: Ma Mairie
@@ -75,12 +75,12 @@ fr:
       tel: Tél
       fax: Fax
       contact: Coordonnées
-      positions: Positions
+      positions: Poste(s)
       committees: Comités
       newsletter:
-        text: Voudriez-vous recevoir des mises à jour directement de votre élu? Enregistrer votre intérêt ci-dessous.
-        email: Courriel
-        submit: Enregistrer
+        text: Voudriez-vous recevoir des mises à jour directement de votre élu(e) ? Enregistrer votre intérêt ci-dessous.
+        email: Adresse de courriel
+        submit: S'abonner
       feed:
         author: Ma Mairie
   links:
