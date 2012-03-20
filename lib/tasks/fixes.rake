@@ -4,7 +4,7 @@ namespace :fixes do
   task :google_news => :environment do
     {
       'Bertrand A. Ward' => 'Bertrand Ward',
-      'Christian B. Dubois' => 'Christian Dubois',
+      'Christian G. Dubois' => 'Christian Dubois',
       'Dimitrios Jim Beis' => 'Jim Beis',
     }.each do |name,q|
       person = Person.find_by_name! name

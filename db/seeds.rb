@@ -20,7 +20,7 @@ end
 [
   {slug: 'ahuntsic-cartierville', name: 'Ahuntsic-Cartierville', services_id: 'Ahuntsic - Cartierville'},
   {slug: 'anjou', name: 'Anjou', services_id: 'Anjou'},
-  {slug: 'cdn-ndg', name: 'Côte-des-Neiges—Notre-Dame-de-Grâce', services_id: 'Côte-des-Neiges - Notre-Dame-de-Grâce', 'CDN-NDG'},
+  {slug: 'cdn-ndg', name: 'Côte-des-Neiges—Notre-Dame-de-Grâce', services_id: 'Côte-des-Neiges - Notre-Dame-de-Grâce', short_name: 'CDN-NDG'},
   {slug: 'ibsg', name: "L'Île-Bizard—Sainte-Geneviève", services_id: "L'Île-Bizard - Sainte-Geneviève"},
   {slug: 'lachine', name: 'Lachine', services_id: 'Lachine'},
   {slug: 'lasalle', name: 'LaSalle', services_id: 'LaSalle'},
