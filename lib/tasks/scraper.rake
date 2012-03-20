@@ -17,8 +17,12 @@ namespace :scraper do
       # On HTTP 404, HEAD requests raise errors. Although this line would be
       # cleaner with GET, HEAD is faster.
       unless (Faraday.head(person.photo.url).status rescue false)
-        person.remote_photo_url = person.photo_src
-        person.save!
+        begin
+          person.remote_photo_url = person.photo_src
+          person.save!
+        rescue => e
+          puts e.message
+        end
       end
     end
   end
