@@ -14,6 +14,8 @@ namespace :scraper do
     # https://github.com/technoweenie/faraday/wiki/Setting-up-SSL-certificates
     OpenSSL::SSL::VERIFY_PEER = OpenSSL::SSL::VERIFY_NONE
     Person.where(photo_src: {'$exists' => true}).each do |person|
+      # On HTTP 404, HEAD requests raise errors. Although this line would be
+      # cleaner with GET, HEAD is faster.
       unless (Faraday.head(person.photo.url).status rescue false)
         person.remote_photo_url = person.photo_src
         person.save!
