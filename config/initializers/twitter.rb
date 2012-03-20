@@ -6,4 +6,6 @@ Twitter.configure do |config|
   config.oauth_token = ENV['TWITTER_OAUTH_TOKEN']
   config.oauth_token_secret = ENV['TWITTER_OAUTH_TOKEN_SECRET']
 end
-Twitter.gateway = ENV['APIGEE_TWITTER_API_ENDPOINT']
+if ENV['APIGEE_TWITTER_API_ENDPOINT']
+  Twitter.gateway = ENV['APIGEE_TWITTER_API_ENDPOINT']
+end
