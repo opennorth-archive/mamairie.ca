@@ -7,3 +7,5 @@
 //= require bootstrap-alerts
 //= require jquery.timeago
 //= require scripts
+
+//= require bootstrap.min

@@ -12,8 +12,8 @@ $.timeago.settings.strings =
   seconds: "1 minute"
   suffixAgo: null
   suffixFromNow: null
-  year: "1 année"
-  years: "%d années"
+  year: "1 annee"
+  years: "%d annees"
 
 $ ->
   $('.alert-message').alert()
