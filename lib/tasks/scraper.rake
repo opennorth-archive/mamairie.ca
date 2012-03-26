@@ -51,29 +51,28 @@ namespace :scraper do
   desc 'Import person biography'
   task :biography => :environment do
     Person.all.each do |person|
-
-      for lang in %w(fr en)
-
-        if person.web[lang].blank? || Faraday.head(person.web[lang]).status != 200
-          puts person.name + " URL is broken or doesn't exist for " + lang
+      %w(fr en).each |locale|
+        if person.web[locale].blank?
+          puts "#{person.name} #{locale} URL doesn't exist"
           next
-        else
-          doc = Nokogiri::HTML(open(person.web[lang]), nil, 'utf-8') # I suppose there's a url field in the DB
-          puts person.name + ' ' + person.web[lang]
+        elsif Faraday.head(person.web[locale]).status != 200
+          puts "#{person.name} #{locale} URL is broken"
+          next
         end
 
-        # Research by party
-        if person.party_name == 'Union Montréal'
-          person.bio[lang] = doc.css('.section').css('p').text
-        elsif person.party_name == 'Vision Montréal'
+        doc = Nokogiri::HTML(open(person.web[locale]), nil, 'utf-8')
+        person.biography[locale] = case person.party_name
+        when 'Union Montréal'
+          doc.css('.section').css('p').text
+        when 'Vision Montréal'
           if doc.at_css('div#texte')
-            person.bio[lang] = doc.at_css('div#texte').text
+            doc.at_css('div#texte').text
           end
-        elsif person.party_name == 'Projet Montréal'
+        when 'Projet Montréal'
           if doc.at_css('div.oi1')
-            person.bio[lang] = doc.css('.oi1').css('p').text
+            doc.css('.oi1').css('p').text
           else
-            person.bio[lang] = doc.css('.oi4').css('p').text
+            doc.css('.oi4').css('p').text
           end
         end
 
