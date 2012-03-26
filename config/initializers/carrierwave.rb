@@ -1,5 +1,5 @@
 CarrierWave.configure do |config|
-  config.root = Rails.root.join('tmp')
+  config.root = Rails.root.join(Rails.env.production? ? 'tmp' : 'public')
   config.cache_dir = 'uploads'
   if Rails.env.production?
     config.fog_credentials = {

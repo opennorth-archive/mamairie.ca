@@ -27,11 +27,20 @@
           = text_field_tag 'EMAIL', nil, id: 'mce-EMAIL'
           = submit_tag t('.newsletter.submit'), class: 'btn'
       = render 'shared/share', url: person_url(id: @person.slug, format: 'atom')
-      #activities
-        %ul.unstyled
-          - @activities.each do |activity|
-            %li
-              = render "shared/#{activity.source}", activity: activity
+      %ul#tab.nav.nav-tabs
+        %li.active
+          %a{:href => "#activities", "data-toggle" => "tab"} Activities
+        %li
+          %a{:href => "#bio", "data-toggle" => "tab"} Bio
+      .tab-content
+        .tab-pane.active#activities
+          %ul.unstyled
+            - @activities.each do |activity|
+              %li
+                = render "shared/#{activity.source}", activity: activity
+        .tab-pane#bio
+          %p 
+            = @person.bio_lang
     .span5
       %aside
         = render 'shared/social', entity: @person

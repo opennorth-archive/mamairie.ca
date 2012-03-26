@@ -47,4 +47,46 @@ namespace :scraper do
       Activity.google_news(person)
     end
   end
+
+  desc 'Import biography from each political party'
+  task :biography => :environment do
+
+    Person.all.each do |person|
+
+      for lang in %w(fr en)
+
+        if person.web[lang].blank? || Faraday.head(person.web[lang]).status != 200
+          puts person.name + " URL is broken or doesn\'t exist for " + lang
+          next
+        else
+          doc = Nokogiri::HTML(open(person.web[lang]), nil, "UTF-8") # I suppose there's a url field in the DB
+          puts person.name + ' ' +  person.web[lang] 
+        end
+
+        # Research by party
+        
+        if person.party_name == "Union Montréal"
+          doc.css('.section').each do |node| # Parse and get nodes inside div .oi1
+              person.bio[lang] =  node.css('p').text # Get every p tags inside the previous div 
+          end   
+        elsif person.party_name == 'Vision Montréal'
+          if doc.at_css('div#texte')         
+            person.bio[lang] = doc.at_css('div#texte').text
+          end
+        elsif person.party_name == 'Projet Montréal'
+          if doc.at_css('div.oi1')
+            doc.css('.oi1').each do |node| # Parse and get nodes inside div .oi1 for "the leader"
+              person.bio[lang] =  node.css('p').text # Get every p tags inside the previous div
+            end
+          else
+            doc.css('.oi4').each do |node| # Parse and get nodes inside div .oi4
+              person.bio[lang] =  node.css('p').text # Get every p tags inside the previous div
+            end
+          end
+        end
+
+        person.save!
+      end
+    end
+  end
 end
