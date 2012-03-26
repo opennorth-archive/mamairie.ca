@@ -51,7 +51,7 @@ namespace :scraper do
   desc 'Import person biography'
   task :biography => :environment do
     Person.all.each do |person|
-      %w(fr en).each |locale|
+      %w(fr en).each do |locale|
         if person.web[locale].blank?
           puts "#{person.name} #{locale} URL doesn't exist"
           next
@@ -75,7 +75,6 @@ namespace :scraper do
             doc.css('.oi4').css('p').text
           end
         end
-
         person.save!
       end
     end
