@@ -26,7 +26,7 @@ fr:
     submit: Rechercher
     errors:
       blank: Vous n'avez pas inscrit de code postal.
-      not_found: "Le code postal <strong>%{q}</strong> ne figure pas dans notre base de données. Assurez-vous d'avoir inscrit un code postal de la Ville de Montréal."
+      not_found: "Le code postal %{q} ne figure pas dans notre base de données. Assurez-vous d'avoir inscrit un code postal de la Ville de Montréal."
       timeout: Le site de la Ville de Montréal ne répond pas. S'il vous plaît réessayer.
   social:
     twitter: "Suivre %{name}"
