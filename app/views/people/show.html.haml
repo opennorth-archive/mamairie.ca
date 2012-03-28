@@ -4,7 +4,7 @@
     .span2
       = image_tag @person.photo.large.url, size: '90x120', alt: ''
       %span.label(class="#{@person.party_slug}")= @person.party_name
-    .span9
+    .span7
       %h2
         #{@person.name},
         %span
@@ -22,7 +22,7 @@
                 = person.district_id ? person.district.name : person.position
       .newsletter.well
         %p=t '.newsletter.text'
-        %form(action="http://opennorth.us2.list-manage.com/subscribe/post?u=a602fac79ef3dc584bf1a2743&id=bd133c7a86" method="post")
+        %form(action="http://opennorth.us2.list-manage.com/subscribe/post?u=a602fac79ef3dc584bf1a2743&id=bd133c7a86" method="post" class="form-inline")
           = label_tag 'mce-EMAIL', t('.newsletter.email')
           = text_field_tag 'EMAIL', nil, id: 'mce-EMAIL'
           = submit_tag t('.newsletter.submit'), class: 'btn'
@@ -42,7 +42,7 @@
         .tab-pane#bio
           %p 
             = @person.biography_text
-    .span5
+    .span3
       %aside
         = render 'shared/social', entity: @person
         %section#contact
