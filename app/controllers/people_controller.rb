@@ -22,4 +22,19 @@ class PeopleController < ApplicationController
       format.atom { head :no_content if @activities.empty? }
     end
   end
+
+  def subscribe
+    @person = Person.find(params[:id])
+    if params[:email].blank?
+      flash.alert = t('subscribe.blank')
+    else
+      begin
+        @person.add_subscriber(params[:email])
+        flash.notice = t('subscribe.success')
+      rescue Person::InvalidEmail
+        flash.alert = t('subscribe.invalid')
+      end
+    end
+    redirect_to person_path(id: @person.slug)
+  end
 end

@@ -4,7 +4,7 @@
     .span12
       %h2#tagline=t '.tagline'
       - if flash.alert
-        .alert-message.error.fade.in
+        .alert.alert-error.fade.in
           %a.close(href="#") ×
           %p
             = flash.alert

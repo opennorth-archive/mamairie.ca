@@ -31,4 +31,12 @@ class PagesController < ApplicationController
       end
     end
   end
+
+  def subscribe
+    Person.where().each do |person|
+      person.subscribers = params[:email]
+      person.save!
+    end
+    redirect_to root_path
+  end
 end

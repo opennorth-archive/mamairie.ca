@@ -1,5 +1,8 @@
 # coding: utf-8
+require 'mail'
 class Person
+  class InvalidEmail < StandardError; end
+
   include MongoMapper::Document
   mount_uploader :photo, PhotoUploader
 
@@ -40,6 +43,7 @@ class Person
   key :borough_slug, String, required: true
   key :party_name, String, required: true
   key :party_slug, String, required: true
+  key :subscribers, Array
   timestamps!
 
   ensure_index :name
@@ -111,6 +115,18 @@ class Person
 
   def web_url
     web[I18n.locale]
+  end
+
+  def add_subscriber(email)
+    email.downcase!
+    address = Mail::Address.new email
+    if (address.address == email && address.domain && address.__send__(:tree).domain.dot_atom_text.elements.size > 1)
+      unless subscribers.include? email
+        push subscribers: email
+      end
+    else
+      raise InvalidEmail
+    end
   end
 
 private
