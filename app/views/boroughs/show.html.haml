@@ -27,3 +27,17 @@
         = render 'shared/social', entity: @borough
         %p
           = link_to t('links.villemontrealqcca', name: @borough.name), @borough.url
+        %link{:rel => "stylesheet", :type => "text/css", :href => "http://murmitoyen.com/events/js/syndication.css"}
+        %h2=t '.events'
+        #murmitoyen
+          - components = RiCal.parse_string(open("http://murmitoyen.com/events/link/iCalendar.php?gID=234").read)
+          - components[0].events.each do |event|
+            - if event.location.gsub(/--/, '-').include? @borough.name
+              .eventTitle
+                %a{:href => "http://murmitoyen.com/events/index.php?com=detail&amp;eID=96326"}
+                  %img{:src => "http://murmitoyen.com/events/images/thumbs/mini/96326.jpg", :style => "margin:5px 10px 5px 5px;  float:left;"}
+                %span.eventTime 
+                  = event.dtstart.strftime("%A %m %B %Y, %H")
+                %br
+                %a{:href => event.url}
+                  = event.summary.gsub(/\\/, '')

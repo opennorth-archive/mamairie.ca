@@ -1,6 +1,7 @@
 class BoroughsController < ApplicationController
   # GET /boroughs
   # GET /boroughs.json
+
   def index
     @boroughs = Borough.fields(:name, :slug).all
 
