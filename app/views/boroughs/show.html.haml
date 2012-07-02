@@ -1,7 +1,7 @@
 - content_for(:head){auto_discovery_link_tag :atom, format: 'atom'}
 .container
   .row
-    .span12
+    .span16
       %h2
         = @borough.name
       %ul.unstyled#council
@@ -15,14 +15,14 @@
               .position
                 = person.district_id ? person.district.name : person.positions.first
   .row.spacer
-    .span8
+    .span11
       = render 'shared/share', url: borough_url(id: @borough.slug, format: 'atom')
       #activities
         %ul.unstyled
           - @activities.each do |activity|
             %li
               = render "shared/#{activity.source}", activity: activity
-    .span4
+    .span5
       %aside
         = render 'shared/social', entity: @borough
         %p
