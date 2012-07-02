@@ -24,6 +24,7 @@ class Activity
   }
 
   include MongoMapper::Document
+  plugin MongoMapper::Plugins::IdentityMap
   belongs_to :person
   belongs_to :party
   belongs_to :borough

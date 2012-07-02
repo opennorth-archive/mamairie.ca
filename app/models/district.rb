@@ -1,5 +1,6 @@
 class District
   include MongoMapper::Document
+  plugin MongoMapper::Plugins::IdentityMap
   belongs_to :borough
 
   key :name, String, required: true, unique: true

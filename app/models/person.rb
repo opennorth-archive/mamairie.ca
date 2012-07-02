@@ -4,6 +4,7 @@ class Person
   class InvalidEmail < StandardError; end
 
   include MongoMapper::Document
+  plugin MongoMapper::Plugins::IdentityMap
   mount_uploader :photo, PhotoUploader
 
   belongs_to :borough
