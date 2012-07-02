@@ -30,9 +30,8 @@
       %ul#tab.nav.nav-tabs
         %li.active
           %a{:href => "#activities", "data-toggle" => "tab"} Activities
-        - if !@person.biography.blank?
-          %li
-            %a{:href => "#bio", "data-toggle" => "tab"} Bio
+        %li
+          %a{:href => "#bio", "data-toggle" => "tab"} Bio
       .tab-content
         .tab-pane.active#activities
           %ul.unstyled
