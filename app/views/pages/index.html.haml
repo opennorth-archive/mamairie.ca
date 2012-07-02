@@ -1,31 +1,30 @@
 - content_for(:head){auto_discovery_link_tag :atom, feed_url(format: 'atom')}
 .container
+  %h2#tagline=t '.tagline'
+  - if flash.alert
+    .alert.alert-error.fade.in
+      %a.close(href="#" data-dismiss="alert") ×
+      %p= flash.alert
+  .hero-unit
+    = render 'shared/search_form'
+  .newsletter
+    %p=t '.newsletter.text'
+    %p=t '.newsletter.call_to_action'
+    %form(action="http://opennorth.us2.list-manage.com/subscribe/post?u=a602fac79ef3dc584bf1a2743&id=bd133c7a86" method="post" class="form-inline")
+      = label_tag 'mce-EMAIL', t('.newsletter.email')
+      = text_field_tag 'EMAIL', nil, id: 'mce-EMAIL'
+      = submit_tag t('.newsletter.submit'), class: 'btn'
+
   .row
-    .span16
-      %h2#tagline=t '.tagline'
-      - if flash.alert
-        .alert.alert-error.fade.in
-          %a.close(href="#") ×
-          %p= flash.alert
-      .hero-unit
-        = render 'shared/search_form'
-      .newsletter
-        %p=t '.newsletter.text'
-        %p=t '.newsletter.call_to_action'
-        %form(action="http://opennorth.us2.list-manage.com/subscribe/post?u=a602fac79ef3dc584bf1a2743&id=bd133c7a86" method="post")
-          = label_tag 'mce-EMAIL', t('.newsletter.email')
-          = text_field_tag 'EMAIL', nil, id: 'mce-EMAIL'
-          = submit_tag t('.newsletter.submit'), class: 'btn'
-  .row
-    .span5
+    .span6
       %h2=t '.activities'
-      = render 'shared/share', url: feed_url(format: 'atom')
       #activities
+        = render 'shared/share', url: feed_url(format: 'atom')
         %ul.unstyled
           - @activities.each do |activity|
             %li
               = render "shared/#{activity.source}", activity: activity
-    .span7
+    .span6
       %h2=t '.boroughs'
       .row#boroughs
         - @boroughs.in_two.each do |boroughs|
@@ -37,19 +36,21 @@
       %h2=t '.events'
       #events
         <script charset="iso-8859-1" src="http://murmitoyen.com/events/js/syndicationplus.php?gID=234"></script>
-    %h2=t '.officials'
-    #people
-      - @people.in_four.each do |people|
-        .span3
-          %ul.unstyled
-            - people.each do |person|
-              %li
-                = link_to image_tag(person.photo.thumb.url, size: '48x48', alt: ''), person_path(id: person.slug)
-                .person
-                  .name
-                    = link_to person.name, person_path(id: person.slug)
-                    %abbr.label(class="#{person.party_slug}" title="#{person.party_name}")= person.party_slug.first.upcase
-                  .borough
-                    = person.borough.short_name || person.borough_name
-                  .position
-                    = person.district_id ? person.district_name : person.positions.first
+
+  %h2=t '.officials'
+  .row#people
+    - @people.in_four.each do |people|
+      .span3
+        %ul.unstyled
+          - people.each do |person|
+            %li
+              = link_to image_tag(person.photo.thumb.url, size: '48x48', alt: ''), person_path(id: person.slug)
+              .person
+                .name
+                  = link_to person.name, person_path(id: person.slug)
+                  %abbr.label(class="#{person.party_slug}" title="#{person.party_name}")
+                    = person.party_slug.first.upcase
+                .borough
+                  = person.borough.short_name || person.borough_name
+                .position
+                  = person.district_id ? person.district_name : person.positions.first

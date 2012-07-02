@@ -23,6 +23,8 @@ fr:
   search:
     label: "Trouvez d'abord vos élu(e)s :"
     placeholder: Indiquez votre code postal
+    example_label: "Par exemple :"
+    example: H2L 4L8
     submit: Rechercher
     errors:
       blank: Vous n'avez pas inscrit de code postal.
@@ -87,6 +89,7 @@ fr:
       newsletter:
         text: Voudriez-vous recevoir des mises à jour directement de votre élu(e) ? Enregistrer votre intérêt ci-dessous.
         email: Adresse de courriel
+        placeholder: nom@exemple.com
         submit: S'abonner
       feed:
         author: Ma Mairie

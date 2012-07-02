@@ -1,28 +1,27 @@
 - content_for(:head){auto_discovery_link_tag :atom, format: 'atom'}
 .container
-  .row
-    .span16
-      %h2
-        = @borough.name
-      %ul.unstyled#council
-        - @borough.people.sort_by{|x| x.mayor? ? 'A' : x.last_name}.each do |person|
-          %li(class="#{'well' if person.mayor?}")
-            = link_to image_tag(person.photo.large.url, size: '90x120', alt: ''), person_path(id: person.slug)
-            .person
-              .name
-                = link_to person.name, person_path(id: person.slug)
-                %abbr.label(class="#{person.party_slug}" title="#{person.party_name}")= person.party_slug.first.upcase
-              .position
-                = person.district_id ? person.district.name : person.positions.first
+  %h2
+    = @borough.name
+  %ul.unstyled#council
+    - @borough.people.sort_by{|x| x.mayor? ? 'A' : x.last_name}.each do |person|
+      %li(class="#{'well' if person.mayor?}")
+        = link_to image_tag(person.photo.large.url, size: '90x120', alt: ''), person_path(id: person.slug)
+        .person
+          .name
+            = link_to person.name, person_path(id: person.slug)
+            %abbr.label(class="#{person.party_slug}" title="#{person.party_name}")= person.party_slug.first.upcase
+          .position
+            = person.district_id ? person.district.name : person.positions.first
+
   .row.spacer
-    .span11
-      = render 'shared/share', url: borough_url(id: @borough.slug, format: 'atom')
+    .span8
       #activities
+        = render 'shared/share', url: borough_url(id: @borough.slug, format: 'atom')
         %ul.unstyled
           - @activities.each do |activity|
             %li
               = render "shared/#{activity.source}", activity: activity
-    .span5
+    .span4
       %aside
         = render 'shared/social', entity: @borough
         %p

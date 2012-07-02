@@ -2,9 +2,9 @@
 #person.container
   .row
     .span2
-      = image_tag @person.photo.large.url, size: '90x120', alt: ''
+      #photo= image_tag @person.photo.large.url, size: '90x120', alt: ''
       %span.label(class="#{@person.party_slug}")= @person.party_name
-    .span9
+    .span7
       %h2
         #{@person.name},
         %span
@@ -22,17 +22,17 @@
                 = person.district_id ? person.district.name : person.position
       - if flash.alert
         .alert.alert-error.fade.in
-          %a.close(href="#") ×
+          %a.close(href="#" data-dismiss="alert") ×
           %p= flash.alert
       - if flash.notice
         .alert.alert-success.fade.in
-          %a.close(href="#") ×
+          %a.close(href="#" data-dismiss="alert") ×
           %p= flash.notice
       .newsletter.well
         %p=t '.newsletter.text'
         = form_tag subscribe_person_path(@person), class: 'form-inline' do
-          = label_tag 'email', t('.newsletter.email')
-          = text_field_tag 'email'
+          = label_tag :email, t('.newsletter.email')
+          = text_field_tag :email, params[:email], placeholder: t('.newsletter.placeholder')
           = submit_tag t('.newsletter.submit'), class: 'btn'
       = render 'shared/share', url: person_url(id: @person.slug, format: 'atom')
       %ul.nav.nav-tabs
@@ -50,7 +50,7 @@
         .tab-pane#biography
           %p
             = @person.biography_text
-    .span5
+    .span3
       %aside
         = render 'shared/social', entity: @person
         %section#contact

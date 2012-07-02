@@ -3,7 +3,7 @@ class PagesController < ApplicationController
   def index
     @boroughs = Borough.fields(:name, :slug).sort(:name.asc).all
     @people = Person.sort(:last_name.asc).all
-    @activities = Activity.sort(:published_at.desc).limit(8)
+    @activities = Activity.sort(:published_at.desc).limit(10)
 
     respond_to do |format|
       format.html

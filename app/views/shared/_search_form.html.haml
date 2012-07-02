@@ -1,9 +1,8 @@
-= form_tag search_path, method: :get do
+= form_tag search_path, method: :get, class: 'form-inline' do
   %fieldset
-    .clearfix
-      = label_tag :q, t('search.label')
-      = text_field_tag :q, params[:q], placeholder: t('search.placeholder'), class: 'large'
-      = submit_tag t('search.submit'), class: 'btn primary large'
-      %span.help-block
-        %strong Par exemple:
-        = link_to 'H2L 4L8', search_path(q: 'H2L 4L8')
+    = label_tag :q, t('search.label'), class: 'control-label'
+    = text_field_tag :q, params[:q], placeholder: t('search.placeholder'), class: 'large'
+    = submit_tag t('search.submit'), class: 'btn btn-primary btn-large'
+    %span.help-block
+      %strong= t('search.example_label')
+      = link_to 'H2L 4L8', search_path(q: t('search.example'))
