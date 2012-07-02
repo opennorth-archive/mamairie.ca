@@ -16,6 +16,7 @@ gem 'airbrake'
 gem 'twitter'
 gem 'twitter-text'
 gem 'unicode_utils'
+gem 'ri_cal'
 
 # Uploads
 gem 'fog'

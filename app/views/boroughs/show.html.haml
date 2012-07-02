@@ -27,3 +27,11 @@
         = render 'shared/social', entity: @borough
         %p
           = link_to t('links.villemontrealqcca', name: @borough.name), @borough.url
+        %h2=t '.events'
+        #murmitoyen
+          - @events.each do |event|
+            - if event.summary.slug[@borough.name.sub(/\ALe /, '').slug]
+              .eventTitle
+                = link_to image_tag("http://murmitoyen.com/events/images/thumbs/mini/#{event.url[/ID=(\d+)/, 1]}.jpg"), event.url
+                .eventTime= event.dtstart.strftime('%A %m %B %Y, %H')
+                = link_to event.summary.gsub("\\'", "'"), event.url
