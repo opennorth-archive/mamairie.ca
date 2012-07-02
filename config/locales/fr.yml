@@ -62,7 +62,6 @@ fr:
         email: Adresse de courriel
         submit: Abonnez-moi
       boroughs: Arrondissements
-      events: Événements
       officials: Élu(e)s
       feed:
         title: Ma Mairie
@@ -74,7 +73,6 @@ fr:
       title: "%{name} - Ma Mairie"
       feed:
         author: Ma Mairie
-      events: Événements
   people:
     show:
       title: "%{name} - Ma Mairie"

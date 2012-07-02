@@ -17,7 +17,6 @@
           = label_tag 'mce-EMAIL', t('.newsletter.email')
           = text_field_tag 'EMAIL', nil, id: 'mce-EMAIL'
           = submit_tag t('.newsletter.submit'), class: 'btn'
-                   
   .row
     .span5
       = render 'shared/share', url: feed_url(format: 'atom')
@@ -36,23 +35,19 @@
                 - boroughs.each do |borough|
                   %li
                     = link_to borough.name, borough_path(id: borough.slug)
-        %h2=t '.events'
-        .row.calendar
-          %link{:rel => "stylesheet", :type => "text/css", :href => "http://murmitoyen.com/events/js/syndication.css"}
-          %script{:language => "JavaScript", :type => "text/JavaScript", :charset => "iso-8859-1", :src => "http://murmitoyen.com/events/js/syndicationplus.php?gID=234"} 
-    %h2=t '.officials'
-    #people
-      - @people.in_four.each do |people|
-        .span3
-          %ul.unstyled
-            - people.each do |person|
-              %li
-                = link_to image_tag(person.photo.thumb.url, size: '48x48', alt: ''), person_path(id: person.slug)
-                .person
-                  .name
-                    = link_to person.name, person_path(id: person.slug)
-                    %abbr.label(class="#{person.party_slug}" title="#{person.party_name}")= person.party_slug.first.upcase
-                  .borough
-                    = person.borough.short_name || person.borough_name
-                  .position
-                    = person.district_id ? person.district_name : person.positions.first
+        %h2=t '.officials'
+        .row#people
+          - @people.in_two.each do |people|
+            .span3
+              %ul.unstyled
+                - people.each do |person|
+                  %li
+                    = link_to image_tag(person.photo.thumb.url, size: '48x48', alt: ''), person_path(id: person.slug)
+                    .person
+                      .name
+                        = link_to person.name, person_path(id: person.slug)
+                        %abbr.label(class="#{person.party_slug}" title="#{person.party_name}")= person.party_slug.first.upcase
+                      .borough
+                        = person.borough.short_name || person.borough_name
+                      .position
+                        = person.district_id ? person.district_name : person.positions.first

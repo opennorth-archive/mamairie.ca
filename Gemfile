@@ -33,10 +33,6 @@ gem 'rest-client'
 gem 'dragonfly', :git => 'git://github.com/jpmckinney/dragonfly.git'
 gem 'unbreakable', '~> 0.0.4'
 
-# Ical
-
-gem 'ri_cal'
-
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
