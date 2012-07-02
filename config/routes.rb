@@ -1,6 +1,10 @@
 MaMairie::Application.routes.draw do
   resources :boroughs, :only => :show
-  resources :people, :only => :show
+  resources :people, :only => :show do
+    member do
+      post 'subscribe'
+    end
+  end
   match 'about' => 'pages#about'
   match 'search' => 'pages#search'
   match 'feed' => 'pages#index'

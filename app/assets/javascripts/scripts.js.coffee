@@ -16,5 +16,5 @@ $.timeago.settings.strings =
   years: "%d années"
 
 $ ->
-  $('.alert-message').alert()
+  $('.alert').alert()
   $('.timeago').timeago()

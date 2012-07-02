@@ -6,4 +6,4 @@ tmp/
 .DS_Store
 config/initializers/_heroku.rb
 translations.csv
-
+public/uploads/

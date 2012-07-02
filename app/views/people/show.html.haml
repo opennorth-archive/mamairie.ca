@@ -20,11 +20,19 @@
                 = link_to person.name, person_path(id: person.slug)
               .position
                 = person.district_id ? person.district.name : person.position
+      - if flash.alert
+        .alert.alert-error.fade.in
+          %a.close(href="#") ×
+          %p= flash.alert
+      - if flash.notice
+        .alert.alert-success.fade.in
+          %a.close(href="#") ×
+          %p= flash.notice
       .newsletter.well
         %p=t '.newsletter.text'
-        %form(action="http://opennorth.us2.list-manage.com/subscribe/post?u=a602fac79ef3dc584bf1a2743&id=bd133c7a86" method="post" class="form-inline")
-          = label_tag 'mce-EMAIL', t('.newsletter.email')
-          = text_field_tag 'EMAIL', nil, id: 'mce-EMAIL'
+        = form_tag subscribe_person_path(@person), class: 'form-inline' do
+          = label_tag 'email', t('.newsletter.email')
+          = text_field_tag 'email'
           = submit_tag t('.newsletter.submit'), class: 'btn'
       = render 'shared/share', url: person_url(id: @person.slug, format: 'atom')
       %ul#tab.nav.nav-tabs
