@@ -32,6 +32,7 @@ class Person
   key :facebook, String
   key :youtube, String
   key :flickr, String
+  key :biography, Hash
   key :wikipedia, Hash
   key :web, Hash
   key :photo_src, String
@@ -103,6 +104,10 @@ class Person
 
   def wikipedia_url
     "http://fr.wikipedia.org/wiki/#{wikipedia[I18n.locale]}" if wikipedia[I18n.locale]
+  end
+
+  def biography_text
+    biography[I18n.locale]
   end
 
   def web_url
