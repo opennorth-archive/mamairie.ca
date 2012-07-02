@@ -437,37 +437,22 @@ aside {
 }
 
 // Bootstrap IE6 ---------------------------------------------------------------
-.lt-ie7 {
-  // blockquote small:before{content:'\2014 \00A0';}
-  blockquote small:before{content:"";}
-  // [class*="span"]{display:inline;float:left;margin-left:20px;}
-  .span1{display:inline;float:left;margin-left:20px;}
-  .span2{display:inline;float:left;margin-left:20px;}
-  .span3{display:inline;float:left;margin-left:20px;}
-  .span4{display:inline;float:left;margin-left:20px;}
-  .span5{display:inline;float:left;margin-left:20px;}
-  .span6{display:inline;float:left;margin-left:20px;}
-  .span7{display:inline;float:left;margin-left:20px;}
-  .span8{display:inline;float:left;margin-left:20px;}
-  .span9{display:inline;float:left;margin-left:20px;}
-  .span10{display:inline;float:left;margin-left:20px;}
-  .span11{display:inline;float:left;margin-left:20px;}
-  .span12{display:inline;float:left;margin-left:20px;}
-  .span13{display:inline;float:left;margin-left:20px;}
-  .span14{display:inline;float:left;margin-left:20px;}
-  .span15{display:inline;float:left;margin-left:20px;}
-  .span16{display:inline;float:left;margin-left:20px;}
-  .span17{display:inline;float:left;margin-left:20px;}
-  .span18{display:inline;float:left;margin-left:20px;}
-  .span19{display:inline;float:left;margin-left:20px;}
-  .span20{display:inline;float:left;margin-left:20px;}
-  .span21{display:inline;float:left;margin-left:20px;}
-  .span22{display:inline;float:left;margin-left:20px;}
-  .span23{display:inline;float:left;margin-left:20px;}
-  .span24{display:inline;float:left;margin-left:20px;}
-  .span-one-third{display:inline;float:left;margin-left:20px;}
-  .span-two-thirds{display:inline;float:left;margin-left:20px;}
-}
+
+// blockquote small:before{content:'\2014 \00A0';}
+.lt-ie7 blockquote small:before{content:"";}
+// [class*="span"]{float:left;margin-left:20px;}
+.lt-ie7 .span1{float:left;margin-left:20px;}
+.lt-ie7 .span2{float:left;margin-left:20px;}
+.lt-ie7 .span3{float:left;margin-left:20px;}
+.lt-ie7 .span4{float:left;margin-left:20px;}
+.lt-ie7 .span5{float:left;margin-left:20px;}
+.lt-ie7 .span6{float:left;margin-left:20px;}
+.lt-ie7 .span7{float:left;margin-left:20px;}
+.lt-ie7 .span8{float:left;margin-left:20px;}
+.lt-ie7 .span9{float:left;margin-left:20px;}
+.lt-ie7 .span10{float:left;margin-left:20px;}
+.lt-ie7 .span11{float:left;margin-left:20px;}
+.lt-ie7 .span12{float:left;margin-left:20px;}
 
 // Mur Mitoyen -----------------------------------------------------------------
 // http://murmitoyen.com/events/js/syndication.css
