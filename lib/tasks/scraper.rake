@@ -47,37 +47,4 @@ namespace :scraper do
       Activity.google_news(person)
     end
   end
-
-  desc 'Import person biography'
-  task :biography => :environment do
-    Person.all.each do |person|
-      %w(fr en).each |locale|
-        if person.web[locale].blank?
-          puts "#{person.name} #{locale} URL doesn't exist"
-          next
-        elsif Faraday.head(person.web[locale]).status != 200
-          puts "#{person.name} #{locale} URL is broken"
-          next
-        end
-
-        doc = Nokogiri::HTML(open(person.web[locale]), nil, 'utf-8')
-        person.biography[locale] = case person.party_name
-        when 'Union Montréal'
-          doc.css('.section').css('p').text
-        when 'Vision Montréal'
-          if doc.at_css('div#texte')
-            doc.at_css('div#texte').text
-          end
-        when 'Projet Montréal'
-          if doc.at_css('div.oi1')
-            doc.css('.oi1').css('p').text
-          else
-            doc.css('.oi4').css('p').text
-          end
-        end
-
-        person.save!
-      end
-    end
-  end
 end
