@@ -470,3 +470,55 @@ aside {
   .span-one-third{display:inline;float:left;margin-left:20px;}
   .span-two-thirds{display:inline;float:left;margin-left:20px;}
 }
+
+// Mur Mitoyen -----------------------------------------------------------------
+// http://murmitoyen.com/events/js/syndication.css
+
+#events br {
+  display: none;
+}
+
+#murmitoyen {
+  width: 100%;
+  border: 0px solid #d2d2d2;
+  padding: 1%;
+  margin-top: 10px;
+  margin-bottom: 10px;
+
+  br {display: block;}
+  .boiteSurTitre {clear:both; font-size:11px; font-weight:normal; font-family:Verdana,sans serif; color:grey;text-decoration:none; padding:0px 45px 0px 0px; margin:5px 0px 0px 0px;}
+  .boiteTitre {clear:both; font-size:13px; font-weight:bold; font-family:Georgia,serif; text-decoration:none; padding:0px 45px 0px 0px; margin:5px 0px 10px 0px;}
+  a:link{color:#21759B;text-decoration: none;}
+  a:visited{color:#21759B;text-decoration: none;}
+  a:hover{color:#21759B;text-decoration: underline;}
+  .eventDate {font-family:georgia,serif; width:98%; clear:both; font-weight:bold; font-size:14px; padding-bottom:10px; padding-top:4px; margin:0px 0px 0px 0px; color:#444444; border-top:3px solid #005689; position:relative; top:20px; height:40px; z-index:1;}
+  .eventTime{font-size:10px; line-height:15px; color:grey; font-family: Verdana, sans-serif; margin:2px 0px 8px 0px;}
+  .eventPlace{font-size:10px; line-height:20px; color:grey; font-family: Verdana, sans-serif; margin:8px 0px 2px 0px;}
+  .eventTitle {width:98%; clear:left; float:left; line-height:14px; padding-left:3px; padding-right:3px; padding-bottom:4px;padding-top:6px; border-top:1px solid #EEEEEE; position:relative; z-index:2;font-size:10px;font-family: Verdana, sans-serif;}
+  .eventTitle img {margin:5px 10px 5px 5px;float:left;}
+  .eventTitle:link {color:#21759B;text-decoration: none;}
+  .eventTitle:visited {color:#21759B;text-decoration: none;}
+  .eventTitle:hover {color:#21759B;text-decoration: none; background:#FAFAFC;}
+  .Title {padding:5px 0px;font-size:12px;padding:15px 0px 15px 0px;}
+  a {border-bottom:0px;}
+  img {border:0px;}
+
+  .propulse {
+    width: 98%;
+    padding-top: 10px;
+    color: grey;
+    font-size: 10px;
+    font-family: Verdana, sans-serif;
+    text-align: right;
+  }
+  td {
+    padding: 0 0 10px 5px;
+    font-size: 85%;
+    line-height: 120%;
+  }
+  td.date {
+    color: #747577;
+    white-space: nowrap;
+    vertical-align: top;
+  }
+}
