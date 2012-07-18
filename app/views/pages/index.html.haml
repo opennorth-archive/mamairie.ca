@@ -53,4 +53,5 @@
                 .borough
                   = person.borough.short_name || person.borough_name
                 .position
-                  = person.district_id ? person.district_name : person.positions.first
+                  -# Mayor will not have #district_id
+                  = person.district_id ? (person.district.short_name || person.district_name) : person.positions.first
