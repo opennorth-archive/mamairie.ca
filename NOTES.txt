@@ -37,3 +37,17 @@ Twitter followers https://twitter.com/#!/ma_mairie
 media and blog mentions http://opennorth.ca/press/
 social media activity
 feed subscribers
+
+
+
+# Merging two people
+new = 'Christian G. Dubois'
+old = 'Christian B. Dubois'
+a = Person.find_by_name! new
+b = Person.find_by_name! old
+g = a.activities.map{|x| x.extra[:guid] || x.extra[:id_str]};1
+h = b.activities.map{|x| x.extra[:guid] || x.extra[:id_str]};1
+i = h - g
+b.activities.each{|x| a.activities << x if i.include?(x.extra[:guid] || x.extra[:id_str])};1
+b.activities.destroy_all
+b.destroy
