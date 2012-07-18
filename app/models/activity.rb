@@ -57,6 +57,15 @@ class Activity
     end
   end
 
+  def guid
+    case source
+    when TWITTER
+      extra[:id_str]
+    when GOOGLE_NEWS
+      extra[:guid]
+    end
+  end
+
   def self.twitter(person)
     activity = person.latest_activity(TWITTER)
     since_id = activity ? activity.extra[:id_str] : 1
@@ -107,11 +116,18 @@ class Activity
   def self.google_news(person)
     activity = person.latest_activity(GOOGLE_NEWS)
     source = person.sources[GOOGLE_NEWS] || person.sources.build(name: GOOGLE_NEWS)
-    q = [
-      %("#{source.extra.has_key?(:q) ? source.extra[:q] : person.name}"),
-      source.extra[:as_eq].andand.map{|x| %(-"#{x}")},
-      'location:Québec',
-    ].flatten.compact.join(' ')
+
+    q = []
+    if source.extra[:as_oq]
+      q << source.extra[:as_oq].map{|x| %("#{x}")}.join ' OR '
+    elsif source.extra.has_key?(:q)
+      q << %("#{source.extra[:q]}")
+    else
+      q << %("#{person.name}")
+    end
+    q += source.extra[:as_eq].map{|x| %(-"#{x}")} if source.extra[:as_eq].present?
+    q << 'location:Québec'
+    q = q.join ' '
 
     # https://gist.github.com/132671
     tmp = Feedzirra::Parser::RSS.new
@@ -128,6 +144,7 @@ class Activity
     feed = Feedzirra::Feed.update(tmp)
 
     # @note feed.updated? doesn't guarantee new entries.
+    # @todo Feedzirra is pulling in duplicates. Rely on guid instead.
     if Fixnum === feed
       Rails.logger.warn tmp.feed_url
     elsif feed.new_entries.present?
