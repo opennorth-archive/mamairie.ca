@@ -5,16 +5,17 @@ class Activity
   TWITTER = 'twitter.com'
   GOOGLE_NEWS = 'news.google.ca'
 
+  # http://blog.slashpoundbang.com/post/12975232033/google-news-search-parameters-the-missing-manual
   GOOGLE_NEWS_URL = 'http://news.google.ca/news?'
   GOOGLE_NEWS_PARAMS = {
     pz:      1,
     output:  'rss',
-    hl:      'fr',
+    hl:      'fr',    # host language
     num:     100,
-    scoring: 'n',
-    ned:     'fr_ca',
+    scoring: 'n',     # sort by date (newest first)
+    ned:     'fr_ca', # Édition Canada Français
     as_drrb: 'q',
-    as_qdr:  'a',
+    as_qdr:  'a',     # anytime
     # geo and location don't retrieve identical results, though location gets
     # results for more councillors. geo gets longer titles.
     # * geo=Québec
