@@ -119,7 +119,7 @@ class Activity
 
     q = []
     if source.extra[:as_oq]
-      q << source.extra[:as_oq].map{|x| %("#{x}")}.join ' OR '
+      q << source.extra[:as_oq].map{|x| %("#{x}")}.join(' OR ')
     elsif source.extra.has_key?(:q)
       q << %("#{source.extra[:q]}")
     else
