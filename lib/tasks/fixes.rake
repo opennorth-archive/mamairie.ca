@@ -23,7 +23,7 @@ namespace :fixes do
     { 'Élaine Ayotte' => ['SEPAQ'],
       'Daniel Bélanger' => ['procureur de la Couronne', 'musiciens', 'musique', 'musicale', 'chanson', 'chansons'],
       'Céline Forget' => ['Cinémaboule'],
-      'Christian G. Dubois' => ['Québec solidaire'],
+      'Christian G. Dubois' => ['Québec solidaire', 'Amir Khadir', 'Mets de Repentigny'],
       'Pierre Mainville' => ['Louis-Pierre Mainville'],
       'François Robert' => ['Jean-François Robert', 'Photo François Robert'],
       'André Savard' => ['hockey', 'Rétro Laser'],

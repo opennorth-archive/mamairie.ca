@@ -41,7 +41,7 @@ module VilleMontrealQcCa
         }
       end
 
-      # @todo mark people for hiding
+      # @todo Make Person model "paranoid" and delete people who are no longer in council.
       previous = nil
       Nokogiri::HTML(Iconv.conv('UTF-8', 'ISO-8859-1', RestClient.post(PEOPLE_URL, action_affiche: 'affiche'))).css('.donn_listeVue1 a').each do |a|
         borough_name = a.css('span.titre').text.split(',').last.strip.tr("\u0096\u0097", "–—")
