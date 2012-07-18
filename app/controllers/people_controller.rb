@@ -1,25 +1,27 @@
 class PeopleController < ApplicationController
-  # GET /people
-  # GET /people.json
   def index
     @people = Person.all
 
     respond_to do |format|
-      format.html # index.html.erb
+      format.html
       format.json { render json: @people }
     end
   end
 
-  # GET /people/1
-  # GET /people/1.json
   def show
     @person = Person.find_by_slug!(params[:id])
     @activities = @person.activities.sort(:published_at.desc).limit(50)
 
     respond_to do |format|
-      format.html # show.html.erb
+      format.html
       format.json { render json: @person }
       format.atom { head :no_content if @activities.empty? }
+    end
+  rescue MongoMapper::DocumentNotFound, BSON::InvalidStringEncoding
+    respond_to do |format|
+      format.html { render file: Rails.root.join('public', '404.html'), status: :not_found }
+      format.json { head :not_found }
+      format.atom { head :not_found }
     end
   end
 
