@@ -19,7 +19,7 @@
     bundle exec rake scraper:twitter
     rspec lib/sanity.rb
 
-# Deployment
+## Deployment
 
     heroku run rake db:seed
     heroku run rake scraper:retrieve
