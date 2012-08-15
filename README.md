@@ -31,3 +31,9 @@
     rspec lib/sanity.rb
 
 If you'd like to volunteer, please contact [info@opennorth.ca](mailto:info@opennorth.ca).
+
+## Bugs? Questions?
+
+This app's main repository is on GitHub: [http://github.com/opennorth/mamairie.ca](http://github.com/opennorth/mamairie.ca), where your contributions, forks, bug reports, feature requests, and feedback are greatly welcomed.
+
+Copyright (c) 2012 Open North Inc., released under the MIT license
