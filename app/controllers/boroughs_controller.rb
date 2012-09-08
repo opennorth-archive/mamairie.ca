@@ -1,3 +1,5 @@
+require 'iconv'
+
 class BoroughsController < ApplicationController
   def index
     @boroughs = Borough.fields(:name, :slug).all
