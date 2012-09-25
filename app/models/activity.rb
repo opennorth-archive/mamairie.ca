@@ -42,8 +42,6 @@ class Activity
 
   def image
     case source
-    when TWITTER
-      extra[:profile_image_url]
     when GOOGLE_NEWS
       extra[:image]
     end
@@ -51,57 +49,8 @@ class Activity
 
   def guid
     case source
-    when TWITTER
-      extra[:id_str]
     when GOOGLE_NEWS
       extra[:guid]
-    end
-  end
-
-  def self.twitter(person)
-    activity = person.latest_activity(TWITTER)
-    since_id = activity ? activity.extra[:id_str] : 1
-
-    # @note We can paginate at most 3,200 tweets: https://dev.twitter.com/docs/things-every-developer-should-know
-    1.upto(16) do |page|
-      # @todo if import is interrupted due to rate limit, rest of history will not be imported
-      begin
-        if Twitter.rate_limit_status.remaining_hits.zero?
-          raise "No remaining Twitter hits. Reset in #{Twitter.rate_limit_status.reset_time_in_seconds} seconds."
-        end
-      rescue Twitter::Error::InternalServerError, Timeout::Error => e
-        Rails.logger.warn "Retrying in 2... #{e}"
-        sleep 2
-        retry
-      end
-
-      begin
-        tweets = Twitter.user_timeline(person.twitter, count: 200, since_id: since_id, page: page)
-      rescue StandardError => e
-        Rails.logger.warn "Retrying in 2... #{e}"
-        sleep 2
-        retry
-      end
-
-      break if tweets.empty?
-
-      tweets.each do |tweet|
-        person.activities.create!({
-          source:       Activity::TWITTER,
-          party_id:     person.party_id,
-          borough_id:   person.borough_id,
-          district_id:  person.district_id,
-          url:          "http://twitter.com/#{tweet.attrs['user']['screen_name']}/status/#{tweet.attrs['id_str']}",
-          body:         tweet.attrs['text'],
-          published_at: Time.parse(tweet.attrs['created_at']),
-          extra: {
-            name:              tweet.attrs['user']['name'],
-            screen_name:       tweet.attrs['user']['screen_name'],
-            profile_image_url: tweet.attrs['user']['profile_image_url'],
-            id_str:            tweet.attrs['id_str'],
-          },
-        })
-      end
     end
   end
 
