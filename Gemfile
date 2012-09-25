@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 ruby '1.9.3'
-gem 'rails', '3.1.0'
+gem 'rails', '3.1.8'
 gem 'rails-i18n'
 
 # https://gist.github.com/741873
@@ -47,7 +47,7 @@ gem 'unbreakable', '~> 0.0.4'
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
-  gem 'sass-rails', "  ~> 3.1.0"
+  gem 'sass-rails', "= 3.1.4"
   gem 'coffee-rails', "~> 3.1.0"
   gem 'uglifier'
 end
