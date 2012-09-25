@@ -65,14 +65,9 @@ module MaMairie
 
     # https://devcenter.heroku.com/articles/rails3x-asset-pipeline-cedar
     config.assets.initialize_on_precompile = true
-
-    config.generators do |g|
-      g.orm :mongo_mapper
-    end
   end
 end
 
-require 'carrierwave/orm/mongomapper'
 require 'enumerable_extensions'
 require 'string_extensions'
 require 'datetime_extensions'

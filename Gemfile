@@ -16,10 +16,7 @@ group :production do
 end
 
 # Database
-gem 'mongo'
-gem 'bson'
-gem 'bson_ext'
-gem 'mongo_mapper', '0.11.2'
+gem 'mongoid'
 
 # Feeds
 gem 'ri_cal'
@@ -27,8 +24,7 @@ gem 'ri_cal'
 # Image uploads
 gem 'fog'
 gem 'rmagick'
-gem 'carrierwave'
-gem 'mm-carrierwave'
+gem 'carrierwave-mongoid', git: 'git://github.com/jnicklas/carrierwave-mongoid.git', branch: 'mongoid-3.0'
 
 # Views
 gem 'haml-rails'
@@ -60,7 +56,8 @@ group :test do
 end
 
 group :development, :test do
-  gem 'rspec-rails', '~> 2.6'
+  gem 'rspec-rails'
+  gem 'shoulda-matchers'
 end
 
 gem 'unicorn'

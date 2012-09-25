@@ -1,10 +1,17 @@
+# A political party or organization.
 class Party
-  include MongoMapper::Document
-  many :people
+  include Mongoid::Document
 
-  key :name, String, required: true, unique: true
-  key :slug, String, required: true, unique: true
+  has_many :people
 
-  ensure_index :name
-  ensure_index :slug
+  # The party's official name.
+  field :name, type: String
+  # A lowercase identifier composed of letters, numbers and dashes.
+  field :slug, type: String
+
+  validates_presence_of :name, :slug
+
+  # Woe to jurisdictions with non-unique party names!
+  index name: 1, unique: true
+  index slug: 1, unique: true
 end

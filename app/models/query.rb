@@ -1,9 +1,15 @@
+# A user's search query.
 class Query
-  include MongoMapper::Document
+  include Mongoid::Document
 
-  key :query, String, required: true
-  key :found, Boolean, default: true
-  key :count, Integer
+  # The query's terms.
+  field :query, type: String
+  # Whether matching records were found.
+  field :found, type: Boolean, default: true
+  # How many times these terms were queried.
+  field :count, type: Integer
 
-  ensure_index :query
+  validates_presence_of :query
+
+  index query: 1
 end

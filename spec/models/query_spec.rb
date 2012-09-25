@@ -1,5 +1,5 @@
 require 'spec_helper'
 
 describe Query do
-  pending "add some examples to (or delete) #{__FILE__}"
+  should validate_presence_of :query
 end

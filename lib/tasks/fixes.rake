@@ -7,7 +7,7 @@ namespace :fixes do
       'Dimitrios Jim Beis' => 'Jim Beis',
     }.each do |name,q|
       person = Person.find_by_name! name
-      source = person.sources['news.google.ca'] || person.sources.build(name: 'news.google.ca')
+      source = person.sources.find_or_initialize_by(name: 'news.google.ca')
       source.extra[:q] = q
       person.save!
     end
@@ -15,7 +15,7 @@ namespace :fixes do
     { 'François William Croteau' => ['François William Croteau', 'François W. Croteau', 'François Croteau'],
     }.each do |name,as_oq|
       person = Person.find_by_name! name
-      source = person.sources['news.google.ca'] || person.sources.build(name: 'news.google.ca')
+      source = person.sources.find_or_initialize_by(name: 'news.google.ca')
       source.extra[:as_oq] = as_oq
       person.save!
     end
@@ -30,7 +30,7 @@ namespace :fixes do
       'Gilles Deguire' => ['Ri-Do-Rare'],
     }.each do |name,as_eq|
       person = Person.find_by_name! name
-      source = person.sources['news.google.ca'] || person.sources.build(name: 'news.google.ca')
+      source = person.sources.find_or_initialize_by(name: 'news.google.ca')
       source.extra[:as_eq] = as_eq
       person.save!
     end

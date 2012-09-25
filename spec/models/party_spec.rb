@@ -1,5 +1,7 @@
 require 'spec_helper'
 
 describe Party do
-  pending "add some examples to (or delete) #{__FILE__}"
+  [:name, :slug].each do |attribute|
+    should validate_presence_of attribute
+  end
 end
