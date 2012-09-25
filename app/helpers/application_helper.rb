@@ -40,7 +40,17 @@ module ApplicationHelper
   end
 
   def og_description
-    t "layouts.#{controller.send :_layout}.description"
+    t "layouts.#{layout}.description"
+  end
+
+  # http://stackoverflow.com/questions/3326579/rails3-get-current-layout-name-inside-view
+  def layout
+    layout = controller.send(:_layout)
+    if String === layout
+      layout
+    else
+      File.basename(layout.identifier).split('.').first
+    end
   end
 
   # Feeds

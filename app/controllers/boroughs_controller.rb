@@ -14,7 +14,7 @@ class BoroughsController < ApplicationController
   def show
     @borough = Borough.find_by_slug!(params[:id])
     @activities = Activity.where(borough_id: @borough.id).sort(:published_at.desc).limit(40)
-    # @todo import events in a Rake task, assign events to boroughs
+    # @todo import events in a Rake task, assign events to boroughs, avoids timeout error
     @events = RiCal.parse_string(Iconv.conv('UTF-8', 'ISO-8859-1', open('http://murmitoyen.com/events/link/iCalendar.php?gID=234').read))[0].events
 
     respond_to do |format|

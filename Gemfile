@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 ruby '1.9.3'
-gem 'rails', '3.1.8'
+gem 'rails', '3.2.8'
 gem 'rails-i18n'
 
 # https://gist.github.com/741873
@@ -16,10 +16,10 @@ group :production do
 end
 
 # Database
-gem 'mongo', '= 1.4.0'
-gem 'bson', '= 1.4.0'
-gem 'bson_ext', '= 1.4.0'
-gem 'mongo_mapper'
+gem 'mongo'
+gem 'bson'
+gem 'bson_ext'
+gem 'mongo_mapper', '0.11.2'
 
 # Feeds
 gem 'ri_cal'
@@ -42,14 +42,14 @@ gem 'feedzirra'
 gem 'nokogiri'
 gem 'rest-client'
 gem 'dragonfly', :git => 'git://github.com/jpmckinney/dragonfly.git'
-gem 'unbreakable', '~> 0.0.4'
+gem 'unbreakable', '~> 0.0.6'
 
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
-  gem 'sass-rails', "= 3.1.4"
-  gem 'coffee-rails', "~> 3.1.0"
-  gem 'uglifier'
+  gem 'sass-rails',   '~> 3.2.3'
+  gem 'coffee-rails', '~> 3.2.1'
+  gem 'uglifier', '>= 1.0.3'
 end
 
 gem 'jquery-rails'

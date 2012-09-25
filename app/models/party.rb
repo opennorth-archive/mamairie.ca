@@ -1,6 +1,5 @@
 class Party
   include MongoMapper::Document
-  plugin MongoMapper::Plugins::IdentityMap
   many :people
 
   key :name, String, required: true, unique: true

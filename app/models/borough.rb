@@ -1,6 +1,5 @@
 class Borough
   include MongoMapper::Document
-  plugin MongoMapper::Plugins::IdentityMap
   many :people
   many :districts
 
