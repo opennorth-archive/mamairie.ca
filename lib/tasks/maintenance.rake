@@ -15,7 +15,7 @@ namespace :maintenance do
       end
     end
 
-    hash = YAML.load_file(File.join(Rails.root, 'config', 'locales', 'fr.yml'))['fr'].delete_if do |key,_|
+    hash = YAML.load_file(File.join(Rails.root, 'config', 'locales', 'fr-CA.yml'))['fr-CA'].delete_if do |key,_|
       %w(date time datetime number support helpers errors attributes activerecord mongo_mapper).include? key
     end
 

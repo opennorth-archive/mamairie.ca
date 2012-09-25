@@ -1,28 +1,38 @@
-source 'http://rubygems.org'
+source 'https://rubygems.org'
 
+ruby '1.9.3'
 gem 'rails', '3.1.0'
-gem 'thin'
+gem 'rails-i18n'
 
-# Bundle edge Rails instead:
-# gem 'rails',     :git => 'git://github.com/rails/rails.git'
+# https://gist.github.com/741873
+group :production do
+  # Error logging
+  gem 'airbrake'
 
-# Model
+  # Performance
+  gem 'dalli'
+  gem 'newrelic_rpm'
+  gem 'rack-cache'
+end
+
+# Database
 gem 'mongo', '= 1.4.0'
 gem 'bson', '= 1.4.0'
 gem 'bson_ext', '= 1.4.0'
 gem 'mongo_mapper'
 
-gem 'airbrake'
-gem 'twitter'
-gem 'twitter-text'
-gem 'unicode_utils'
+# Feeds
 gem 'ri_cal'
 
-# Uploads
+# Image uploads
 gem 'fog'
 gem 'rmagick'
 gem 'carrierwave'
 gem 'mm-carrierwave'
+
+# Views
+gem 'haml-rails'
+gem 'unicode_utils'
 
 # Scraper
 gem 'andand'
@@ -42,30 +52,15 @@ group :assets do
   gem 'uglifier'
 end
 
-gem 'haml-rails'
 gem 'jquery-rails'
-
-# Use unicorn as the web server
-# gem 'unicorn'
-
-# Deploy with Capistrano
-# gem 'capistrano'
-
-# To use debugger
-# gem 'ruby-debug19', :require => 'ruby-debug'
 
 group :test do
   # Pretty printed test output
   gem 'turn', :require => false
 end
 
-group :test, :development do
-  gem 'rspec-rails', '~> 2.6.1'
+group :development, :test do
+  gem 'rspec-rails', '~> 2.6'
 end
 
-# https://gist.github.com/741873
-group :production do
-  gem 'pg'
-  gem 'dalli'
-  gem 'rack-cache'
-end
+gem 'unicorn'

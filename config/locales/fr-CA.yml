@@ -1,0 +1,96 @@
+fr-CA:
+  mentioning: mentionnant
+  via: via
+
+  logo:
+    large: mamairie_logo_150.png
+    medium: mamairie_logo_75.png
+    alt: Ma Mairie
+  creator:
+    name: Nord Ouvert
+    logo: nordouvert_logo.png
+    url: http://nordouvert.ca/
+  search:
+    label: "Trouvez d'abord vos élu(e)s :"
+    placeholder: Indiquez votre code postal
+    example_label: "Par exemple :"
+    example: H2L 4L8
+    submit: Rechercher
+    errors:
+      blank: Vous n'avez pas inscrit de code postal.
+      not_found: "Le code postal %{q} ne figure pas dans notre base de données. Assurez-vous d'avoir inscrit un code postal de la Ville de Montréal."
+      timeout: Le site de la Ville de Montréal ne répond pas. S'il vous plaît réessayer.
+  subscribe:
+    invalid: Adresse de courriel invalide
+    blank: Entrez un email
+    success: Email enregistré
+  social:
+    twitter: "Suivre %{name}"
+    favorite: Favoriser
+    retweet: Retweeter
+    reply: Répondre
+  feed:
+    subscribe: S'abonner au flux RSS
+    google: S'abonner via Google Reader
+    feedly: S'abonner via Feedly
+    netvibes: S'abonner via Netvibes
+
+  layouts:
+    application:
+      name: Ma Mairie
+      url: http://mamairie.ca/
+      description: Suivez l'activité de vos élu(e)s à la Ville de Montréal
+      author: Nord Ouvert
+      facebook_admins: "100002666906486"
+      facebook_locale: fr_ca
+      google_analytics: UA-21866813-9
+  pages:
+    index:
+      title: Ma Mairie
+      tagline: Suivez l'activité de vos élu(e)s à la Ville de Montréal
+      newsletter:
+        text: Nous allons ajouter plusieurs nouvelles fonctionnalités dans les prochaines semaines.
+        call_to_action: Inscrivez votre adresse de courriel pour être avisé(e) lors des mises à jour.
+        email: Adresse de courriel
+        submit: Abonnez-moi
+      activities: Activités
+      boroughs: Arrondissements
+      events: Événements
+      officials: Élu(e)s
+      feed:
+        title: Ma Mairie
+        author: Ma Mairie
+    about:
+      title: Ma Mairie
+  boroughs:
+    show:
+      title: "%{name} - Ma Mairie"
+      feed:
+        author: Ma Mairie
+      events: Événements
+  people:
+    show:
+      title: "%{name} - Ma Mairie"
+      tel: Tél
+      fax: Fax
+      contact: Coordonnées
+      positions: Poste(s)
+      committees: Comités
+      newsletter:
+        text: Voudriez-vous recevoir des mises à jour directement de votre élu(e) ? Enregistrer votre intérêt ci-dessous.
+        email: Adresse de courriel
+        placeholder: nom@exemple.com
+        submit: S'abonner
+      feed:
+        author: Ma Mairie
+
+  links:
+    projetmontreal: "%{name} sur ProjetMontreal.org"
+    unionmontreal: "%{name} sur UnionMontreal.com"
+    visionmtl: "%{name} sur VisionMTL.com"
+    personal: "site personnel de %{name}"
+    villemontrealqcca: "%{name} sur ville.montreal.qc.ca"
+
+  attributes:
+    created_at: "Créé le"
+    updated_at: "Modifié le"
