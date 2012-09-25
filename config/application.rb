@@ -64,7 +64,7 @@ module MaMairie
     config.assets.version = '1.0'
 
     # https://devcenter.heroku.com/articles/rails3x-asset-pipeline-cedar
-    config.assets.initialize_on_precompile = false
+    config.assets.initialize_on_precompile = true
 
     config.generators do |g|
       g.orm :mongo_mapper
