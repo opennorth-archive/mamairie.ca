@@ -18,7 +18,6 @@
     bundle exec rake scraper:photos
     bundle exec rake scraper:wikipedia
     bundle exec rake scraper:google_news
-    bundle exec rake scraper:twitter
     rspec lib/sanity.rb
 
 ## Deployment
@@ -29,7 +28,6 @@
     heroku run rake scraper:photos
     heroku run rake scraper:wikipedia
     heroku run rake scraper:google_news
-    heroku run rake scraper:twitter
     rspec lib/sanity.rb
 
 If you'd like to volunteer, please contact [info@opennorth.ca](mailto:info@opennorth.ca).

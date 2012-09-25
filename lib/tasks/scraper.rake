@@ -33,14 +33,6 @@ namespace :scraper do
     # @todo
   end
 
-  desc 'Import Twitter tweets'
-  task :twitter => :environment do
-
-    Person.where(twitter: {'$exists' => true}).sort(:name.asc).all.each do |person|
-      Activity.twitter(person)
-    end
-  end
-
   desc 'Import Google News articles'
   task :google_news => :environment do
     Person.sort(:name.asc).all.each do |person|

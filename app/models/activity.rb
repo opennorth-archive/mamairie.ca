@@ -2,7 +2,6 @@
 require 'time'
 
 class Activity
-  TWITTER = 'twitter.com'
   GOOGLE_NEWS = 'news.google.ca'
 
   # http://blog.slashpoundbang.com/post/12975232033/google-news-search-parameters-the-missing-manual
@@ -40,13 +39,6 @@ class Activity
 
   ensure_index :source
   ensure_index [[:published_at, -1]]
-
-  def publisher_url
-    case source
-    when TWITTER
-      "http://twitter.com/#{extra[:screen_name]}"
-    end
-  end
 
   def image
     case source

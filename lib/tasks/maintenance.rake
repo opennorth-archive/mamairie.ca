@@ -1,15 +1,5 @@
 namespace :maintenance do
   desc 'Output translations as CSV'
-  task :hashtags => :environment do
-    occurrences = Hash.new(0)
-    Activity.where(source:'twitter.com').map{|x| x.body.scan(/(#[^[:space:][:punct:]]+)/)}.flatten.map(&:downcase).each do |tag|
-      occurrences[tag] += 1
-    end
-    occurrences.sort_by{|k,v| -v}.first(50).each do |tag,count|
-      puts "#{count.to_s.rjust(4)} #{tag}"
-    end
-  end
-
   task :translations => :environment do
     require 'csv'
     require 'iconv'
