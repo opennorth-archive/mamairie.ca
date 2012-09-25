@@ -2,7 +2,7 @@ MaMairie::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb
 
   # In the development environment your application's code is reloaded on
-  # every request.  This slows down response time but is perfect for development
+  # every request. This slows down response time but is perfect for development
   # since you don't have to restart the web server when you make code changes.
   config.cache_classes = false
 
@@ -22,9 +22,16 @@ MaMairie::Application.configure do
   # Only use best-standards-support built into browsers
   config.action_dispatch.best_standards_support = :builtin
 
+
   # Do not compress assets
   config.assets.compress = false
 
   # Expands the lines which load the assets
   config.assets.debug = true
+
+  config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+
+  # https://github.com/rails/rails/issues/3583
+  config.middleware.delete Rack::ConditionalGet
+  config.middleware.delete Rack::ETag
 end
