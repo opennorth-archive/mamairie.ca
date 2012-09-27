@@ -16,16 +16,16 @@ class PagesController < ApplicationController
       flash.alert = t('search.errors.blank')
       redirect_to root_path
     else
-      Query.find_or_create_by_query(params[:q]).increment(count: 1)
+      Query.find_or_create_by(query: params[:q]).inc(:count, 1)
       begin
         borough = Borough.find_by_postal_code(params[:q].gsub(/[^A-Za-z0-9]/, '').upcase)
         redirect_to borough_path(id: borough.slug)
-      rescue MongoMapper::DocumentNotFound
-        Query.find_or_create_by_query(params[:q]).update_attribute(:found, false)
+      rescue Mongoid::Errors::DocumentNotFound
+        Query.find_or_create_by(query: params[:q]).update_attribute(:found, false)
         flash.alert = t('search.errors.not_found', q: params[:q])
         redirect_to root_path
-      rescue Timeout::Error, RestClient::GatewayTimeout, Errno::EHOSTUNREACH, Errno::ECONNREFUSED
-        Query.find_or_create_by_query('ERROR').increment(count: 1)
+      rescue Timeout::Error, RestClient::GatewayTimeout, Errno::EHOSTUNREACH, Errno::ECONNREFUSED => e
+        Query.find_or_create_by(query: e.inspect).update_attribute(:found, false).inc(:count, 1)
         flash.alert = t('search.errors.timeout')
         redirect_to root_path
       end

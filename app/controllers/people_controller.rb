@@ -9,7 +9,7 @@ class PeopleController < ApplicationController
   end
 
   def show
-    @person = Person.find_by_slug!(params[:id])
+    @person = Person.find_by(slug: params[:id])
     @activities = @person.activities.sort(:published_at.desc).limit(50)
 
     respond_to do |format|
@@ -17,7 +17,7 @@ class PeopleController < ApplicationController
       format.json { render json: @person }
       format.atom { head :no_content if @activities.empty? }
     end
-  rescue MongoMapper::DocumentNotFound, BSON::InvalidStringEncoding
+  rescue Mongoid::Errors::DocumentNotFound
     respond_to do |format|
       format.html { render file: Rails.root.join('public', '404.html'), status: :not_found }
       format.json { head :not_found }
