@@ -51,7 +51,7 @@
                   %abbr.label(class="#{person.party_slug}" title="#{person.party_name}")
                     = person.party_slug.first.upcase
                 .borough
-                  = person.borough.short_name || person.borough_name
+                  = person.borough_name
                 .position
                   -# Mayor will not have #district_id
-                  = person.district_id ? (person.district.short_name || person.district_name) : person.positions.first
+                  = person.district_id ? person.district.name : person.positions.first

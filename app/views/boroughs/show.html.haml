@@ -25,7 +25,7 @@
       %aside
         = render 'shared/social', entity: @borough
         %p
-          = link_to t('links.villemontrealqcca', name: @borough.name), @borough.url
+          = link_to t('links.villemontrealqcca', name: @borough.name), @borough.external_url
         %h2=t '.events'
         #murmitoyen
           - @events.each do |event|
