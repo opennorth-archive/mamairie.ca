@@ -11,20 +11,19 @@ group :production do
 
   # Performance
   gem 'dalli'
-  gem 'newrelic_rpm'
+  gem 'newrelic_rpm', '3.5.3.25'
   gem 'rack-cache'
 end
 
+gem 'popolo', path: 'vendor/engines/popolo'
+gem 'carrierwave-mongoid', path: '/Users/james/.rvm/gems/ruby-1.9.3-p194/bundler/gems/carrierwave-mongoid-28a9b718d42b'
+
 # Database
-gem 'mongoid'
+gem 'mongoid', '~> 3.0.6'
+gem 'mongoid-tree', require: 'mongoid/tree'
 
 # Feeds
 gem 'ri_cal'
-
-# Image uploads
-gem 'fog'
-gem 'rmagick'
-gem 'carrierwave-mongoid', git: 'git://github.com/jnicklas/carrierwave-mongoid.git', branch: 'mongoid-3.0'
 
 # Views
 gem 'haml-rails'
@@ -37,7 +36,7 @@ gem 'home_run' # faster date parsing
 gem 'feedzirra'
 gem 'nokogiri'
 gem 'rest-client'
-gem 'dragonfly', :git => 'git://github.com/jpmckinney/dragonfly.git'
+gem 'dragonfly', git: 'git://github.com/jpmckinney/dragonfly.git'
 gem 'unbreakable', '~> 0.0.6'
 
 # Gems used only for assets and not required
@@ -52,12 +51,12 @@ gem 'jquery-rails'
 
 group :test do
   # Pretty printed test output
-  gem 'turn', :require => false
+  gem 'turn', require: false
 end
 
 group :development, :test do
-  gem 'rspec-rails'
-  gem 'shoulda-matchers'
+  gem 'rspec-rails', '~> 2.11'
+  gem 'shoulda-matchers', '~> 1.0'
 end
 
 gem 'unicorn'
