@@ -52,7 +52,7 @@ module VilleMontrealQcCa
         gender, *name = a[:title].split
         name = name.join(' ')
 
-        person = Person.find_by_name(name) || Person.new(name: name)
+        person = Person.find_or_initialize_by(name: name)
         if person.new_record?
           log.info "Adding new person #{person.name}"
         end
@@ -73,11 +73,7 @@ module VilleMontrealQcCa
           positions:        positions,
           responsibilities: nil,
           functions:        nil,
-          twitter:          nil,
-          facebook:         nil,
-          wikipedia:        nil,
-          web:              nil,
-          photo_src:        src && "http://ville.montreal.qc.ca#{src}",
+          photo_url:        src && "http://ville.montreal.qc.ca#{src}",
           source_url:       a[:href],
           borough_id:       nil,
           district_id:      nil,
@@ -87,7 +83,7 @@ module VilleMontrealQcCa
 
         suffix = "for #{person.name} (#{a[:href].split('=').last.to_i})"
 
-        borough = Borough.find_by_name(borough_name)
+        borough = Borough.find_by(name: borough_name)
         if borough.nil?
           log.warn "Unknown borough '#{borough_name}' #{suffix}"
         else
@@ -101,7 +97,7 @@ module VilleMontrealQcCa
         end
 
         if csv.key? name
-          person.attributes = csv[name]
+          person.extra = csv[name]
         else
           log.warn "Missing spreadsheet row #{suffix}"
         end
@@ -115,7 +111,7 @@ module VilleMontrealQcCa
               if %w(Ouest Est Centre).include? district_name
                 district_name = "#{borough_name}-#{district_name}"
               end
-              district = District.find_by_name(district_name)
+              district = District.find_by(name: district_name)
               if district.nil?
                 log.warn "Unknown district '#{district_name}' #{suffix}"
               else
@@ -124,7 +120,7 @@ module VilleMontrealQcCa
             end
 
             party_name = parts.last.sub(/ \([A-Z]{2,3}\)\z/, '')
-            party = Party.find_by_name(party_name)
+            party = Party.find_by(name: party_name)
             if party.nil?
               log.warn "Unknown party '#{party_name}' #{suffix}"
             else
@@ -160,7 +156,7 @@ module VilleMontrealQcCa
           end
         end
 
-        %w(email photo_src).each do |attribute|
+        %w(email photo_url).each do |attribute|
           log.info "Missing #{attribute} #{suffix}" if person[attribute].blank?
         end
         person.addresses.each do |address|

@@ -13,12 +13,12 @@ namespace :scraper do
   task :photos => :environment do
     # https://github.com/technoweenie/faraday/wiki/Setting-up-SSL-certificates
     OpenSSL::SSL::VERIFY_PEER = OpenSSL::SSL::VERIFY_NONE
-    Person.where(photo_src: {'$exists' => true}).each do |person|
+    Person.where(photo_url: {'$exists' => true}).each do |person|
       # On HTTP 404, HEAD requests raise errors. Although this line would be
       # cleaner with GET, HEAD is faster.
       unless (Faraday.head(person.photo.url).status rescue false)
         begin
-          person.remote_photo_url = person.photo_src
+          person.remote_photo_url = person.photo_url
           person.save!
         rescue => e
           puts e.message
@@ -44,15 +44,15 @@ namespace :scraper do
   task :biography => :environment do
     Person.all.each do |person|
       %w(fr en).each do |locale|
-        if person.web[locale].blank?
+        if person.extra[:web][locale].blank?
           puts "#{person.name} #{locale} URL doesn't exist"
           next
-        elsif Faraday.head(person.web[locale]).status != 200
+        elsif Faraday.head(person.extra[:web][locale]).status != 200
           puts "#{person.name} #{locale} URL is broken"
           next
         end
 
-        doc = Nokogiri::HTML(open(person.web[locale]), nil, 'utf-8')
+        doc = Nokogiri::HTML(open(person.extra[:web][locale]), nil, 'utf-8')
         person.biography[locale] = case person.party_name
         when 'Union Montréal'
           doc.css('.section').css('p').text

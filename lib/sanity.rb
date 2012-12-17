@@ -8,14 +8,14 @@ describe MaMairie do
   it 'should get 200 response code' do
     uris = Person.all.map do |x|
       [
-        x.twitter,
-        x.facebook,
-        x.wikipedia[:en],
-        x.wikipedia[:fr],
-        x.web[:en],
-        x.web[:fr],
+        x.extra[:twitter],
+        x.extra[:facebook],
+        x.extra[:wikipedia][:en],
+        x.extra[:wikipedia][:fr],
+        x.extra[:web][:en],
+        x.extra[:web][:fr],
       ]
-    end + Person.all.map(&:photo_src) + ['http://ville.montreal.qc.ca/portal/page?_pageid=5798,85809573&_dad=portal&_schema=PORTAL']
+    end + Person.all.map(&:photo_url) + ['http://ville.montreal.qc.ca/portal/page?_pageid=5798,85809573&_dad=portal&_schema=PORTAL']
     uris.flatten.compact.each do |uri|
       Faraday.head(uri).status.should == 200
       Faraday.get(uri).body.should_not match /Fatal error/i
