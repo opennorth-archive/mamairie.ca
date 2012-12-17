@@ -139,7 +139,7 @@ end
     'Villeray',
   ],
 }.each do |slug,districts|
-  borough = Borough.find_by_slug(slug)
+  borough = Borough.find_by(slug: slug)
   districts.each do |name|
     borough.districts.create! name: name
   end
