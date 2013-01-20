@@ -1,0 +1,46 @@
+article {
+  text-align: center;
+}
+h1 {
+  color: #333;
+  margin: 14px 0;
+  font-size: 4em;
+  line-height: 1.5em;
+}
+p {
+  margin: 0 0 1em;
+}
+form {
+  padding-top: 1em;
+  margin: 1em 0;
+}
+ul.unstyled {
+  position: absolute;
+  left: 50%;
+  width: 68px;
+  margin-left: -34px;
+}
+li {
+  float: left;
+}
+img {
+  border: none;
+  vertical-align: inherit;
+}
+#twitter,
+#facebook {
+  display: block;
+  width: 34px;
+  padding-top: 2px;
+  height: 32px;
+  background: transparent url(../img/social_button.png) no-repeat -34px 0;
+  font-size: 16px;
+  line-height: 34px;
+  text-align: center;
+}
+#twitter {
+  background-position: 0 0;
+}
+#facebook {
+  background-position: -68px 0;
+}
