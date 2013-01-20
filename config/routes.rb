@@ -1,10 +1,6 @@
 MaMairie::Application.routes.draw do
-  resources :boroughs, only: :show
-  resources :people, only: :show do
-    member do
-      post 'subscribe'
-    end
-  end
+  mount TokenAction::Engine => '/token_action'
+
   match 'about' => 'pages#about'
   match 'search' => 'pages#search'
   match 'feed' => 'pages#index'

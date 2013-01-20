@@ -23,22 +23,6 @@ class Activity
     # * location:Montréal
   }
 
-  include MongoMapper::Document
-  belongs_to :person
-  belongs_to :party
-  belongs_to :borough
-  belongs_to :district
-
-  key :body, String, required: true
-  key :url, String, required: true
-  key :published_at, Time, required: true
-  key :source, String, required: true
-  key :extra, Hash
-  timestamps!
-
-  ensure_index :source
-  ensure_index [[:published_at, -1]]
-
   def image
     case source
     when GOOGLE_NEWS
@@ -55,7 +39,7 @@ class Activity
 
   def self.google_news(person)
     activity = person.latest_activity(GOOGLE_NEWS)
-    source = person.sources[GOOGLE_NEWS] || person.sources.build(name: GOOGLE_NEWS)
+    source = person.sources.find_by(name: GOOGLE_NEWS) || person.sources.build(name: GOOGLE_NEWS)
 
     q = []
     if source.extra[:as_oq]
