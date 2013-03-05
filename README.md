@@ -1,6 +1,6 @@
 # MaMairie.ca
 
-[![Dependency Status](https://gemnasium.com/opennorth/mamairie.png)](https://gemnasium.com/opennorth/mamairie)
+[![Dependency Status](https://gemnasium.com/opennorth/mamairie.ca.png)](https://gemnasium.com/opennorth/mamairie.ca)
 
 [MaMairie.ca](http://mamairie.ca/) helps you track and interact with your municipal elected officials. Currently launched in Montreal, QC. We have a number of features planned and data to integrate:
 
