@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 ruby '1.9.3'
-gem 'rails', '3.2.9'
+gem 'rails', '3.2.13'
 gem 'rails-i18n'
 
 # https://gist.github.com/741873
@@ -15,7 +15,7 @@ group :production do
   gem 'rack-cache'
 end
 
-gem 'popolo', path: 'vendor/engines/popolo'
+gem 'popolo'
 gem 'carrierwave-mongoid', path: '/Users/james/.rvm/gems/ruby-1.9.3-p194/bundler/gems/carrierwave-mongoid-28a9b718d42b'
 
 # Database
