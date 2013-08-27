@@ -10,6 +10,7 @@ group :production do
   gem 'airbrake'
 
   # Performance
+  gem 'memcachier'
   gem 'dalli'
   gem 'newrelic_rpm', '3.5.3.25'
   gem 'rack-cache'
