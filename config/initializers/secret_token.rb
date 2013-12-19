@@ -9,4 +9,4 @@
 
 # Make sure your secret_key_base is kept private
 # if you're sharing your code publicly.
-MyCityHall::Application.config.secret_key_base = '01539c6e8962cd6ab1fd3cf3b63e38afd0a3d91d0312413e2d508e2c4ae303cd886b8a7f2eeef17f3a25ad67e2b7590ac71ec03929fb67c1ee60975236430632'
+MyCityHall::Application.config.secret_key_base = ENV['SECRET_TOKEN'] || '01539c6e8962cd6ab1fd3cf3b63e38afd0a3d91d0312413e2d508e2c4ae303cd886b8a7f2eeef17f3a25ad67e2b7590ac71ec03929fb67c1ee60975236430632'
